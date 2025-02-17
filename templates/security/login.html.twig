@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion</title>
+  </head>
+  <nav>
+    <ul class="navbar">
+      <li><a href="/">Acceuil</a></li>
+      <li><a href="/register">S'inscrire</a></li>
+      <li><a href="/login">Se connecter</a></li>
+    </ul>
+  </nav>
+  <h1>Stubborn</h1>
+  <p>Slogan</p>
+  <body>
+    {% block body %}
+    <form method="post">
+      {% if error %}
+      <div class="alert alert-danger">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+      </div>
+      {% endif %} {% if app.user %}
+      <div class="mb-3">
+        You are logged in as {{ app.user.userIdentifier }},
+        <a href="{{ path('app_logout') }}">Logout</a>
+      </div>
+      {% endif %}
+
+      <label for="inputEmail">Email</label>
+      <input
+        type="email"
+        value="{{ last_username }}"
+        name="email"
+        id="inputEmail"
+        class="form-control"
+        autocomplete="email"
+        required
+        autofocus
+      />
+      <br />
+      <label for="inputPassword">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="inputPassword"
+        class="form-control"
+        autocomplete="current-password"
+        required
+      />
+
+      <input
+        type="hidden"
+        name="_csrf_token"
+        value="{{ csrf_token('authenticate') }}"
+      />
+
+      <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+    {% endblock %}
+  </body>
+  <footer>
+    <a href="/info"><p>Informations de la société</p></a>
+  </footer>
+</html>

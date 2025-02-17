@@ -1,23 +1,46 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inscription</title>
+    <link
+      rel="stylesheet"
+      href="{{ asset('bundles/apiplatform/style.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <ul class="navbar">
+        <li><a href="/">Accueil</a></li>
+        {% if app.user %} {% if is_granted('ROLE_ADMIN') %}
+        <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+        {% endif %} {% else %}
+        <li><a href="/register">S'inscrire</a></li>
+        <li><a href="/login">Se connecter</a></li>
+        {% endif %}
+      </ul>
+    </nav>
 
-{% block title %}Register{% endblock %}
-
-{% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-
-    <h1>Register</h1>
+    <h1>Stubborn</h1>
+    <p>Slogan</p>
 
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+    {{ form_row(registrationForm.email) }}
+    {{
+      form_row(registrationForm.plainPassword, {
+        label: "Mot de passe"
+      })
+    }}
+    {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+    <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
-{% endblock %}
+
+    <footer>
+      <a href="/info"><p>Informations de la société</p></a>
+    </footer>
+  </body>
+</html>
