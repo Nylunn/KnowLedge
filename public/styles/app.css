@@ -1,3 +1,61 @@
 * {
-  color: red;
+  font-family: Poppins;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+.slogan {
+  font-size: 16px;
+}
+.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.nav {
+  border-bottom: 1px solid black;
+}
+.navbar {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.navbar li {
+  padding: 10px 20px;
+}
+.container_price {
+  width: 200px;
+  height: 130px;
+}
+.choice_price {
+  text-align: center;
+  border: 1px solid grey;
+}
+section {
+  display: inline-block;
+  margin: 20px;
+}
+.product_card {
+  border: 1px solid black;
+  height: 450px;
+  width: 300px;
+  padding: 20px;
+}
+
+.show_product {
+  margin-left: 50px;
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  border-color: black;
+}
+.options {
+  text-decoration: none;
+  height: 75%;
+  width: 100%;
+
+  font-size: 16px;
 }
