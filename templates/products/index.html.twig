@@ -1,0 +1,12 @@
+{% block body %} {% if products %} {% for sweatshirt in products %}
+<tr>
+  <td>{{ sweatshirt.name }}</td>
+  <td>{{ sweatshirt.size }}</td>
+  <td>{{ sweatshirt.price }}</td>
+  <br />
+</tr>
+{% endfor %} {% else %}
+<tr>
+  <td colspan="2">Pas de sweatshirt pour le moment</td>
+</tr>
+{%endif%} {% endblock body %}

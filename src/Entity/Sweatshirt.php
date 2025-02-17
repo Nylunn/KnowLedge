@@ -26,8 +26,25 @@ class Sweatshirt
 
 
 
-    public function getSize(): ?int
+    public function getSize(): ?string
     {
         return $this->size;
     }
+
+    #[ORM\Column]
+    private ?string $price = null;
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    #[ORM\Column]
+    private ?string $name = null;
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
 }
