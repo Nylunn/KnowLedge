@@ -34,7 +34,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column]
+    private ?string $delivery_adress = null;
+
+    #[ORM\Column]
     private bool $isVerified = false;
+
+    public function getAdress(): ?int
+    {
+        return $this->delivery_adress;
+    }
 
     public function getId(): ?int
     {

@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Acceuil</title>
   </head>
-  <nav>
-    <ul class="navbar">
-      <li><a href="/">Acceuil</a></li>
-      <li><a href="/register">S'inscrire</a></li>
-      <li><a href="/login">Se connecter</a></li>
-    </ul>
-  </nav>
-  <h1>Stubborn</h1>
-  <p>Slogan</p>
   <body>
-    <div>
-      <img src="#" alt="#" />
-      <img src="#" alt="#" />
-      <img src="#" alt="#" />
-    </div>
+    <nav>
+      <ul class="navbar">
+        <li><a href="/">Accueil</a></li>
+        {% if app.user %} {% if is_granted('ROLE_ADMIN') %}
+        <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+        {% endif %} {% else %}
+        <li><a href="/register">S'inscrire</a></li>
+        <li><a href="/login">Se connecter</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <h1>Stubborn</h1>
+    <p>Don't compromise on your look</p>
+
+    <footer>
+      <a href="/info"><p>Informations de la société</p></a>
+    </footer>
   </body>
-  <footer>
-    <a href="/info"><p>Informations de la société</p></a>
-  </footer>
-  <link rel="stylesheet" href="/public/bundles/apiplatform/style.css" />
 </html>
