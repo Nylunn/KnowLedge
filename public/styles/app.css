@@ -58,3 +58,33 @@ section {
   width: 100%;
   font-size: 16px;
 }
+.bloc {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.logo_section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 200px;
+  height: 220px;
+}
+
+.bloc2 {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  position: absolute;
+  left: 50%;
+  top: 14%;
+  transform: translateX(-50%);
+}
