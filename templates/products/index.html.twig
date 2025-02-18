@@ -14,7 +14,7 @@
         <ul class="navbar">
           <li><a href="/">Accueil</a></li>
           {% if app.user %}
-          <li><a class="active" href="/shop">Boutique</a></li>
+          <li><a class="active" href="/products">Boutique</a></li>
           <li><a href="/cart">Panier</a></li>
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}
@@ -53,7 +53,9 @@
 
             <br />
             <td>{{ sweatshirt.price }}</td>
+            {% if app.user %}
             <button class="show_product"><a href="#">Voir</a></button>
+            {% endif %}
             <br />
           </tr>
         </div>

@@ -1,20 +1,33 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello CartController!{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/kawze/stubborn/src/Controller/CartController.php</code></li>
-        <li>Your template at <code>C:/Users/kawze/stubborn/templates/cart/index.html.twig</code></li>
-    </ul>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href={{
+      "styles/app.css"
+    }}>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produit</title>
+  </head>
+  <body>
+    <div class="nav">
+      <nav>
+        <ul class="navbar">
+          <li><a href="/">Accueil</a></li>
+          {% if app.user %}
+          <li><a href="/products">Boutique</a></li>
+          <li><a class="active" href="/cart">Panier</a></li>
+          <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+          {% if is_granted('ROLE_ADMIN') %}
+          <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+          {% endif %} {% else %}
+          <li><a href="/register">S'inscrire</a></li>
+          <li><a href="/login">Se connecter</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <img src={{ asset("assets/Logo.png") }} width="10%" alt="Logo" />
+      <h1 class="slogan">Don't compromise on your look</h1>
+    </div>
+    <br />
+  </body>
+</html>
