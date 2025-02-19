@@ -16,20 +16,20 @@ class SweatshirtRepository extends ServiceEntityRepository
         parent::__construct($registry, Sweatshirt::class);
     }
 
-    //    /**
-    //     * @return Sweatshirt[] Returns an array of Sweatshirt objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('s.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    
+    //     @return Sweatshirt[] Returns an array of Sweatshirt objects
+
+        public function findByExampleField($size): array
+        {
+            return $this->createQueryBuilder('s')
+                ->andWhere('s.exampleField = :val')
+                ->setParameter('val', $size)
+                ->orderBy('s.id', 'ASC')
+                ->setMaxResults(10)
+                ->getQuery()
+                ->getResult()
+            ;
+        }
 
     //    public function findOneBySomeField($value): ?Sweatshirt
     //    {

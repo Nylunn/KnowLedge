@@ -41,8 +41,9 @@
         <a href="{{ path('app_logout') }}">Logout</a>
       </div>
       {% endif %}
-
-      <label for="inputEmail">Email</label>
+<div class="form-login">
+  <p class="title-form">Se connecter</p>
+      <label for="inputEmail">Email</label> <br>
       <input
         type="email"
         value="{{ last_username }}"
@@ -52,10 +53,12 @@
         autocomplete="email"
         required
         autofocus
+        placeholder="email"
       />
       <br />
-      <label for="inputPassword">Password</label>
+      <label for="inputPassword">Mot de passe</label> <br>
       <input
+      placeholder="mot de passe"
         type="password"
         name="password"
         id="inputPassword"
@@ -69,8 +72,15 @@
         name="_csrf_token"
         value="{{ csrf_token('authenticate') }}"
       />
-
-      <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+  <br>
+      <button class="btn-login" type="submit">Se connecter</button> <br>
+      <a  href="/passwordrecovery">
+  <p class="title-form">Mot de passe oublié</p></a>
+      <div class="account_create">
+      <p>Pas encore inscrit ?</p>
+      <button class="btn-login">Créer un compte</button>
+      </div>
+    </div>
     </form>
     {% endblock %}
   </body>

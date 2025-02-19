@@ -12,13 +12,15 @@
     <div class="nav">
       <nav>
         <ul class="navbar">
-          <li><a class="active" href="/">Accueil</a></li>
+          <li><a href="/">Accueil</a></li>
           {% if app.user %}
           <li><a href="/products">Boutique</a></li>
           <li><a href="/cart">Panier</a></li>
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}
-          <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+          <li>
+            <a class="active" href="{{ path('app_admin') }}">Tableau de bord</a>
+          </li>
           {% endif %} {% else %}
           <li><a href="/register">S'inscrire</a></li>
           <li><a href="/login">Se connecter</a></li>
@@ -75,11 +77,8 @@
         </div>
         <div class="form-group">
           <label>Stock XL</label>
-
           <input class="form-response2" type="text" />
-          <div class="btn">
-            <button type="submit" class="btn-ajouter">AJOUTER</button>
-          </div>
+          <button type="submit" class="btn-ajouter">Ajouter</button>
         </div>
       </form>
     </div>
@@ -145,8 +144,8 @@
       <td colspan="2">Pas de sweatshirt pour le moment</td>
     </tr>
     {%endif%} {% endblock body %}
-    <footer>
-      <a href="/info"><p>Informations de la société</p></a>
-    </footer>
   </body>
+  <footer class="site_footer">
+    <a href="/info"><p>Informations de la société</p></a>
+  </footer>
 </html>

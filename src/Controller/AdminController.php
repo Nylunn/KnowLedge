@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Sweatshirt;
+use App\Repository\SweatshirtRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,15 +18,7 @@ final class AdminController extends AbstractController
 
         return $this->render('admin/index.html.twig', ['products' => $products ]);
 
-        $om = $manager->getManager();
 
-        for ($i=1;$i <4; $i++) {
-            $products = new Sweatshirt();
-
-            $products->setName("Sweatshirt $i");
-
-            $om->persist($products);
-        }
     }
 }
 
