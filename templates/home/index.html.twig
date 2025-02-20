@@ -29,7 +29,99 @@
       <h1 class="slogan">Don't compromise on your look</h1>
     </div>
     <br />
-    <footer>
+    {% block body %}
+    <div class="show_product">
+      <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 1 %}
+        <tr>
+          <img src="{{
+            asset("assets/1.jpeg")
+          }}" width="100%" alt="blackbelt_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div>
+
+      <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 2 %}
+        <tr>
+          <img src="{{
+            asset("assets/1.jpeg")
+          }}" width="100%" alt="blackbelt_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div>
+
+      <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 3 %}
+        <tr>
+          <img src="{{
+            asset("assets/1.jpeg")
+          }}" width="100%" alt="blackbelt_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    {% endblock body %}
+    <footer class="site_footer">
       <a href="/info"><p>Informations de la société</p></a>
     </footer>
   </body>

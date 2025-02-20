@@ -213,3 +213,11 @@ section {
   width: 220px;
   padding: 10px;
 }
+/*Home page*/
+.show_product {
+  margin: 0;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
