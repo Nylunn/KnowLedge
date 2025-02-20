@@ -20,17 +20,58 @@ class Sweatshirt
     {
         return $this->id;
     }
-    
+    //taille XS
     #[ORM\Column]
-    private ?string $size = null;
+    private ?string $sizeXS = null;
 
 
 
-    public function getSize(): ?string
+    public function getSizeXS(): ?string
     {
-        return $this->size;
+        return $this->sizeXS;
+    }
+    //taille S
+ #[ORM\Column]
+    private ?string $sizeS = null;
+
+
+
+    public function getSizeS(): ?string
+    {
+        return $this->sizeS;
     }
 
+    //taille M
+     #[ORM\Column]
+    private ?string $sizeM = null;
+
+
+
+    public function getSizeM(): ?string
+    {
+        return $this->sizeM;
+    }
+    //taille L
+ #[ORM\Column]
+    private ?string $sizeL = null;
+
+
+
+    public function getSizeL(): ?string
+    {
+        return $this->sizeL;
+    }
+    //taille XL
+
+     #[ORM\Column]
+    private ?string $sizeXL = null;
+
+
+
+    public function getSizeXL(): ?string
+    {
+        return $this->sizeXL;
+    }
     #[ORM\Column]
     private ?string $price = null;
 
