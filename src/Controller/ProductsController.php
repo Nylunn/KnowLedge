@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+ 
 use App\Entity\Sweatshirt;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,10 +11,10 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ProductsController extends AbstractController
 {
     #[Route('/products', name: 'app_products')]
-    public function index(ManagerRegistry $manager): Response
+    public function index(ManagerRegistry $manager, ): Response
     {
         $products = $manager->getRepository(Sweatshirt::class)->findAll();
-        
+
         return $this->render('products/index.html.twig', ['products' => $products ]);
 
         $om = $manager->getManager();
@@ -27,4 +27,11 @@ final class ProductsController extends AbstractController
             $om->persist($products);
         }
     }
+/*#[Route('/products/:id', name: 'app_products:id')]
+     public function show($id, $repo){
+          $products = $repo->find($id);
+        return $this->render('products/show.html.twig',[
+        'products' =>$products    
+        ]);
+    }*/
 }

@@ -82,7 +82,8 @@
         </div>
       </form>
     </div>
-    {% block body %} {% if products %} {% for sweatshirt in products %}
+    {% block body %} {% if products %} {% for sweatshirt in products %} {% if
+    sweatshirt.id == 1 %}
 
     <div class="form-container">
       <img src={{ asset("assets/1.jpeg") }}
@@ -103,25 +104,25 @@
         <div class="form-group">
           <label>Stock XS</label>
           <div class="form-response">
-            <td>{{ sweatshirt.size }}</td>
+            <td>{{ sweatshirt.sizeXS }}</td>
           </div>
         </div>
         <div class="form-group">
           <label>Stock S</label>
           <div class="form-response">
-            <td>{{ sweatshirt.size }}</td>
+            <td>{{ sweatshirt.sizeS }}</td>
           </div>
         </div>
         <div class="form-group">
           <label>Stock M</label>
           <div class="form-response">
-            <td>{{ sweatshirt.size }}</td>
+            <td>{{ sweatshirt.sizeM }}</td>
           </div>
         </div>
         <div class="form-group">
           <label>Stock L</label>
           <div class="form-response">
-            <td>{{ sweatshirt.size }}</td>
+            <td>{{ sweatshirt.sizeL }}</td>
             <div class="btn">
               <button type="submit" class="btn-ajouter">MODIFIER</button>
             </div>
@@ -130,7 +131,7 @@
         <div class="form-group">
           <label>Stock XL</label>
           <div class="form-response2">
-            <td>{{ sweatshirt.size }}</td>
+            <td>{{ sweatshirt.sizeXL }}</td>
             <div class="btn">
               <button type="submit" class="btn-ajouter">SUPPRIMER</button>
             </div>
@@ -139,11 +140,569 @@
       </form>
     </div>
 
-    {% endfor %} {% else %}
+    {% endif %} {% endfor %} {% else %}
     <tr>
       <td colspan="2">Pas de sweatshirt pour le moment</td>
     </tr>
-    {%endif%} {% endblock body %}
+    {%endif%} {% if products %} {% for sweatshirt in products %} {% if
+    sweatshirt.id == 2 %}
+
+    <div class="form-container">
+      <img src={{ asset("assets/2.jpeg") }}
+      width="10%" style="padding: 5px;" alt="blackbelt_sweatshirt" />
+      <form class="form-content">
+        <div class="form-group">
+          <label>Nom</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.name }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Prix</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.price }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XS</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeXS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock S</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock M</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeM }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock L</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">MODIFIER</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XL</label>
+          <div class="form-response2">
+            <td>{{ sweatshirt.sizeXL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">SUPPRIMER</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% endif %} {% endfor %} {% else %}
+    <tr>
+      <td colspan="2">Pas de sweatshirt pour le moment</td>
+    </tr>
+    {%endif%} {% if products %} {% for sweatshirt in products %} {% if
+    sweatshirt.id == 3 %}
+
+    <div class="form-container">
+      <img src={{ asset("assets/3.jpeg") }}
+      width="10%" style="padding: 5px;" alt="blackbelt_sweatshirt" />
+      <form class="form-content">
+        <div class="form-group">
+          <label>Nom</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.name }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Prix</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.price }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XS</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeXS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock S</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock M</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeM }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock L</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">MODIFIER</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XL</label>
+          <div class="form-response2">
+            <td>{{ sweatshirt.sizeXL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">SUPPRIMER</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% endif %} {% endfor %} {% else %}
+    <tr>
+      <td colspan="2">Pas de sweatshirt pour le moment</td>
+    </tr>
+    {%endif%} {% if products %} {% for sweatshirt in products %} {% if
+    sweatshirt.id == 4 %}
+
+    <div class="form-container">
+      <img src={{ asset("assets/4.jpeg") }}
+      width="10%" style="padding: 5px;" alt="blackbelt_sweatshirt" />
+      <form class="form-content">
+        <div class="form-group">
+          <label>Nom</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.name }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Prix</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.price }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XS</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeXS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock S</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock M</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeM }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock L</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">MODIFIER</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XL</label>
+          <div class="form-response2">
+            <td>{{ sweatshirt.sizeXL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">SUPPRIMER</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% endif %} {% endfor %} {% else %}
+    <tr>
+      <td colspan="2">Pas de sweatshirt pour le moment</td>
+    </tr>
+    {%endif%} {% if products %} {% for sweatshirt in products %} {% if
+    sweatshirt.id == 5 %}
+
+    <div class="form-container">
+      <img src={{ asset("assets/5.jpeg") }}
+      width="10%" style="padding: 5px;" alt="blackbelt_sweatshirt" />
+      <form class="form-content">
+        <div class="form-group">
+          <label>Nom</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.name }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Prix</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.price }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XS</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeXS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock S</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock M</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeM }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock L</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">MODIFIER</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XL</label>
+          <div class="form-response2">
+            <td>{{ sweatshirt.sizeXL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">SUPPRIMER</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% endif %} {% endfor %} {% else %}
+    <tr>
+      <td colspan="2">Pas de sweatshirt pour le moment</td>
+    </tr>
+    {%endif%} {% if products %} {% for sweatshirt in products %} {% if
+    sweatshirt.id == 6 %}
+
+    <div class="form-container">
+      <img src={{ asset("assets/6.jpeg") }}
+      width="10%" style="padding: 5px;" alt="blackbelt_sweatshirt" />
+      <form class="form-content">
+        <div class="form-group">
+          <label>Nom</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.name }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Prix</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.price }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XS</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeXS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock S</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock M</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeM }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock L</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">MODIFIER</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XL</label>
+          <div class="form-response2">
+            <td>{{ sweatshirt.sizeXL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">SUPPRIMER</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% endif %} {% endfor %} {% else %}
+    <tr>
+      <td colspan="2">Pas de sweatshirt pour le moment</td>
+    </tr>
+    {%endif%} {% if products %} {% for sweatshirt in products %} {% if
+    sweatshirt.id == 7 %}
+
+    <div class="form-container">
+      <img src={{ asset("assets/7.jpeg") }}
+      width="10%" style="padding: 5px;" alt="blackbelt_sweatshirt" />
+      <form class="form-content">
+        <div class="form-group">
+          <label>Nom</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.name }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Prix</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.price }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XS</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeXS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock S</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock M</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeM }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock L</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">MODIFIER</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XL</label>
+          <div class="form-response2">
+            <td>{{ sweatshirt.sizeXL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">SUPPRIMER</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% endif %} {% endfor %} {% else %}
+    <tr>
+      <td colspan="2">Pas de sweatshirt pour le moment</td>
+    </tr>
+    {%endif%} {% if products %} {% for sweatshirt in products %} {% if
+    sweatshirt.id == 8 %}
+
+    <div class="form-container">
+      <img src={{ asset("assets/8.jpeg") }}
+      width="10%" style="padding: 5px;" alt="blackbelt_sweatshirt" />
+      <form class="form-content">
+        <div class="form-group">
+          <label>Nom</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.name }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Prix</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.price }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XS</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeXS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock S</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock M</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeM }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock L</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">MODIFIER</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XL</label>
+          <div class="form-response2">
+            <td>{{ sweatshirt.sizeXL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">SUPPRIMER</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% endif %} {% endfor %} {% else %}
+    <tr>
+      <td colspan="2">Pas de sweatshirt pour le moment</td>
+    </tr>
+    {%endif%} {% if products %} {% for sweatshirt in products %} {% if
+    sweatshirt.id == 9 %}
+
+    <div class="form-container">
+      <img src={{ asset("assets/9.jpeg") }}
+      width="10%" style="padding: 5px;" alt="blackbelt_sweatshirt" />
+      <form class="form-content">
+        <div class="form-group">
+          <label>Nom</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.name }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Prix</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.price }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XS</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeXS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock S</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock M</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeM }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock L</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">MODIFIER</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XL</label>
+          <div class="form-response2">
+            <td>{{ sweatshirt.sizeXL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">SUPPRIMER</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% endif %} {% endfor %} {% else %}
+    <tr>
+      <td colspan="2">Pas de sweatshirt pour le moment</td>
+    </tr>
+    {%endif%} {% if products %} {% for sweatshirt in products %} {% if
+    sweatshirt.id == 10 %}
+
+    <div class="form-container">
+      <img src={{ asset("assets/10.jpeg") }}
+      width="10%" style="padding: 5px;" alt="blackbelt_sweatshirt" />
+      <form class="form-content">
+        <div class="form-group">
+          <label>Nom</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.name }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Prix</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.price }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XS</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeXS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock S</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeS }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock M</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeM }}</td>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock L</label>
+          <div class="form-response">
+            <td>{{ sweatshirt.sizeL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">MODIFIER</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock XL</label>
+          <div class="form-response2">
+            <td>{{ sweatshirt.sizeXL }}</td>
+            <div class="btn">
+              <button type="submit" class="btn-ajouter">SUPPRIMER</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% endif %} {% endfor %} {% else %}
+    <tr>
+      <td colspan="2">Pas de sweatshirt pour le moment</td>
+    </tr>
+    {%endif%}{% endblock body %}
   </body>
   <footer class="site_footer">
     <a href="/info"><p>Informations de la société</p></a>
