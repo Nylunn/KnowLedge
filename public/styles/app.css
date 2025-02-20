@@ -221,3 +221,22 @@ section {
   justify-content: center;
   gap: 30px;
 }
+
+/*Register page*/
+.title-register {
+  color: grey;
+  border-bottom: 1px solid rgb(7, 186, 186);
+}
+
+.form-register {
+  display: grid;
+  border: 1px solid black;
+  text-align: start;
+  height: 450px;
+  width: 250px;
+}
+
+.register_input {
+  padding: 10px;
+  color: grey;
+}
