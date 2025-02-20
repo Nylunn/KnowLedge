@@ -11,10 +11,12 @@ a {
   color: black;
 }
 .site_footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  margin-left: 30px;
+  margin-top: 20px;
+  border: 1px solid black;
+  display: flex;
+  padding-left: 40px;
+  width: 90%;
 }
 /*NAVBAR*/
 .slogan {
@@ -196,7 +198,15 @@ section {
   color: grey;
   border-bottom: 1px solid rgb(7, 186, 186);
 }
+.form {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 50px;
+  width: 250px;
+}
 .form-login {
+  display: flex;
   border: 1px solid black;
   text-align: start;
   height: 350px;

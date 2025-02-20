@@ -29,6 +29,8 @@
       <h1 class="slogan">Don't compromise on your look</h1>
     </div>
   <body>
+    <div class="form">
+    <div class="form-login">
     {% block body %}
     <form method="post">
       {% if error %}
@@ -41,7 +43,6 @@
         <a href="{{ path('app_logout') }}">Logout</a>
       </div>
       {% endif %}
-<div class="form-login">
   <p class="title-form">Se connecter</p>
       <label for="inputEmail">Email</label> <br>
       <input
@@ -75,7 +76,7 @@
   <br>
       <button class="btn-login" type="submit">Se connecter</button> <br>
       <a  href="/passwordrecovery">
-  <p class="title-form">Mot de passe oublié</p></a>
+  <p class="title-form" style="color:cadetblue">Mot de passe oublié</p></a>
       <div class="account_create">
       <p>Pas encore inscrit ?</p>
       <button class="btn-login">Créer un compte</button>
@@ -83,8 +84,10 @@
     </div>
     </form>
     {% endblock %}
-  </body>
-  <footer>
+    </div>
+      <footer class="site_footer">
     <a href="/info"><p>Informations de la société</p></a>
   </footer>
+  </body>
+
 </html>
