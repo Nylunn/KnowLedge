@@ -229,14 +229,24 @@ section {
 }
 
 .form-register {
+  padding: 10px;
   display: grid;
   border: 1px solid black;
   text-align: start;
-  height: 450px;
+  height: 650px;
   width: 250px;
 }
 
 .register_input {
   padding: 10px;
   color: grey;
+}
+.btn-register {
+  margin: 10px;
+  border: 0px;
+  width: 150px;
+  height: 30px;
+  background-color: rgb(7, 186, 186);
+  color: #fff;
+  border-radius: 5px;
 }
