@@ -60,6 +60,30 @@ section {
   padding: 20px;
 }
 
+.show_product2 {
+  display: flex;
+  gap: 10px;
+  border-radius: 10px;
+  border-color: black;
+  padding-top: 10px;
+}
+
+.show_product3 {
+  padding-top: 10px;
+  display: flex;
+  gap: 10px;
+  border-radius: 10px;
+  border-color: black;
+}
+
+.show_product4 {
+  padding-top: 10px;
+  display: flex;
+  gap: 10px;
+  border-radius: 10px;
+  border-color: black;
+}
+
 .show_product {
   margin-left: 50px;
   width: 100px;

@@ -39,34 +39,243 @@
         </select>
       </div>
       <br />
-      {% block body %} {% if products %} {% for sweatshirt in products %}
+     
 
       <section>
+        <div class="show_product2">
         <div class="product_card">
-          <tr>
-            <img src={{
-              asset("assets/1.jpeg")
-            }}
-            width="100%" alt="blackbelt_sweatshirt" />
-            <br />
-            <td>{{ sweatshirt.name }}</td>
+         {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 1 %}
+        <tr>
+          <img src="{{
+            asset("assets/1.jpeg")
+          }}" width="100%" alt="blackbelt_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div>
+      <br>
+           <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 2 %}
+        <tr>
+          <img src="{{
+            asset("assets/2.jpeg")
+          }}" width="100%" alt="pokeball_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div><br>
 
-            <br />
-            <td>{{ sweatshirt.price }}</td>
-            {% if app.user %}
-            <button class="show_product"><a href="#">Voir</a></button>
-            {% endif %}
-            <br />
-          </tr>
-        </div>
+           <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 3 %}
+        <tr>
+          <img src="{{
+            asset("assets/3.jpeg")
+          }}" width="100%" alt="pokeball_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div><br>
+
+           <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 4 %}
+        <tr>
+          <img src="{{
+            asset("assets/4.jpeg")
+          }}" width="100%" alt="pokeball_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div><br>
+</div>
+<div class="show_product3">
+           <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 5 %}
+        <tr>
+          <img src="{{
+            asset("assets/5.jpeg")
+          }}" width="100%" alt="pokeball_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div><br>
+
+           <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 6 %}
+        <tr>
+          <img src="{{
+            asset("assets/6.jpeg")
+          }}" width="100%" alt="pokeball_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div><br>
+
+           <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 7 %}
+        <tr>
+          <img src="{{
+            asset("assets/7.jpeg")
+          }}" width="100%" alt="pokeball_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div><br>
+
+           <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 8 %}
+        <tr>
+          <img src="{{
+            asset("assets/8.jpeg")
+          }}" width="100%" alt="pokeball_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div><br>
+</div>
+<div class="show_product4">
+           <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 9 %}
+        <tr>
+          <img src="{{
+            asset("assets/9.jpeg")
+          }}" width="100%" alt="pokeball_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div><br>
+
+           <div class="product_card">
+        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        == 10 %}
+        <tr>
+          <img src="{{
+            asset("assets/10.jpeg")
+          }}" width="100%" alt="pokeball_sweatshirt" />
+          <br />
+          <td>{{ sweatshirt.name }}</td>
+          <br />
+          <td>{{ sweatshirt.price }}</td>
+          {% if app.user %}
+          <button class="show_product"><a href="#">Voir</a></button>
+          {% endif %}
+          <br />
+        </tr>
+        {% endif %} {% endfor %} {% else %}
+        <tr>
+          <td colspan="2">Pas de sweatshirt pour le moment</td>
+        </tr>
+        {% endif %}
+      </div> <br>
+      </div>
       </section>
-
-      {% endfor %} {% else %}
-      <tr>
-        <td colspan="2">Pas de sweatshirt pour le moment</td>
-      </tr>
-      {%endif%} {% endblock body %}
-    </div>
   </body>
   <footer class="site_footer">
     <a href="/info"><p>Informations de la société</p></a>
