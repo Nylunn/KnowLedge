@@ -241,7 +241,9 @@
           <br />
           <td>{{ sweatshirt.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+          {% for sweatshirt in products %}
+    <a href="{{ path('app_products_show', { 'id': sweatshirt.id }) }}">{{ sweatshirt.name }}</a>
+{% endfor %}
           {% endif %}
           <br />
         </tr>

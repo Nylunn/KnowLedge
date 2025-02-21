@@ -7,6 +7,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 final class ProductsController extends AbstractController
 {
@@ -27,11 +29,20 @@ final class ProductsController extends AbstractController
             $om->persist($products);
         }
     }
-/*#[Route('/products/:id', name: 'app_products:id')]
-     public function show($id, $repo){
-          $products = $repo->find($id);
-        return $this->render('products/show.html.twig',[
-        'products' =>$products    
-        ]);
-    }*/
+
+#[Route('/products/{id}', name: 'product_show', requirements: ['id' => '\d+'])]
+public function show(int $id, EntityManagerInterface $entityManager): Response
+{
+    
+    $products = $entityManager->getRepository(Sweatshirt::class)->find($id);
+
+    if (!$products) {
+        throw $this->createNotFoundException('Ce produit n\'existe pas.');
+    }
+
+    return $this->render('products/show.html.twig', [
+        'products' => $products,
+    ]);
+}
+
 }
