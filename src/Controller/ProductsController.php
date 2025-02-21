@@ -30,19 +30,17 @@ final class ProductsController extends AbstractController
         }
     }
 
-#[Route('/products/{id}', name: 'product_show', requirements: ['id' => '\d+'])]
+#[Route('/products/{id}', name: 'product_show')]
 public function show(int $id, EntityManagerInterface $entityManager): Response
 {
-    
-    $products = $entityManager->getRepository(Sweatshirt::class)->find($id);
+    $product = $entityManager->getRepository(Sweatshirt::class)->find($id);
 
-    if (!$products) {
+    if (!$product) {
         throw $this->createNotFoundException('Ce produit n\'existe pas.');
     }
 
     return $this->render('products/show.html.twig', [
-        'products' => $products,
-    ]);
+        'product' => $product, ]);
 }
 
 }

@@ -44,18 +44,18 @@
       <section>
         <div class="show_product2">
         <div class="product_card">
-         {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+         {% if products %} {% for product in products %} {% if product.id
         == 1 %}
         <tr>
           <img src="{{
             asset("assets/1.jpeg")
           }}" width="100%" alt="blackbelt_sweatshirt" />
           <br />
-          <td>{{ sweatshirt.name }}</td>
+          <td>{{ product.name }}</td>
           <br />
-          <td>{{ sweatshirt.price }}</td>
+          <td>{{ product.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+          <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
@@ -67,18 +67,18 @@
       </div>
       <br>
            <div class="product_card">
-        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        {% if products %} {% for product in products %} {% if product.id
         == 2 %}
         <tr>
           <img src="{{
             asset("assets/2.jpeg")
           }}" width="100%" alt="pokeball_sweatshirt" />
           <br />
-          <td>{{ sweatshirt.name }}</td>
+          <td>{{ product.name }}</td>
           <br />
-          <td>{{ sweatshirt.price }}</td>
+          <td>{{ product.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+        <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
@@ -90,18 +90,18 @@
       </div><br>
 
            <div class="product_card">
-        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        {% if products %} {% for product in products %} {% if product.id
         == 3 %}
         <tr>
           <img src="{{
             asset("assets/3.jpeg")
           }}" width="100%" alt="pokeball_sweatshirt" />
           <br />
-          <td>{{ sweatshirt.name }}</td>
+          <td>{{ product.name }}</td>
           <br />
-          <td>{{ sweatshirt.price }}</td>
+          <td>{{ product.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+         <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
@@ -113,18 +113,18 @@
       </div><br>
 
            <div class="product_card">
-        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        {% if products %} {% for product in products %} {% if product.id
         == 4 %}
         <tr>
           <img src="{{
             asset("assets/4.jpeg")
           }}" width="100%" alt="pokeball_sweatshirt" />
           <br />
-          <td>{{ sweatshirt.name }}</td>
+          <td>{{ product.name }}</td>
           <br />
-          <td>{{ sweatshirt.price }}</td>
+          <td>{{ product.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+  <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
@@ -137,18 +137,18 @@
 </div>
 <div class="show_product3">
            <div class="product_card">
-        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        {% if products %} {% for product in products %} {% if product.id
         == 5 %}
         <tr>
           <img src="{{
             asset("assets/5.jpeg")
           }}" width="100%" alt="pokeball_sweatshirt" />
           <br />
-          <td>{{ sweatshirt.name }}</td>
+          <td>{{ product.name }}</td>
           <br />
-          <td>{{ sweatshirt.price }}</td>
+          <td>{{ product.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+           <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
@@ -160,18 +160,18 @@
       </div><br>
 
            <div class="product_card">
-        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        {% if products %} {% for product in products %} {% if product.id
         == 6 %}
         <tr>
           <img src="{{
             asset("assets/6.jpeg")
           }}" width="100%" alt="pokeball_sweatshirt" />
           <br />
-          <td>{{ sweatshirt.name }}</td>
+          <td>{{ product.name }}</td>
           <br />
-          <td>{{ sweatshirt.price }}</td>
+          <td>{{ product.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+         <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
@@ -183,18 +183,18 @@
       </div><br>
 
            <div class="product_card">
-        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        {% if products %} {% for product in products %} {% if product.id
         == 7 %}
         <tr>
           <img src="{{
             asset("assets/7.jpeg")
           }}" width="100%" alt="pokeball_sweatshirt" />
           <br />
-          <td>{{ sweatshirt.name }}</td>
+          <td>{{ product.name }}</td>
           <br />
-          <td>{{ sweatshirt.price }}</td>
+          <td>{{ product.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+      <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
@@ -206,18 +206,18 @@
       </div><br>
 
            <div class="product_card">
-        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        {% if products %} {% for product in products %} {% if product.id
         == 8 %}
         <tr>
           <img src="{{
             asset("assets/8.jpeg")
           }}" width="100%" alt="pokeball_sweatshirt" />
           <br />
-          <td>{{ sweatshirt.name }}</td>
+          <td>{{ product.name }}</td>
           <br />
-          <td>{{ sweatshirt.price }}</td>
+          <td>{{ product.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+          <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
@@ -230,19 +230,19 @@
 </div>
 <div class="show_product4">
            <div class="product_card">
-        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        {% if products %} {% for product in products %} {% if product.id
         == 9 %}
         <tr>
           <img src="{{
             asset("assets/9.jpeg")
           }}" width="100%" alt="pokeball_sweatshirt" />
           <br />
-          <td>{{ sweatshirt.name }}</td>
+          <td>{{ product.name }}</td>
           <br />
-          <td>{{ sweatshirt.price }}</td>
+          <td>{{ product.price }}</td>
           {% if app.user %}
-          {% for sweatshirt in products %}
-    <a href="{{ path('app_products_show', { 'id': sweatshirt.id }) }}">{{ sweatshirt.name }}</a>
+          {% for product in products %}
+  <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
 {% endfor %}
           {% endif %}
           <br />
@@ -255,18 +255,18 @@
       </div><br>
 
            <div class="product_card">
-        {% if products %} {% for sweatshirt in products %} {% if sweatshirt.id
+        {% if products %} {% for product in products %} {% if product.id
         == 10 %}
         <tr>
           <img src="{{
             asset("assets/10.jpeg")
           }}" width="100%" alt="pokeball_sweatshirt" />
           <br />
-          <td>{{ sweatshirt.name }}</td>
+          <td>{{ product.name }}</td>
           <br />
-          <td>{{ sweatshirt.price }}</td>
+          <td>{{ product.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+       <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
