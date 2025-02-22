@@ -274,3 +274,45 @@ section {
   color: #fff;
   border-radius: 5px;
 }
+
+/*Showing product page*/
+
+.showing_card {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.details_card {
+  padding: 20px;
+  display: flex;
+  border: 1px solid black;
+  height: 600px;
+  width: 1200px;
+}
+
+.card_img {
+  height: 600px;
+  width: 700px;
+  border: 1px solid black;
+}
+
+.product_details {
+  text-align: center;
+  height: 600px;
+  width: 500px;
+  font-size: 20px;
+}
+
+.select_size {
+  width: 200px;
+  height: 150px;
+}
+
+.add_to_card {
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-top: 20px;
+}

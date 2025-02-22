@@ -7,23 +7,60 @@
     <title>Détails du produit</title>
   </head>
   <body>
-    <div class="product_card">
-      {% if product is defined and product %}
-      <img
-        src="{{ asset('assets/9.jpeg') }}"
-        width="100%"
-        alt="pokeball_sweatshirt"
-      />
-      <br />
-      <p>{{ product.name }}</p>
-      <br />
-      <p>{{ product.price }}</p>
-      <br />
-      <p>{{ product.sizeXS }}</p>
-      {% else %}
-      <p>Pas de sweatshirt pour le moment</p>
-      {% endif %}
+    <div class="nav">
+      <nav>
+        <ul class="navbar">
+          <li><a href="/">Accueil</a></li>
+          {% if app.user %}
+          <li><a class="active" href="/products">Boutique</a></li>
+          <li><a href="/cart">Panier</a></li>
+          <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+          {% if is_granted('ROLE_ADMIN') %}
+          <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+          {% endif %} {% else %}
+          <li><a href="/register">S'inscrire</a></li>
+          <li><a href="/login">Se connecter</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <img src={{ asset("assets/Logo.png") }} width="10%" alt="Logo" />
+      <h1 class="slogan">Don't compromise on your look</h1>
     </div>
-    <a href="{{ path('app_products') }}">Retour aux articles</a>
+    <br />
+    <div class="showing_card">
+      {% if product is defined and product %}
+      <div class="details_card">
+        <div class="card_img">
+          <img
+            src="{{ product.image }}}"
+            width="60%"
+            alt="pokeball_sweatshirt"
+            style="padding: 50px; padding-left: 100px"
+          />
+        </div>
+        <br />
+        <div class="product_details">
+          <p>{{ product.name }}</p>
+          <br />
+          <p>{{ product.price }}</p>
+          <br />
+          <select class="select_size" name="size" id="size" size="5">
+            <optgroup label="Séléctionner une taille">
+              <option value="sizeXS">Taille XS</option>
+              <option value="sizeS">Taille S</option>
+              <option value="sizeM">Taille M</option>
+              <option value="sizeL">Taille L</option>
+              <option value="sizeXL">Taille XL</option>
+            </optgroup>
+          </select>
+          <br />
+          <button class="add_to_card">Ajouter au panier</button>
+          {% else %}
+          <p>Pas de sweatshirt pour le moment</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <br />
   </body>
 </html>
