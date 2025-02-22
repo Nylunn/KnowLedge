@@ -298,15 +298,17 @@ section {
 }
 
 .product_details {
-  text-align: center;
+  display: flex;
   height: 600px;
   width: 500px;
-  font-size: 20px;
+  justify-content: center;
 }
 
 .select_size {
   width: 200px;
   height: 150px;
+  display: flex;
+  margin-left: 50px;
 }
 
 .add_to_card {
@@ -315,4 +317,16 @@ section {
   border-radius: 5px;
   border: 1px solid black;
   margin-top: 20px;
+  margin-right: 200px;
+}
+
+.center_details {
+  justify-content: space-between;
+  display: flex;
+  width: 400px;
+  height: 400px;
+}
+
+.select_details {
+  text-align: end;
 }

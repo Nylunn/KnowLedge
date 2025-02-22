@@ -31,33 +31,34 @@
       {% if product is defined and product %}
       <div class="details_card">
         <div class="card_img">
-          <img
-            src="{{ product.image }}}"
-            width="60%"
-            alt="pokeball_sweatshirt"
-            style="padding: 50px; padding-left: 100px"
+          <img src="{{ asset("assets/1.jpeg") }}" width="60%"
+          alt="pokeball_sweatshirt" style="padding: 50px; padding-left: 100px"
           />
         </div>
         <br />
         <div class="product_details">
-          <p>{{ product.name }}</p>
-          <br />
-          <p>{{ product.price }}</p>
-          <br />
-          <select class="select_size" name="size" id="size" size="5">
-            <optgroup label="Séléctionner une taille">
-              <option value="sizeXS">Taille XS</option>
-              <option value="sizeS">Taille S</option>
-              <option value="sizeM">Taille M</option>
-              <option value="sizeL">Taille L</option>
-              <option value="sizeXL">Taille XL</option>
-            </optgroup>
-          </select>
-          <br />
-          <button class="add_to_card">Ajouter au panier</button>
-          {% else %}
-          <p>Pas de sweatshirt pour le moment</p>
-          {% endif %}
+          <div class="center_details">
+            <p class="details">{{ product.name }}</p>
+            <br />
+            <p class="details">{{ product.price }}</p>
+            <br />
+            <div class="select_details">
+              <select class="select_size" name="size" id="size" size="5">
+                <optgroup label="Séléctionner une taille">
+                  <option value="sizeXS">Taille XS</option>
+                  <option value="sizeS">Taille S</option>
+                  <option value="sizeM">Taille M</option>
+                  <option value="sizeL">Taille L</option>
+                  <option value="sizeXL">Taille XL</option>
+                </optgroup>
+              </select>
+              <br />
+              <button class="add_to_card">Ajouter au panier</button>
+            </div>
+            {% else %}
+            <p>Pas de sweatshirt pour le moment</p>
+            {% endif %}
+          </div>
         </div>
       </div>
     </div>
