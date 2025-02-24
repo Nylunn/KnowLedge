@@ -10,62 +10,53 @@
     <div class="nav">
       <nav>
         <ul class="navbar">
-          <li><a href="/">Accueil</a></li>
+          <li><a class="active" href="/">Accueil</a></li>
+          <li><a href="/formation">Formations</a></li>
           {% if app.user %}
-          <li><a class="active" href="/products">Boutique</a></li>
           <li><a href="/cart">Panier</a></li>
+          {% if is_granted('ROLE_STUDENT') %}
+          <li><a href="{{ path('app_student') }}">Leçon</a></li>
+          {% endif %}
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}
           <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
           {% endif %} {% else %}
+
           <li><a href="/register">S'inscrire</a></li>
           <li><a href="/login">Se connecter</a></li>
           {% endif %}
         </ul>
       </nav>
-      <img src={{ asset("assets/Logo.png") }} width="10%" alt="Logo" />
-      <h1 class="slogan">Don't compromise on your look</h1>
+      <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo" />
     </div>
     <br />
+
     <div class="showing_card">
-      {% if product is defined and product %}
+      {% if formation is defined and formation %}
       <div class="details_card">
         <div class="card_img">
           <img
-            src="{{ asset('assets/' ~ product.image) }}"
-            width="60%"
-            alt="pokeball_sweatshirt"
-            style="padding: 50px; padding-left: 100px"
+            src="{{ asset('assets/' ~ formation.image) }}"
+            alt="formation_musique"
           />
         </div>
         <br />
         <div class="product_details">
           <div class="center_details">
             <div>
-              <p class="details">{{ product.name }}</p>
+              <p class="details">{{ formation.title }}</p>
               <br />
-              <p class="details">{{ product.price }}</p>
+              <p class="desc">{{ formation.desc }}</p>
               <br />
             </div>
             <div class="select_details">
               <form
                 method="get"
-                action="{{ path('app_cart_add', { id: product.id }) }}"
+                action="{{ path('app_cart_add', { id: formation.id }) }}"
               >
-                <select class="select_size" name="size" id="size" size="5">
-                  <optgroup label="Séléctionner une taille">
-                    <option value="sizeXS">Taille XS</option>
-                    <option value="sizeS">Taille S</option>
-                    <option value="sizeM">Taille M</option>
-                    <option value="sizeL">Taille L</option>
-                    <option value="sizeXL">Taille XL</option>
-                  </optgroup>
-                </select>
                 <button class="add_to_card">
                   <a
-                    href="{{
-                      path('app_cart_add', { id: product.id, size: 'M' })
-                    }}"
+                    href="{{ path('app_cart_add', { id: formation.id }) }}"
                     class="btn btn-primary"
                   >
                     Ajouter au Panier

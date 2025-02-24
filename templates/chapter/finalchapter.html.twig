@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Détails du produit</title>
+  </head>
+  <body>
+    <div class="nav">
+      <nav>
+        <ul class="navbar">
+          <li><a class="active" href="/">Accueil</a></li>
+          <li><a href="/formation">Formations</a></li>
+          {% if app.user %}
+          <li><a href="/cart">Panier</a></li>
+          {% if is_granted('ROLE_STUDENT') %}
+          <li><a href="{{ path('app_student') }}">Leçon</a></li>
+          {% endif %}
+          <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+          {% if is_granted('ROLE_ADMIN') %}
+          <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+          {% endif %} {% else %}
+
+          <li><a href="/register">S'inscrire</a></li>
+          <li><a href="/login">Se connecter</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo" />
+    </div>
+    <br />
+
+    <h1>Chapitre</h1>
+    <a href="{{ path('student_certification') }}" class="btn btn-primary">
+      Obtenir ma certification
+    </a>
+  </body>
+</html>

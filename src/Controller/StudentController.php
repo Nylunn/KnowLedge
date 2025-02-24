@@ -2,24 +2,21 @@
 
 namespace App\Controller;
 
-use App\Entity\Sweatshirt;
+use App\Entity\Formation;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class AdminController extends AbstractController
+final class StudentController extends AbstractController
 {
-    #[Route('/admin', name: 'app_admin')]
+    #[Route('/student', name: 'app_student')]
     public function index(ManagerRegistry $manager): Response
     {
-        $products = $manager->getRepository(Sweatshirt::class)->findAll();
+        $formation = $manager->getRepository(Formation::class)->findAll();
 
-        return $this->render('admin/index.html.twig', ['products' => $products ]);
+        return $this->render('student/index.html.twig', ['formation' => $formation]);
 
 
     }
 }
-
-
- 

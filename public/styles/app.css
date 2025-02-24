@@ -1,10 +1,11 @@
 * {
-  font-family: Poppins;
+  font-family: "Comic Sans MS";
 }
 body {
   display: table;
   width: 99%;
   height: 100%;
+  background-color: #f1f8fc;
 }
 a {
   text-decoration: none;
@@ -19,15 +20,9 @@ a {
   width: 90%;
 }
 /*NAVBAR*/
-.slogan {
-  font-size: 16px;
-}
-.active {
-  font-weight: bold;
-  text-decoration: underline;
-}
+
 .nav {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #0074c7;
 }
 .navbar {
   list-style: none;
@@ -39,23 +34,23 @@ a {
 .navbar li {
   padding: 10px 20px;
 }
-/*Products section |Filter By Price*/
-.container_price {
-  width: 200px;
-  height: 130px;
-}
-.choice_price {
-  text-align: center;
-  border: 1px solid grey;
-}
+/*formation section */
+
 section {
   display: inline-block;
   margin: 20px;
 }
 /*Product card for product page*/
 .product_card {
-  border: 1px solid black;
-  height: 450px;
+  border: 1px solid #0074c7;
+  height: 350px;
+  width: 300px;
+  padding: 20px;
+}
+
+.product_card2 {
+  border: 1px solid #0074c7;
+  height: 350px;
   width: 300px;
   padding: 20px;
 }
@@ -64,7 +59,7 @@ section {
   display: flex;
   gap: 10px;
   border-radius: 10px;
-  border-color: black;
+  border-color: #384050;
   padding-top: 10px;
 }
 
@@ -73,7 +68,7 @@ section {
   display: flex;
   gap: 10px;
   border-radius: 10px;
-  border-color: black;
+  border-color: #384050;
 }
 
 .show_product4 {
@@ -81,7 +76,7 @@ section {
   display: flex;
   gap: 10px;
   border-radius: 10px;
-  border-color: black;
+  border-color: #384050;
 }
 
 .show_product {
@@ -89,7 +84,7 @@ section {
   width: 100px;
   height: 30px;
   border-radius: 10px;
-  border-color: black;
+  border-color: #384050;
 }
 .options {
   text-decoration: none;
@@ -122,7 +117,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid black;
+  border: 2px solid #384050;
   position: absolute;
   left: 50%;
   top: 14%;
@@ -131,8 +126,8 @@ section {
 
 .form-container {
   display: flex;
-  background-color: #fff;
-  border: 2px solid black;
+  background-color: #f1f8fc;
+  border: 2px solid 384050;
   padding: 20px;
   border-radius: 10px;
   align-items: center;
@@ -142,8 +137,8 @@ section {
 
 .form-container2 {
   display: flex;
-  background-color: #a06161;
-  border: 2px solid black;
+  background-color: #cd2c2e;
+  border: 2px solid 384050;
   padding: 20px;
   border-radius: 10px;
   align-items: center;
@@ -172,8 +167,8 @@ section {
 
 .btn-ajouter {
   padding: 10px 50px;
-  background-color: #fff;
-  border: 1px solid #000;
+  background-color: #f1f8fc;
+  border: 1px solid #384050;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
@@ -184,22 +179,22 @@ section {
   display: grid;
   height: 30px;
   width: 80px;
-  background-color: #fff;
+  background-color: #f1f8fc;
   text-align: center;
   justify-content: center;
   border-radius: 5px;
-  border: 1px solid black;
+  border: 1px solid #384050;
 }
 
 .form-response2 {
   display: grid;
   height: 30px;
   width: 80px;
-  background-color: #fff;
+  background-color: #f1f8fc;
   text-align: center;
   justify-content: center;
   border-radius: 5px;
-  border: 1px solid black;
+  border: 1px solid #384050;
 }
 .btn {
   padding: 20px;
@@ -207,20 +202,20 @@ section {
 /*Formulaire Login*/
 .title-form {
   color: grey;
-  border-bottom: 1px solid rgb(7, 186, 186);
+  border-bottom: 1px solid #0074c7;
 }
 .btn-login {
   margin: 10px;
   border: 0px;
   width: 150px;
   height: 30px;
-  background-color: rgb(7, 186, 186);
+  background-color: #0074c7;
   color: #fff;
   border-radius: 5px;
 }
 .form-recovery {
   color: grey;
-  border-bottom: 1px solid rgb(7, 186, 186);
+  border-bottom: 1px solid #0074c7;
 }
 .form {
   display: flex;
@@ -231,7 +226,7 @@ section {
 }
 .form-login {
   display: flex;
-  border: 1px solid black;
+  border: 1px solid #384050;
   text-align: start;
   height: 350px;
   width: 220px;
@@ -249,13 +244,13 @@ section {
 /*Register page*/
 .title-register {
   color: grey;
-  border-bottom: 1px solid rgb(7, 186, 186);
+  border-bottom: 1px solid #0074c7;
 }
 
 .form-register {
   padding: 10px;
   display: grid;
-  border: 1px solid black;
+  border: 1px solid #384050;
   text-align: start;
   height: 650px;
   width: 250px;
@@ -263,38 +258,37 @@ section {
 
 .register_input {
   padding: 10px;
-  color: grey;
+  color: #00497c;
 }
 .btn-register {
   margin: 10px;
   border: 0px;
   width: 150px;
   height: 30px;
-  background-color: rgb(7, 186, 186);
+  background-color: #0074c7;
   color: #fff;
   border-radius: 5px;
 }
 
-/*Showing product page*/
+/*Showing formation page*/
 
 .showing_card {
   display: flex;
   justify-content: center;
-  padding: 20px;
 }
 
 .details_card {
-  padding: 20px;
   display: flex;
-  border: 1px solid black;
-  height: 600px;
-  width: 1200px;
+  border: 1px solid #384050;
+  height: 300px;
+  width: 1400px;
 }
 
 .card_img {
-  height: 600px;
-  width: 700px;
-  border: 1px solid black;
+  padding: 10px;
+  display: flex;
+  height: 250px;
+  width: 250px;
 }
 
 .product_details {
@@ -315,20 +309,10 @@ section {
   width: 200px;
   height: 40px;
   border-radius: 5px;
-  border: 1px solid black;
+  border: 1px solid #384050;
   margin-top: 20px;
   margin-right: 200px;
-}
-
-.center_details {
-  justify-content: space-between;
-  display: flex;
-  width: 400px;
-  height: 400px;
-}
-
-.select_details {
-  text-align: end;
+  justify-content: end;
 }
 
 /*Page panier*/
@@ -340,8 +324,8 @@ section {
 
 .btn_delete_cart {
   text-align: center;
-  background-color: #fff;
-  border: 1px solid #000;
+  background-color: #f1f8fc;
+  border: 1px solid #384050;
   border-radius: 5px;
   font-weight: bold;
   padding: 20px 80px;
@@ -360,21 +344,21 @@ section {
 }
 .btn_pay {
   text-align: center;
-  background-color: #d49898;
+  background-color: #cd2c2e;
   font-size: large;
   opacity: 70%;
-  border: 2px solid red;
+  border: 2px solid #00497c;
   height: 60px;
   width: 300px;
   border-radius: 20px;
 }
 .btn_continue {
-  background-color: rgb(110, 231, 175);
+  background-color: #82b864;
   height: 60px;
   width: 300px;
   opacity: 70%;
   font-size: large;
-  border: 2px solid rgb(17, 97, 35);
+  border: 2px solid #00497c;
   border-radius: 20px;
 }
 
@@ -382,7 +366,7 @@ section {
   text-align: center;
   height: 60px;
   width: 300px;
-  border: 2px solid black;
+  border: 2px solid #384050;
 }
 .cart_choice {
   display: flex;
@@ -391,4 +375,25 @@ section {
 .choice {
   display: block;
   padding-left: 310px;
+}
+
+/*Student page*/
+.chapter {
+  padding-top: 50px;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  justify-content: space-between;
+}
+.chapter1 {
+  font-weight: 400;
+}
+.chapter2 {
+  font-weight: 400;
+}
+.chapter3 {
+  font-weight: 400;
+}
+.chapter4 {
+  font: bold;
 }

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
  
-use App\Entity\Sweatshirt;
+use App\Entity\Formation;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,35 +12,28 @@ use Doctrine\ORM\EntityManagerInterface;
 
 final class ProductsController extends AbstractController
 {
-    #[Route('/formation', name: 'app_products')]
-    public function index(ManagerRegistry $manager, ): Response
+    #[Route('/formation', name: 'app_formation')]
+    public function index(ManagerRegistry $manager): Response
     {
-        $products = $manager->getRepository(Sweatshirt::class)->findAll();
+        $formation = $manager->getRepository(Formation::class)->findAll();
 
-        return $this->render('products/index.html.twig', ['products' => $products ]);
+        return $this->render('products/index.html.twig', ['formations' => $formation ]);
 
-        $om = $manager->getManager();
 
-        for ($i=1;$i < 11; $i++) {
-            $products = new Sweatshirt();
-
-            $products->setName("Sweatshirt $i");
-
-            $om->persist($products);
-        }
     }
 
-#[Route('/products/{id}', name: 'product_show')]
+
+#[Route('/formation/{id}', name: 'formation_show')]
 public function show(int $id, EntityManagerInterface $entityManager): Response
 {
-    $product = $entityManager->getRepository(Sweatshirt::class)->find($id);
+    $formation = $entityManager->getRepository(Formation::class)->find($id);
 
-    if (!$product) {
-        throw $this->createNotFoundException('Ce produit n\'existe pas.');
+    if (!$formation) {
+        throw $this->createNotFoundException('Cette formation n\'existe pas.');
     }
 
     return $this->render('products/show.html.twig', [
-        'product' => $product, ]);
+        'formation' => $formation, ]);
 }
 
 }

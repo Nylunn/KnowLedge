@@ -6,281 +6,122 @@
     }}>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Produit</title>
+    <title>Home</title>
   </head>
   <body>
-    
     <div class="nav">
       <nav>
         <ul class="navbar">
-          <li><a href="/">Accueil</a></li>
+          <li><a class="active" href="/">Accueil</a></li>
+          <li><a href="/formation">Formations</a></li>
           {% if app.user %}
-          <li><a class="active" href="/products">Boutique</a></li>
           <li><a href="/cart">Panier</a></li>
+             {% if is_granted('ROLE_STUDENT') %}
+          <li><a href="{{ path('app_student') }}">Leçon</a></li>
+          {% endif %}
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}
           <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
-          {% endif %} {% else %}
+          {% endif %}
+         {% else %}
+          
           <li><a href="/register">S'inscrire</a></li>
           <li><a href="/login">Se connecter</a></li>
           {% endif %}
         </ul>
       </nav>
-      <img src={{ asset("assets/Logo.png") }} width="10%" alt="Logo" />
-      <h1 class="slogan">Don't compromise on your look</h1>
+      <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo" />
     </div>
     <br />
-    <div class="all">
-      <div class="container_price">
-        <div class="choice_price"><p>Fourchette de prix</p></div>
-        <select class="options" id="options" name="options" size="3">
-          <option value="lowprice">10 à 29€</option>
-          <option value="midprice">30 à 35€</option>
-          <option value="highprice">35 à 50€</option>
-        </select>
+   
       </div>
-      <br />
-     
+    </div>
 
       <section>
         <div class="show_product2">
         <div class="product_card">
-         {% if products %} {% for product in products %} {% if product.id
+         {% for formation in formations %} {% if formation.id
         == 1 %}
         <tr>
           <img src="{{
-            asset("assets/1.jpeg")
-          }}" width="100%" alt="blackbelt_sweatshirt" />
+            asset("assets/musique.png")
+          }}" width="100%" alt="musique" />
           <br />
-          <td>{{ product.name }}</td>
-          <br />
-          <td>{{ product.price }}</td>
+          <td>{{ formation.title }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
+          <button class="show_product"><a href="{{ path('formation_show', {'id': formation.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
-        {% endif %} {% endfor %} {% else %}
-        <tr>
-          <td colspan="2">Pas de sweatshirt pour le moment</td>
-        </tr>
         {% endif %}
+        {% endfor %}
+        <br>
+        
       </div>
-      <br>
-           <div class="product_card">
-        {% if products %} {% for product in products %} {% if product.id
+       <div class="product_card">
+         {% for formation in formations %} {% if formation.id
         == 2 %}
         <tr>
           <img src="{{
-            asset("assets/2.jpeg")
-          }}" width="100%" alt="pokeball_sweatshirt" />
+            asset("assets/informatique.png")
+          }}" width="100%" alt="informatique" />
           <br />
-          <td>{{ product.name }}</td>
-          <br />
-          <td>{{ product.price }}</td>
+          <td>{{ formation.title }}</td>
           {% if app.user %}
-        <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
+          <button class="show_product"><a href="{{ path('formation_show', {'id': formation.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
-        {% endif %} {% endfor %} {% else %}
-        <tr>
-          <td colspan="2">Pas de sweatshirt pour le moment</td>
-        </tr>
         {% endif %}
-      </div><br>
-
-           <div class="product_card">
-        {% if products %} {% for product in products %} {% if product.id
+        {% endfor %} 
+        <br>
+        
+        
+        </div>
+          <div class="product_card">
+         {% for formation in formations %} {% if formation.id
         == 3 %}
         <tr>
           <img src="{{
-            asset("assets/3.jpeg")
-          }}" width="100%" alt="pokeball_sweatshirt" />
+            asset("assets/jardinage.png")
+          }}" width="100%" alt="Jardinage" />
           <br />
-          <td>{{ product.name }}</td>
-          <br />
-          <td>{{ product.price }}</td>
+          <td>{{ formation.title }}</td>
           {% if app.user %}
-         <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
+          <button class="show_product"><a href="{{ path('formation_show', {'id': formation.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
-        {% endif %} {% endfor %} {% else %}
-        <tr>
-          <td colspan="2">Pas de sweatshirt pour le moment</td>
-        </tr>
         {% endif %}
-      </div><br>
-
-           <div class="product_card">
-        {% if products %} {% for product in products %} {% if product.id
+        {% endfor %} 
+        <br>
+        
+        
+        </div>
+          <div class="product_card">
+         {% for formation in formations %} {% if formation.id
         == 4 %}
         <tr>
           <img src="{{
-            asset("assets/4.jpeg")
-          }}" width="100%" alt="pokeball_sweatshirt" />
+            asset("assets/cuisinier.png")
+          }}" width="100%" alt="cuisine" />
           <br />
-          <td>{{ product.name }}</td>
-          <br />
-          <td>{{ product.price }}</td>
+          <td>{{ formation.title }}</td>
           {% if app.user %}
-  <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
+          <button class="show_product"><a href="{{ path('formation_show', {'id': formation.id}) }}">Voir</a></button>
           {% endif %}
           <br />
         </tr>
-        {% endif %} {% endfor %} {% else %}
-        <tr>
-          <td colspan="2">Pas de sweatshirt pour le moment</td>
-        </tr>
         {% endif %}
-      </div><br>
-</div>
-<div class="show_product3">
-           <div class="product_card">
-        {% if products %} {% for product in products %} {% if product.id
-        == 5 %}
-        <tr>
-          <img src="{{
-            asset("assets/5.jpeg")
-          }}" width="100%" alt="pokeball_sweatshirt" />
-          <br />
-          <td>{{ product.name }}</td>
-          <br />
-          <td>{{ product.price }}</td>
-          {% if app.user %}
-           <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
-          {% endif %}
-          <br />
-        </tr>
-        {% endif %} {% endfor %} {% else %}
-        <tr>
-          <td colspan="2">Pas de sweatshirt pour le moment</td>
-        </tr>
-        {% endif %}
-      </div><br>
-
-           <div class="product_card">
-        {% if products %} {% for product in products %} {% if product.id
-        == 6 %}
-        <tr>
-          <img src="{{
-            asset("assets/6.jpeg")
-          }}" width="100%" alt="pokeball_sweatshirt" />
-          <br />
-          <td>{{ product.name }}</td>
-          <br />
-          <td>{{ product.price }}</td>
-          {% if app.user %}
-         <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
-          {% endif %}
-          <br />
-        </tr>
-        {% endif %} {% endfor %} {% else %}
-        <tr>
-          <td colspan="2">Pas de sweatshirt pour le moment</td>
-        </tr>
-        {% endif %}
-      </div><br>
-
-           <div class="product_card">
-        {% if products %} {% for product in products %} {% if product.id
-        == 7 %}
-        <tr>
-          <img src="{{
-            asset("assets/7.jpeg")
-          }}" width="100%" alt="pokeball_sweatshirt" />
-          <br />
-          <td>{{ product.name }}</td>
-          <br />
-          <td>{{ product.price }}</td>
-          {% if app.user %}
-      <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
-          {% endif %}
-          <br />
-        </tr>
-        {% endif %} {% endfor %} {% else %}
-        <tr>
-          <td colspan="2">Pas de sweatshirt pour le moment</td>
-        </tr>
-        {% endif %}
-      </div><br>
-
-           <div class="product_card">
-        {% if products %} {% for product in products %} {% if product.id
-        == 8 %}
-        <tr>
-          <img src="{{
-            asset("assets/8.jpeg")
-          }}" width="100%" alt="pokeball_sweatshirt" />
-          <br />
-          <td>{{ product.name }}</td>
-          <br />
-          <td>{{ product.price }}</td>
-          {% if app.user %}
-          <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
-          {% endif %}
-          <br />
-        </tr>
-        {% endif %} {% endfor %} {% else %}
-        <tr>
-          <td colspan="2">Pas de sweatshirt pour le moment</td>
-        </tr>
-        {% endif %}
-      </div><br>
-</div>
-<div class="show_product4">
-           <div class="product_card">
-        {% if products %} {% for product in products %} {% if product.id
-        == 9 %}
-        <tr>
-          <img src="{{
-            asset("assets/9.jpeg")
-          }}" width="100%" alt="pokeball_sweatshirt" />
-          <br />
-          <td>{{ product.name }}</td>
-          <br />
-          <td>{{ product.price }}</td>
-          {% if app.user %}
-          {% for product in products %}
-  <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
-{% endfor %}
-          {% endif %}
-          <br />
-        </tr>
-        {% endif %} {% endfor %} {% else %}
-        <tr>
-          <td colspan="2">Pas de sweatshirt pour le moment</td>
-        </tr>
-        {% endif %}
-      </div><br>
-
-           <div class="product_card">
-        {% if products %} {% for product in products %} {% if product.id
-        == 10 %}
-        <tr>
-          <img src="{{
-            asset("assets/10.jpeg")
-          }}" width="100%" alt="pokeball_sweatshirt" />
-          <br />
-          <td>{{ product.name }}</td>
-          <br />
-          <td>{{ product.price }}</td>
-          {% if app.user %}
-       <button class="show_product"><a href="{{ path('product_show', {'id': product.id}) }}">Voir</a></button>
-          {% endif %}
-          <br />
-        </tr>
-        {% endif %} {% endfor %} {% else %}
-        <tr>
-          <td colspan="2">Pas de sweatshirt pour le moment</td>
-        </tr>
-        {% endif %}
-      </div> <br>
-      </div>
+        {% endfor %} 
+        <br>
+        
+        
+        </div>
+      
+       
+       
       </section>
   </body>
-  <footer class="site_footer">
-    <a href="/info"><p>Informations de la société</p></a>
-  </footer>
+ 
 </html>

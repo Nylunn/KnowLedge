@@ -24,7 +24,7 @@ class Lesson
     private ?string $title = null;
 
 
-    public function getTitle(): ?int
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -35,7 +35,7 @@ class Lesson
     private ?string $type = null;
 
 
-    public function getType(): ?int
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -47,7 +47,7 @@ class Lesson
     private ?string $price = null;
 
 
-    public function getPrice(): ?int
+    public function getPrice(): ?string
     {
         return $this->price;
     }

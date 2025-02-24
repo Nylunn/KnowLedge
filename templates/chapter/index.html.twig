@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
-    <link rel="stylesheet" href={{
-      "styles/app.css"
-    }}>
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Détails du produit</title>
   </head>
   <body>
     <div class="nav">
@@ -16,15 +14,14 @@
           <li><a href="/formation">Formations</a></li>
           {% if app.user %}
           <li><a href="/cart">Panier</a></li>
-             {% if is_granted('ROLE_STUDENT') %}
+          {% if is_granted('ROLE_STUDENT') %}
           <li><a href="{{ path('app_student') }}">Leçon</a></li>
           {% endif %}
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}
           <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
-          {% endif %}
-         {% else %}
-          
+          {% endif %} {% else %}
+
           <li><a href="/register">S'inscrire</a></li>
           <li><a href="/login">Se connecter</a></li>
           {% endif %}
@@ -33,10 +30,8 @@
       <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo" />
     </div>
     <br />
-   
-      </div>
-    </div>
 
-
+    <h1>Chapitre</h1>
+    <a href="">Finir le chapitre</a>
   </body>
 </html>

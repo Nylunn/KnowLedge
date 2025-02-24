@@ -23,9 +23,6 @@ class RegistrationFormType extends AbstractType
             ->add('username', TextType::class, [
                 'label' => 'Nom d"utilisateur'
             ])
-            ->add('delivery_adress', TextType::class, [
-                'label' => 'Adresse de livraison'
-            ])
             ->add('password', RepeatedType::class, [
                  'type' => PasswordType::class,
                   'invalid_message' => 'Les deux mots de passe doivent être identiques.',
