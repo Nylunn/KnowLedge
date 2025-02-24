@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 final class ProductsController extends AbstractController
 {
-    #[Route('/products', name: 'app_products')]
+    #[Route('/formation', name: 'app_products')]
     public function index(ManagerRegistry $manager, ): Response
     {
         $products = $manager->getRepository(Sweatshirt::class)->findAll();
