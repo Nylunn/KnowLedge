@@ -7,6 +7,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Produit</title>
+    <script src="https://js.stripe.com/v3/"></script>
   </head>
   <body>
     <div class="nav">
@@ -65,8 +66,33 @@
           <h2>TOTAL : {{ totalPrice|number_format(2, ',', ' ') }} €</h2>
         </div>
         <button class="btn_pay">
-          <a href="{{ path('app_home') }}">FINALISER MA COMMANDE</a>
+          <a id="checkout-button">FINALISER MA COMMANDE</a>
         </button>
+        {% block javascripts %}
+        <script type="text/javascript">
+          var stripe = Stripe(
+            "pk_test_51Q2uEVCybVMxBZRKyHMHVOJ78qmmrsj7Xwabaxk3GhMKi0id1SS1s4N41QjSL5i7W3eieDHyMvwcKNFHcOLPhaLE00AqRHhkXg"
+          );
+          var checkoutButton = document.getElementById("checkout-button");
+
+          checkoutButton.addEventListener("click", function () {
+            fetch("/create-checkout-session", {
+              method: "POST",
+            })
+              .then(function (response) {
+                return response.json();
+              })
+              .then(function (session) {
+                return stripe.redirectToCheckout({ sessionId: session.id });
+              })
+              .then(function (result) {
+                if (result.error) {
+                  console.error("Error:", error);
+                }
+              });
+          });
+        </script>
+        {% endblock %}
       </div>
       <div class="choice">
         <button class="btn_continue">

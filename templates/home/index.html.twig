@@ -43,7 +43,9 @@
           <br />
           <td>{{ sweatshirt.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+          <button class="show_product">
+            <a href="{{ path('product_show', { id: sweatshirt.id }) }}">Voir</a>
+          </button>
           {% endif %}
           <br />
         </tr>
@@ -66,7 +68,9 @@
           <br />
           <td>{{ sweatshirt.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+          <button class="show_product">
+            <a href="{{ path('product_show', { id: sweatshirt.id }) }}">Voir</a>
+          </button>
           {% endif %}
           <br />
         </tr>
@@ -89,7 +93,9 @@
           <br />
           <td>{{ sweatshirt.price }}</td>
           {% if app.user %}
-          <button class="show_product"><a href="#">Voir</a></button>
+          <button class="show_product">
+            <a href="{{ path('product_show', { id: sweatshirt.id }) }}">Voir</a>
+          </button>
           {% endif %}
           <br />
         </tr>

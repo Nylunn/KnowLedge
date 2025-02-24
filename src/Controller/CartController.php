@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
-
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,6 +13,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Entity\Sweatshirt;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Attribute\Route;
+
 
 final class CartController extends AbstractController
 {
@@ -93,6 +97,42 @@ public function remove($id, SessionInterface $session)
 
     return $this->redirectToRoute('app_cart');
 }
+    #[Route("/success", name:"success")]
+public function success()
+{
+    return $this->render('cart/success.html.twig',[]);
+}
 
+#[Route("/error", name:"error")]
+public function error()
+{
+    return $this->render('cart/error.html.twig',[]);
+}
+
+#[Route("/create-checkout-session", name:"checkout")]
+public function checkout(UrlGeneratorInterface $urlGenerator) 
+{
+    Stripe::setApiKey('sk_test_51Q2uEVCybVMxBZRKcLqfHUFnQvjOueAwU2yWdvq14b5MXbdDXem9DIQdbc8sZQLIx7Oo79oJvuoyzN3siUTYzJnE000UFP1lK7');
+
+    // Créer la session checkout
+    $session = Session::create([
+        'line_items' => [
+            [
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => 'sweatshirt',
+                    ],
+                    'unit_amount' => 2000, 
+                ],
+                'quantity' => 1,
+            ],
+        ],
+        'mode' => 'payment',
+        'success_url' => $urlGenerator->generate('success', [], UrlGeneratorInterface::ABSOLUTE_URL),
+        'cancel_url' => $urlGenerator->generate('error', [], UrlGeneratorInterface::ABSOLUTE_URL),
+    ]);
+    return new JsonResponse(['id' => $session->id]);
+}
 
 }
