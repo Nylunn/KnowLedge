@@ -40,6 +40,7 @@ class Sweatshirt
     {
         return $this->sizeS;
     }
+//Ajout de l'image
 
 #[ORM\Column(type: 'string', length: 255, nullable: true)]
 private ?string $image = null;

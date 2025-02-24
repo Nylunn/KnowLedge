@@ -29,5 +29,25 @@
       <h1 class="slogan">Don't compromise on your look</h1>
     </div>
     <br />
+
+    <h1>Mon Panier</h1>
+
+    {% for item in cart %}
+    <div>
+      <h2>{{ item.product.name }}</h2>
+      <p>Prix : {{ item.product.price }} €</p>
+      <p>Taille : {{ item.size }}</p>
+      <p>Quantité : {{ item.quantity }}</p>
+      <h2>Total du panier : {{ totalPrice|number_format(2, ',', ' ') }} €</h2>
+
+      <a href="{{ path('app_cart_remove', { id: item.product.id }) }}"
+        >❌ Supprimer</a
+      >
+    </div>
+    {% else %}
+    <p>Votre panier est vide.</p>
+    {% endfor %}
+
+    <a href="{{ path('app_home') }}">🛒 Continuer mes achats</a>
   </body>
 </html>

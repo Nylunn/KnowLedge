@@ -330,3 +330,15 @@ section {
 .select_details {
   text-align: end;
 }
+
+/*Page panier*/
+
+.btn-delete {
+  padding: 10px 50px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+}
