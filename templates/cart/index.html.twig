@@ -33,21 +33,49 @@
     <h1>Mon Panier</h1>
 
     {% for item in cart %}
-    <div>
-      <h2>{{ item.product.name }}</h2>
-      <p>Prix : {{ item.product.price }} €</p>
-      <p>Taille : {{ item.size }}</p>
-      <p>Quantité : {{ item.quantity }}</p>
-      <h2>Total du panier : {{ totalPrice|number_format(2, ',', ' ') }} €</h2>
 
-      <a href="{{ path('app_cart_remove', { id: item.product.id }) }}"
-        >❌ Supprimer</a
-      >
+    <div class="form-container">
+      <div class="bloc_cart">
+        <img
+          src="{{ asset('assets/' ~ item.product.image) }}"
+          width="10%"
+          alt="{{ item.product.name }}"
+          style="border: 1px solid black"
+        />
+
+        <h2>{{ item.product.name }}</h2>
+        <p>Prix : {{ item.product.price }} €</p>
+        <p>Taille : {{ item.size }}</p>
+
+        <div class="btn_cart">
+          <a
+            class="btn_delete_cart"
+            href="{{ path('app_cart_remove', { id: item.product.id }) }}"
+            >Retirer du panier</a
+          >
+        </div>
+      </div>
     </div>
     {% else %}
     <p>Votre panier est vide.</p>
     {% endfor %}
-
-    <a href="{{ path('app_home') }}">🛒 Continuer mes achats</a>
+    <div class="cart_finish">
+      <div class="cart_choice">
+        <div class="total_price">
+          <h2>TOTAL : {{ totalPrice|number_format(2, ',', ' ') }} €</h2>
+        </div>
+        <button class="btn_pay">
+          <a href="{{ path('app_home') }}">FINALISER MA COMMANDE</a>
+        </button>
+      </div>
+      <div class="choice">
+        <button class="btn_continue">
+          <a href="{{ path('app_home') }}">CONTINUER MES ACHATS</a>
+        </button>
+      </div>
+    </div>
+    <footer class="site_footer">
+      <a href="/info"><p>Informations de la société</p></a>
+    </footer>
   </body>
 </html>

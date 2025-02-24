@@ -3,7 +3,7 @@
 }
 body {
   display: table;
-  width: 100%;
+  width: 99%;
   height: 100%;
 }
 a {
@@ -333,12 +333,62 @@ section {
 
 /*Page panier*/
 
-.btn-delete {
-  padding: 10px 50px;
+.btn_cart {
+  justify-content: end;
+  padding-top: 100px;
+}
+
+.btn_delete_cart {
+  text-align: center;
   background-color: #fff;
   border: 1px solid #000;
   border-radius: 5px;
-  cursor: pointer;
   font-weight: bold;
+  padding: 20px 80px;
+}
+.bloc_cart {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+}
+
+.cart_finish {
+  padding-left: 1000px;
+  height: 150px;
+  width: 100%;
+}
+.btn_pay {
+  text-align: center;
+  background-color: #d49898;
+  font-size: large;
+  opacity: 70%;
+  border: 2px solid red;
+  height: 60px;
+  width: 300px;
+  border-radius: 20px;
+}
+.btn_continue {
+  background-color: rgb(110, 231, 175);
+  height: 60px;
+  width: 300px;
+  opacity: 70%;
+  font-size: large;
+  border: 2px solid rgb(17, 97, 35);
+  border-radius: 20px;
+}
+
+.total_price {
+  text-align: center;
+  height: 60px;
+  width: 300px;
+  border: 2px solid black;
+}
+.cart_choice {
+  display: flex;
+  gap: 10px;
+}
+.choice {
+  display: block;
+  padding-left: 310px;
 }

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -14,21 +16,23 @@ final class CartController extends AbstractController
   //Stocker dans le panier grâce a la session 
 
    #[Route('/cart', name: 'app_cart')]
-public function index(SessionInterface $session, EntityManagerInterface $em)
+public function index(SessionInterface $session, EntityManagerInterface $em, ManagerRegistry $manager)
 {
+   $products = $manager->getRepository(Sweatshirt::class)->findAll();
     $cart = $session->get('cart', []);
     $cartWithData = [];
     $totalPrice = 0;
 
     foreach ($cart as $id => $details) {
         $product = $em->getRepository(Sweatshirt::class)->find($id);
-
+        
         if ($product) {
             $cartWithData[] = [
                 'product' => $product,
                 'quantity' => $details['quantity'],
                 'size' => $details['size'],
-                'total' => $product->getPrice() * $details['quantity']
+                'total' => $product->getPrice() * $details['quantity'],
+               
             ];
 
             // Ajoute au prix total
@@ -39,6 +43,7 @@ public function index(SessionInterface $session, EntityManagerInterface $em)
     return $this->render('cart/index.html.twig', [
         'cart' => $cartWithData,
         'totalPrice' => $totalPrice,
+        'products' => $products
     ]);
 }
 

@@ -582,8 +582,12 @@
     sweatshirt.id == 9 %}
 
     <div class="form-container">
-      <img src={{ asset("assets/9.jpeg") }}
-      width="10%" style="padding: 5px;" alt="blackbelt_sweatshirt" />
+      <img
+        src="{{ asset('assets/' ~ product.image) }}"
+        width="60%"
+        alt="pokeball_sweatshirt"
+        style="padding: 50px; padding-left: 100px"
+      />
       <form class="form-content">
         <div class="form-group">
           <label>Nom</label>
