@@ -14,7 +14,7 @@
         <ul class="navbar">
           <li><a href="/">Accueil</a></li>
           {% if app.user %}
-          <li><a href="/products">Boutique</a></li>
+          <li><a href="/formations">Boutique</a></li>
           <li><a href="/cart">Panier</a></li>
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}
@@ -38,7 +38,9 @@
 
         <div class="register_input">
           {{
-            form_row(registrationForm.username, { label: "Nom d'utilisateur" })
+            form_row(registrationForm.username, {
+              label: "Nom d'utilisateur"
+            })
           }}
         </div>
         <div class="register_input">
@@ -51,8 +53,8 @@
         <div class="register_input">
           {{ form_row(registrationForm.password.second) }}
         </div>
-
         <button type="submit" class="btn-register">Register</button>
+
         <p class="title-register"> </p>
         <p style="color: grey">Déjà inscrit ?</p>
         <button class="btn-register">

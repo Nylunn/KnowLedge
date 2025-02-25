@@ -14,12 +14,13 @@ final class ProductsController extends AbstractController
 {
     #[Route('/formation', name: 'app_formation')]
     public function index(ManagerRegistry $manager): Response
-    {
+ {
+
+
         $formation = $manager->getRepository(Formation::class)->findAll();
 
-        return $this->render('products/index.html.twig', ['formations' => $formation ]);
-
-
+   
+        return $this->render('products/index.html.twig', ['formation' => $formation]);
     }
 
 
