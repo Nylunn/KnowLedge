@@ -29,7 +29,6 @@
       <img src="{{ asset('assets/Logo.jpeg') }}" width="10%" alt="Logo" />
     </div>
     <br />
-    {{ lesson.formation.name | default(' ') }}
 
     <div class="showing_card">
       {% if formation is not null %}
@@ -46,8 +45,17 @@
             <div>
               <p class="details">{{ formation.title }}</p>
               <br />
-              <p class="desc">{{ formation.desc }}</p>
               <br />
+              {% if lessons is defined and lessons|length > 0 %}
+              <h3>Leçons de cette formation :</h3>
+              <ul>
+                {% for lesson in lessons %}
+                <li>{{ lesson.title }}</li>
+                {% endfor %}
+              </ul>
+              {% else %}
+              <p>Aucune leçon disponible pour cette formation.</p>
+              {% endif %}
               <p></p>
             </div>
             <div class="select_details">

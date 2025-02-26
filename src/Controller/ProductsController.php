@@ -29,28 +29,20 @@ final class ProductsController extends AbstractController
 
 
 #[Route('/formation/{id}', name: 'formation_show')]
-public function show(int $id, EntityManagerInterface $entityManager,  LessonRepository $lesson, FormationRepository $formation, EntityManagerInterface $Entitymanager): Response
+public function show(int $id, EntityManagerInterface $entityManager,  LessonRepository $lessonRepository, FormationRepository $formationRepository, EntityManagerInterface $Entitymanager): Response
 {
-    $lessonInformatique = $formation->findOneBy(['title' => 'informatique']);
-    $informatique = $lesson->findOneBy(['type' => 'technology']);
-    $informatique->setFormation($lessonInformatique);
-
-    $Entitymanager->flush();
-
-
-    $lesson = $entityManager->getRepository(Lesson::class)->find($id);
-    $formation = $entityManager->getRepository(Formation::class)->find($id);
-
+  $formation = $formationRepository->find($id);
+    
     if (!$formation) {
         throw $this->createNotFoundException('Cette formation n\'existe pas.');
     }
-    if (!$lesson) {
-        throw $this->createNotFoundException('Cette leçon n\'existe pas.');
-    }
-
-
+    
+    $lessons = $lessonRepository->findBy(['formation' => $formation]);
+    
     return $this->render('products/show.html.twig', [
-        'formation' => $formation, ]);
+        'formation' => $formation,
+        'lessons' => $lessons 
+    ]);
 }
 
 }
