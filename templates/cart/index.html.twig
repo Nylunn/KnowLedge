@@ -15,7 +15,7 @@
         <ul class="navbar">
           <li><a href="/">Accueil</a></li>
           {% if app.user %}
-          <li><a href="/products">Boutique</a></li>
+          <li><a href="/formation">Boutique</a></li>
           <li><a class="active" href="/cart">Panier</a></li>
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}
@@ -38,20 +38,19 @@
     <div class="form-container">
       <div class="bloc_cart">
         <img
-          src="{{ asset('assets/' ~ item.product.image) }}"
+          src="{{ asset('assets/' ~ item.lesson.image ) }}"
           width="10%"
-          alt="{{ item.product.name }}"
+          alt="{{ item.lesson.title }}"
           style="border: 1px solid black"
         />
 
-        <h2>{{ item.product.name }}</h2>
-        <p>Prix : {{ item.product.price }} €</p>
-        <p>Taille : {{ item.size }}</p>
+        <h2>{{ item.lesson.title }}</h2>
+        <p>Prix : {{ item.lesson.price }} €</p>
 
         <div class="btn_cart">
           <a
             class="btn_delete_cart"
-            href="{{ path('app_cart_remove', { id: item.product.id }) }}"
+            href="{{ path('app_cart_remove', { id: item.lesson.id }) }}"
             >Retirer du panier</a
           >
         </div>
@@ -93,11 +92,6 @@
           });
         </script>
         {% endblock %}
-      </div>
-      <div class="choice">
-        <button class="btn_continue">
-          <a href="{{ path('app_home') }}">CONTINUER MES ACHATS</a>
-        </button>
       </div>
     </div>
     <footer class="site_footer">

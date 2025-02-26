@@ -21,18 +21,18 @@
           {% if is_granted('ROLE_ADMIN') %}
           <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
           {% endif %} {% else %}
-
           <li><a href="/register">S'inscrire</a></li>
           <li><a href="/login">Se connecter</a></li>
           {% endif %}
         </ul>
       </nav>
-      <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo" />
+      <img src="{{ asset('assets/Logo.jpeg') }}" width="10%" alt="Logo" />
     </div>
     <br />
+    {{ lesson.formation.name | default(' ') }}
 
     <div class="showing_card">
-      {% if formation is defined and formation %}
+      {% if formation is not null %}
       <div class="details_card">
         <div class="card_img">
           <img
@@ -48,30 +48,24 @@
               <br />
               <p class="desc">{{ formation.desc }}</p>
               <br />
+              <p></p>
             </div>
             <div class="select_details">
               <form
                 method="get"
                 action="{{ path('app_cart_add', { id: formation.id }) }}"
               >
-                <button class="add_to_card">
-                  <a
-                    href="{{ path('app_cart_add', { id: formation.id }) }}"
-                    class="btn btn-primary"
-                  >
-                    Ajouter au Panier
-                  </a>
-                </button>
+                <button class="add_to_card">Ajouter au Panier</button>
               </form>
             </div>
-
-            {% else %}
-            <p>Pas de sweatshirt pour le moment</p>
-            {% endif %}
           </div>
         </div>
       </div>
+      {% else %}
+      <p>Pas de formation pour le moment</p>
+      {% endif %}
     </div>
+
     <br />
   </body>
 </html>

@@ -16,9 +16,17 @@ class LessonRepository extends ServiceEntityRepository
         parent::__construct($registry, Lesson::class);
     }
 
-    //    /**
-    //     * @return Lesson[] Returns an array of Lesson objects
-    //     */
+        /**
+         * @return Lesson[] 
+      */
+      public function findWithDurationLowerThan(int $duration): array 
+      {
+        return $this->createQueryBuilder('r')
+        ->select('f', 'f')
+        ->leftJoin('r.formation', 'f')
+        ->getQuery()
+        ->getResult();
+      }
     //    public function findByExampleField($value): array
     //    {
     //        return $this->createQueryBuilder('l')

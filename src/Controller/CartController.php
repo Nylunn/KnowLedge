@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -10,68 +11,70 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use App\Entity\Sweatshirt;
+
+use App\Entity\Lesson;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 
 final class CartController extends AbstractController
 {
-  //Stocker dans le panier grâce a la session 
+  //Storage a lesson in cart with the session
 
-   #[Route('/cart', name: 'app_cart')]
+  #[Route('/cart', name: 'app_cart')]
 public function index(SessionInterface $session, EntityManagerInterface $em, ManagerRegistry $manager)
 {
-   $products = $manager->getRepository(Sweatshirt::class)->findAll();
+    $lesson = $manager->getRepository(Lesson::class)->findAll();
     $cart = $session->get('cart', []);
     $cartWithData = [];
     $totalPrice = 0;
 
     foreach ($cart as $id => $details) {
-        $product = $em->getRepository(Sweatshirt::class)->find($id);
+        $lesson = $em->getRepository(Lesson::class)->find($id);
         
-        if ($product) {
+        if ($lesson) {
+            // Vérification si la clé 'type' existe avant d'y accéder
+            $type = isset($details['type']) ? $details['type'] : 'default_type';  // Valeur par défaut si 'type' n'existe pas
+
             $cartWithData[] = [
-                'product' => $product,
-                'quantity' => $details['quantity'],
-                'size' => $details['size'],
-                'total' => $product->getPrice() * $details['quantity'],
-               
+                'lesson' => $lesson,
+                'type' => $type,  // Utilisation de $type
+                'total' => $lesson->getPrice(),
             ];
 
-            // Ajoute au prix total
-            $totalPrice += $product->getPrice() * $details['quantity'];
+            $totalPrice += $lesson->getPrice();
         }
     }
 
     return $this->render('cart/index.html.twig', [
         'cart' => $cartWithData,
         'totalPrice' => $totalPrice,
-        'products' => $products
+        'lesson' => $lesson
     ]);
 }
 
 
-//Ajouter un article au panier
+
+//add a lesson to the cart
 
     #[Route('/cart/add/{id}', name: 'app_cart_add')]
 public function add($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
 {
-    $product = $em->getRepository(Sweatshirt::class)->find($id);
+    $lesson = $em->getRepository(Lesson::class)->find($id);
     
-    if (!$product) {
-        throw $this->createNotFoundException("Le produit n'existe pas");
+    if (!$lesson) {
+        throw $this->createNotFoundException("La leçon n'existe pas");
     }
 
     $cart = $session->get('cart', []);
-
-    // Récupération des options (taille, etc.)
-    $size = $request->query->get('size', 'M'); // Taille par défaut : M
+//get type of lesson
+    $type = $request->query->get('type'); 
 
     if (!isset($cart[$id])) {
         $cart[$id] = [
             'quantity' => 1,
-            'size' => $size
+            'type' => $type
         ];
     } else {
         $cart[$id]['quantity']++;
@@ -82,7 +85,7 @@ public function add($id, Request $request, SessionInterface $session, EntityMana
     return $this->redirectToRoute('app_cart');
 }
 
-//Supprimer un poroduit 
+//Delete a lesson
 
 #[Route('/cart/remove/{id}', name: 'app_cart_remove')]
 public function remove($id, SessionInterface $session)
@@ -114,14 +117,14 @@ public function checkout(UrlGeneratorInterface $urlGenerator)
 {
     Stripe::setApiKey('sk_test_51Q2uEVCybVMxBZRKcLqfHUFnQvjOueAwU2yWdvq14b5MXbdDXem9DIQdbc8sZQLIx7Oo79oJvuoyzN3siUTYzJnE000UFP1lK7');
 
-    // Créer la session checkout
+    // Creation of the checkout session
     $session = Session::create([
         'line_items' => [
             [
                 'price_data' => [
                     'currency' => 'eur',
                     'product_data' => [
-                        'name' => 'sweatshirt',
+                        'name' => 'Formation',
                     ],
                     'unit_amount' => 2000, 
                 ],

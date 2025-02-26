@@ -3,11 +3,20 @@
 namespace App\Entity;
 
 use App\Repository\LessonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
 
 #[ORM\Entity(repositoryClass: LessonRepository::class)]
 class Lesson
 {
+
+
+
+
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -40,15 +49,45 @@ class Lesson
         return $this->type;
     }
 
+
+         #[ORM\Column]
+    private ?string $image = null;
+
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
  
-    //Column for the price of the lesson
 
      #[ORM\Column]
     private ?string $price = null;
 
+     #[ORM\ManyToOne(inversedBy: 'lessons')]
+     private ?Formation $formation = null;
+
+    //Column for the price of the lesson
 
     public function getPrice(): ?string
     {
         return $this->price;
     }
+
+    public function getFormation(): ?Formation
+    {
+        return $this->formation;
+    }
+
+    public function setFormation(?Formation $formation): static
+    {
+        $this->formation = $formation;
+
+        return $this;
+    }
+
+
+
+
+
 }

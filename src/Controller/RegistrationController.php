@@ -44,27 +44,6 @@ class RegistrationController extends AbstractController
 
 
 
-
-            
-            // method for confirmation by email
-
-             $email = (new Email())
-            ->from('stubborn@blabla.com')
-            ->to($user->getEmail())
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
-            ->subject('KNOWLEDGE - Confirmation de compte!')
-            ->text('Veuillez confirmer votre mail!');
-
-        $mailer->send($email);
-
-
-
-
-
-
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
@@ -88,7 +67,7 @@ class RegistrationController extends AbstractController
 
 
     #[Route('/verify/email', name: 'app_verify_email')]
-    public function verifyUserEmail(Request $request, UserRepository $userRepository): Response
+    public function verifyUserEmail(Request $request, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
     {
         $id = $request->query->get('id');
 
@@ -104,16 +83,18 @@ class RegistrationController extends AbstractController
 
         // validate email confirmation link, sets User::isVerified=true and persists
         try {
+            //if the user validate is email
             $this->emailVerifier->handleEmailConfirmation($request, $user);
+            $user->setRoles(array_merge($user->getRoles(), ['ROLE_VERIFIED']));
+            //user get role Verified for accessing to the formation page
+            $entityManager->flush();
+            $this->addFlash('success', 'Votre adresse email a été vérifiée avec succès et vous avez maintenant accès aux fonctionnalités.');
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $exception->getReason());
 
             return $this->redirectToRoute('app_register');
         }
 
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
-
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('app_home');
     }
 }
