@@ -47,6 +47,8 @@
               <th>ID</th>
               <th>Nom</th>
               <th>Email</th>
+              <th>Création</th>
+              <th>Mis à jour</th>
             </tr>
           </thead>
           <tbody>
@@ -55,6 +57,12 @@
               <td>{{ user.id }}</td>
               <td>{{ user.username }}</td>
               <td>{{ user.email }}</td>
+              <td>
+                {{ user.createdAt|date('d/m/Y') }}
+              </td>
+              <td>
+                {{ user.updatedAt ? user.updatedAt|date('d/m H:i') : 'Jamais' }}
+              </td>
             </tr>
             {% else %}
             <tr>
@@ -70,6 +78,8 @@
           <tr>
             <th>ID</th>
             <th>Formation</th>
+            <th>Création</th>
+            <th>Mis à jour</th>
           </tr>
         </thead>
         <tbody>
@@ -77,6 +87,12 @@
           <tr>
             <td>{{ formation.id }}</td>
             <td>{{ formation.title }}</td>
+            <td>
+              {{ formation.createdAt|date('d/m/Y') }}
+            </td>
+            <td>
+              {{ formation.updatedAt ? formation.updatedAt|date('d/m H:i') : 'Jamais' }}
+            </td>
           </tr>
           {% else %}
           <tr>
@@ -93,6 +109,8 @@
             <th>Type</th>
             <th>Leçon</th>
             <th>Prix</th>
+            <th>Création</th>
+            <th>Mis à jour</th>
           </tr>
         </thead>
         <tbody>
@@ -102,6 +120,12 @@
             <td>{{ lesson.type }}</td>
             <td>{{ lesson.title }}</td>
             <td>{{ lesson.price }} €</td>
+            <td>
+              {{ lesson.createdAt|date('d/m/Y') }}
+            </td>
+            <td>
+              {{ lesson.updatedAt ? lesson.updatedAt|date('d/m H:i') : 'Jamais' }}
+            </td>
           </tr>
           {% else %}
           <tr>

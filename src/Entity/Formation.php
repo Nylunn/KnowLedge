@@ -58,6 +58,12 @@ class Formation
 
         return $this;
     }
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTime $updatedAt = null;
+
     /**
      * @var Collection<int, Lesson>
      */
@@ -66,6 +72,7 @@ class Formation
 
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
         $this->lessons = new ArrayCollection();
     }
 
@@ -100,6 +107,21 @@ class Formation
         return $this;
     }
 
+ 
+     public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
 
+  public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+
+      #[ORM\PreUpdate]
+    public function setUpdatedAt(): void
+    {
+        $this->updatedAt = new \DateTime(); 
+    }
 
 }
