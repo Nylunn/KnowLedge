@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Sweatshirt;
+use App\Entity\Formation;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +13,8 @@ final class HomeController extends AbstractController
    #[Route('/', name: 'app_home')]
        public function index(ManagerRegistry $manager): Response
     {
-        $products = $manager->getRepository(Sweatshirt::class)->findAll();
 
-        return $this->render('home/index.html.twig', ['products' => $products ]);
+        return $this->render('home/index.html.twig', []);
 
 
     }

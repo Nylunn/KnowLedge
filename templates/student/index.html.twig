@@ -15,7 +15,9 @@
           {% if app.user %}
           <li><a href="/cart">Panier</a></li>
           {% if is_granted('ROLE_STUDENT') %}
-          <li><a href="{{ path('app_student') }}">Leçon</a></li>
+      <li>  <a href="{% if formation.id is defined %}{{ path('formation_type', { id: formation.id }) }}{% else %}{{ path('app_student') }}{% endif %}">
+        Leçon
+    </a></li>
           {% endif %}
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}
@@ -32,7 +34,7 @@
     <br />
 
        {% if is_granted('ROLE_CERTIFICATE') %}
-       <h1>Félicitations ! Vous avez obtenue votre certification !</h1>
+       <h1>Certifié : <strong>Knowledge Learning </strong></h1>
        {% endif %}
        {% if is_granted('ROLE_INFORMATIQUE') %}
 
@@ -48,25 +50,26 @@
           <br />
           <td>{{ formation.title }}</td>
           
+          
           <br />
           <div class="chapter">
             <div class="chapter1">
                 <p>Lorem Ipsum Dolor</p>
                 
-   <button><a href="{{ path('app_chapter') }}">Commencer</a></button>
+   
+   <button><a href="{{ path('chapter_formation', { id: formation.id  }) }}">Commencer</a></button>
             </div>
             <div class="chapter2">
    <p>Lorem Ipsum Dolor</p>
    
-   <button><a href="{{ path('app_chapter') }}">Commencer</a></button>
+      <button><a href="{{ path('chapter_formation', { id: formation.id  }) }}">Commencer</a></button>
             </div>
-            <div class="chapter3">
-   <p>Lorem Ipsum Dolor</p>
-   <button><a href="{{ path('app_chapter') }}">Commencer</a></button>
-            </div>
-            <div class="chapter4">
-   <p>Lorem Ipsum Dolor</p>
-   <button><a href="{{ path('final_chapter') }}">Vers le diplôme</a></button>
+ {% if is_granted('ROLE_FINISHEDLESSON')%}
+
+   <div class="chapter2">
+   <button><a href="{{ path('final_chapter') }}" style="width: 50xp; height: 20px;">Vers le diplôme</a></button>
+   </div>
+   {% endif %}
             </div>
           </div>
         </tr>

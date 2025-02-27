@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Formation;
+use App\Repository\FormationRepository;
+use App\Repository\LessonRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -12,12 +16,30 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 final class ChapterController extends AbstractController
 {
     #[Route('/chapter', name: 'app_chapter')]
-    public function index(): Response
+    public function index(EntityManager $manager): Response
     {
-        return $this->render('chapter/index.html.twig', [
-            'controller_name' => 'ChapterController',
-        ]);
+         $formation = $manager->getRepository(Formation::class)->findAll();
+        return $this->render('chapter/index.html.twig', [   'formation' => $formation,
+    ]);
     }
+
+ #[Route('/chapter/{id}', name: 'chapter_formation')]
+    public function chapterById(int $id, ManagerRegistry $manager, LessonRepository $lessonRepository, FormationRepository $formationRepository,): Response
+{
+    //get the formation by the id
+    $formation = $formationRepository->find($id);
+
+
+    //get the lesson corresponding with the formation
+    $lessons = $lessonRepository->findBy(['formation' => $formation]);
+
+    return $this->render('chapter/index.html.twig', [
+        'formation' => $formation, // formation actual
+        'lessons' => $lessons, // lesson of this formation
+    ]);
+}
+
+
 // Path to gave the certification
     #[Route('/finalchapter', name: 'final_chapter')]
     public function final(): Response

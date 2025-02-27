@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Détails du produit</title>
+  </head>
+  <body>
+    <div class="nav">
+      <nav>
+        <ul class="navbar">
+          <li><a class="active" href="/">Accueil</a></li>
+          <li><a href="/formation">Formations</a></li>
+          {% if app.user %}
+          <li><a href="/cart">Panier</a></li>
+          {% if is_granted('ROLE_STUDENT') %}
+          <li><a href="{{ path('formation_type', { id: formation.id }) }}">Leçon</a></li>
+          {% endif %}
+          <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+          {% if is_granted('ROLE_ADMIN') %}
+          <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+          {% endif %} {% else %}
+
+          <li><a href="/register">S'inscrire</a></li>
+          <li><a href="/login">Se connecter</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo" />
+    </div>
+    <br />
+
+       {% if is_granted('ROLE_CERTIFICATE') %}
+       <h1>Certifié : <strong>Knowledge Learning </strong></h1>
+       {% endif %}
+
+
+    <div class="showing_card">
+        
+        <div class="">
+         {% if formation.id  %}
+        <tr>
+          <img src="{{ asset('assets/' ~ formation.image ) }}" width="25%" alt="{{formation.title}}" />
+          <br />
+          <td>{{ formation.title }}</td>
+          
+          
+          <br />
+          <div class="chapter">
+            <div class="chapter1">
+                <p>Lorem Ipsum Dolor</p>
+                
+   <button><a href="{{ path('chapter_formation', { id: formation.id }) }}">Commencer</a></button>
+            </div>
+            <div class="chapter2">
+   <p>Lorem Ipsum Dolor</p>
+   
+   <button><a href="{{ path('chapter_formation', { id: formation.id }) }}">Commencer</a></button></button>
+            </div>
+            <div class="chapter3">
+   <p>Lorem Ipsum Dolor</p>
+   <button><a href="{{ path('chapter_formation', { id: formation.id }) }}">Commencer</a></button></button>
+            </div>
+            <div class="chapter4">
+              {% if is_granted('ROLE_FINISHEDLESSON')%}
+   <p>Vers le diplôme</p>
+   <button><a href="{{ path('final_chapter') }}">Vers le diplôme</a></button>
+   {% endif %}
+            </div>
+          </div>
+        </tr>
+    </div>
+    {% endif %}
+
+  </body>
+</html>

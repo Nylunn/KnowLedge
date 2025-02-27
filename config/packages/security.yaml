@@ -45,6 +45,10 @@ security:
     - { path: ^/student, roles: ROLE_INFORMATIQUE }
     - { path: ^/student, roles: ROLE_JARDINIER }
     - { path: ^/student, roles: ROLE_CERTIFICATE }
+    - { path: ^/final_chapter, roles: ROLE_FINISHEDLESSON }
+    - { path: ^/final_chapter, roles: ROLE_ADMIN }
+    - { path: ^/final_chapter, roles: ROLE_CERTIFICATE }
+    - { path: ^/chapter, roles: ROLE_STUDENT }
 
     # - { path: ^/profile, roles: ROLE_USER }
 

@@ -18,7 +18,7 @@ final class ProductsController extends AbstractController
     #[Route('/formation', name: 'app_formation')]
     public function index(ManagerRegistry $manager,   FormationRepository $formation): Response
  {
-
+    
 
 
         $formation = $manager->getRepository(Formation::class)->findAll();

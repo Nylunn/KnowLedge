@@ -17,7 +17,7 @@
           {% if app.user %}
           <li><a href="/cart">Panier</a></li>
              {% if is_granted('ROLE_STUDENT') %}
-          <li><a href="{{ path('app_student') }}">Leçon</a></li>
+          <li><a href="{{ path('app_student')}}">Leçon</a></li>
           {% endif %}
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}

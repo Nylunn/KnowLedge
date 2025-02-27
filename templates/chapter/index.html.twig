@@ -31,7 +31,47 @@
     </div>
     <br />
 
-    <h1>Chapitre</h1>
-    <a href="">Finir le chapitre</a>
+    <div class="showing_card">
+      {% if formation.id %}
+      <div class="details_card">
+        <div class="card_img">
+          <img
+            src="{{ asset('assets/' ~ formation.image) }}"
+            alt="formation_musique"
+          />
+        </div>
+        <br />
+        <div class="product_details">
+          <div class="center_details">
+            <div>
+              <p class="details">{{ formation.title }}</p>
+              <br />
+              <br />
+              {% if lessons | length > 0 %}
+              <h3>Leçons de cette formation :</h3>
+              <ul>
+                {% for lesson in lessons %}
+                <li>{{ lesson.title }}</li>
+                {% endfor %}
+              </ul>
+              {% else %}
+              <p>Aucune leçon disponible pour cette formation.</p>
+              {% endif %}
+              <p></p>
+            </div>
+            <div class="select_details">
+              <form method="get">
+                <a href="{{ path('formation_type', { id: formation.id }) }}"
+                  >Finir le chapitre</a
+                >
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <p>Pas de formation pour le moment</p>
+      {% endif %}
+    </div>
   </body>
 </html>
