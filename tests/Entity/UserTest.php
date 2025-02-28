@@ -87,6 +87,7 @@ class UserTest extends TestCase
     
     public function testUpdatedAtSetter(): void
     {
+        //testing the user has been updated
         $this->assertNull($this->user->getUpdatedAt());
         
         $this->user->setUpdatedAt();
@@ -103,6 +104,7 @@ class UserTest extends TestCase
 
     public function testUserInterface(): void
     {
+        //testing if userinterface has been restransmitting
         $this->assertInstanceOf(\Symfony\Component\Security\Core\User\UserInterface::class, $this->user);
         $this->assertInstanceOf(\Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface::class, $this->user);
     }

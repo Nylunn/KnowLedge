@@ -30,6 +30,7 @@ class LessonTest extends TestCase
 
     public function testTitleAccessors(): void
     {
+        //adding a title for the test
         $title = 'Introduction à PHP';
         
      
@@ -43,12 +44,13 @@ class LessonTest extends TestCase
 
     public function testTypeAccessors(): void
     {
-        $type = 'Video';
+        //adding a type for the video
+        $type = 'technology';
         
         $this->lesson->setType($type);
         $this->assertEquals($type, $this->lesson->getType());
         
-        $newType = 'Text';
+        $newType = 'Jardinier';
         $this->lesson->setType($newType);
         $this->assertEquals($newType, $this->lesson->getType());
         
@@ -58,6 +60,7 @@ class LessonTest extends TestCase
 
     public function testImageAccessors(): void
     {
+        //adding an image for the test
         $image = 'lesson.jpg';
         
         $reflection = new \ReflectionClass(Lesson::class);
@@ -70,6 +73,7 @@ class LessonTest extends TestCase
 
     public function testPriceAccessors(): void
     {
+        //adding a price for the test
         $price = '19.99';
         
         $reflection = new \ReflectionClass(Lesson::class);
@@ -82,6 +86,8 @@ class LessonTest extends TestCase
 
     public function testFormationAccessors(): void
     {
+
+        //creating a mock for launching the test
         $formation = $this->createMock(Formation::class);
         
         $this->lesson->setFormation($formation);
@@ -93,6 +99,8 @@ class LessonTest extends TestCase
     
     public function testUpdatedAtSetter(): void
     {
+
+        //testing the updated function 
         $this->assertNull($this->lesson->getUpdatedAt());
         
         $this->lesson->setUpdatedAt();
@@ -110,6 +118,6 @@ class LessonTest extends TestCase
         $formation = $this->createMock(Formation::class);
         
         $this->assertSame($this->lesson, $this->lesson->setFormation($formation));
-        $this->assertSame($this->lesson, $this->lesson->setType('Video'));
+        $this->assertSame($this->lesson, $this->lesson->setType('technology'));
     }
 }

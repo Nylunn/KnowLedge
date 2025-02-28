@@ -30,6 +30,7 @@ class FormationTest extends TestCase
 
     public function testTitleAccessors(): void
     {
+        //adding a title name for the test
         $title = 'Formation PHP';
         $reflection = new \ReflectionClass(Formation::class);
         $property = $reflection->getProperty('title');
@@ -41,6 +42,7 @@ class FormationTest extends TestCase
 
     public function testDescAccessors(): void
     {
+        //adding a description for the test
         $desc = 'Description de la formation';
         
         $reflection = new \ReflectionClass(Formation::class);
@@ -53,6 +55,7 @@ class FormationTest extends TestCase
 
     public function testImageAccessors(): void
     {
+        //adding an fake image for the test
         $image = 'formation.jpg';
         
         $this->formation->setImage($image);
@@ -90,6 +93,7 @@ class FormationTest extends TestCase
         $this->formation->addLesson($lesson1);
         $this->formation->addLesson($lesson2);
         
+        //verifying if 2 lessons are added
         $this->assertCount(2, $this->formation->getLessons());
         $this->assertTrue($this->formation->getLessons()->contains($lesson1));
         $this->assertTrue($this->formation->getLessons()->contains($lesson2));
@@ -108,7 +112,7 @@ class FormationTest extends TestCase
     public function testUpdatedAtSetter(): void
     {
         $this->assertNull($this->formation->getUpdatedAt());
-        
+        //testing the formation has been updated
         $this->formation->setUpdatedAt();
         
         $this->assertNotNull($this->formation->getUpdatedAt());

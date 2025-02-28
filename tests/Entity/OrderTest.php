@@ -19,6 +19,7 @@ class OrderTest extends TestCase
 
     public function testInitialValues(): void
     {
+        //adding initial value
         $this->assertNull($this->order->getId());
         $this->assertNull($this->order->getTitle());
         
@@ -32,7 +33,8 @@ class OrderTest extends TestCase
 
     public function testTitleAccessors(): void
     {
-        $title = 'Commande Premium';
+        //adding a title for the test
+        $title = 'Commande 1';
         
         $reflection = new \ReflectionClass(Order::class);
         $property = $reflection->getProperty('title');
@@ -57,7 +59,7 @@ class OrderTest extends TestCase
 
     public function testPurchaserProperty(): void
     {
-        
+        //adding a purchaser name for the test
         $purchaser = 'John Doe';
         
         $reflection = new \ReflectionClass(Order::class);
@@ -87,6 +89,7 @@ class OrderTest extends TestCase
     
     public function testPurchaseDateImmutability(): void
     {
+        //testing the date of the purchase
         $originalDate = $this->order->getPurchaseDate();
         
         usleep(1000);
