@@ -128,4 +128,16 @@ class Formation
         $this->updatedAt = new \DateTime(); 
     }
 
+    public function getRoleForUser()
+{
+    if ($this->getId() == 1) {
+        return 'ROLE_BASIC';
+    } elseif ($this->getId() == 2) {
+        return 'ROLE_ADVANCED';
+    }
+
+    return 'ROLE_USER'; 
+}
+
+
 }

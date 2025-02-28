@@ -26,4 +26,6 @@ class isVerified extends Voter
         // verification if the user if verified
         return $user->isVerified();
     }
+
+    
 }

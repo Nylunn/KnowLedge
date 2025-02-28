@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Formation;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,8 +13,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Entity\Lesson;
-
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\Webhook;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Routing\Attribute\Route;
 
 
@@ -112,30 +114,131 @@ public function error()
     return $this->render('cart/error.html.twig',[]);
 }
 
-#[Route("/create-checkout-session", name:"checkout")]
-public function checkout(UrlGeneratorInterface $urlGenerator) 
-{
-    Stripe::setApiKey('sk_test_51Q2uEVCybVMxBZRKcLqfHUFnQvjOueAwU2yWdvq14b5MXbdDXem9DIQdbc8sZQLIx7Oo79oJvuoyzN3siUTYzJnE000UFP1lK7');
 
-    // Creation of the checkout session
-    $session = Session::create([
-        'line_items' => [
-            [
+//Bought a product
+
+
+#[Route('/create-checkout-session', name: 'create_checkout_session')]
+public function createCheckoutSession(Request $request, EntityManagerInterface $em): JsonResponse
+{
+    $cart = $request->getSession()->get('cart', []);
+    
+    if (empty($cart)) {
+        return new JsonResponse(['error' => 'Le panier est vide'], 400);
+    }
+
+    Stripe::setApiKey('sk_test_51Q2uEVCybVMxBZRKcLqfHUFnQvjOueAwU2yWdvq14b5MXbdDXem9DIQdbc8sZQLIx7Oo79oJvuoyzN3siUTYzJnE000UFP1lK7');
+    
+    $lineItems = [];
+    $totalPrice = 0;
+
+    foreach ($cart as $id => $details) {
+        $lesson = $em->getRepository(Lesson::class)->find($id);
+        
+        if ($lesson) {
+            $lineItems[] = [
                 'price_data' => [
                     'currency' => 'eur',
                     'product_data' => [
-                        'name' => 'Formation',
+                        'name' => $lesson->getTitle(),
                     ],
-                    'unit_amount' => 2000, 
+                    'unit_amount' => $lesson->getPrice() * 100, 
                 ],
-                'quantity' => 1,
+                'quantity' => $details['quantity'],
+            ];
+            $totalPrice += $lesson->getPrice() * $details['quantity'];
+        }
+    }
+
+    $session = Session::create([
+        'payment_method_types' => ['card'],
+        'line_items' => $lineItems,
+        'mode' => 'payment',
+        'success_url' => $this->generateUrl('success', [], UrlGeneratorInterface::ABSOLUTE_URL),
+        'cancel_url' => $this->generateUrl('error', [], UrlGeneratorInterface::ABSOLUTE_URL),
+    ]);
+
+    return new JsonResponse(['id' => $session->id]);
+}
+
+
+#[Route('/checkout/{id}', name: 'checkout')]
+public function checkoutid(UrlGeneratorInterface $urlGenerator, Formation $formation, Security $security): JsonResponse
+{
+    $user = $security->getUser(); 
+
+    if (!$user) {
+        return new JsonResponse(['error' => 'Utilisateur non connecté'], 403);
+    }
+
+    Stripe::setApiKey('sk_test_51Q2uEVCybVMxBZRKcLqfHUFnQvjOueAwU2yWdvq14b5MXbdDXem9DIQdbc8sZQLIx7Oo79oJvuoyzN3siUTYzJnE000UFP1lK7');
+
+    $role = $formation->getRoleForUser();
+
+    $session = Session::create([
+        'payment_method_types' => ['card'],
+        'customer_email' => $user->getEmail(),
+        'line_items' => [[
+            'price_data' => [
+                'currency' => 'eur',
+                'product_data' => [
+                    'name' => $formation->getTitle(),
+                ],
+                'unit_amount' => $formation->getPrice() * 100, 
             ],
-        ],
+            'quantity' => 1,
+        ]],
         'mode' => 'payment',
         'success_url' => $urlGenerator->generate('success', [], UrlGeneratorInterface::ABSOLUTE_URL),
         'cancel_url' => $urlGenerator->generate('error', [], UrlGeneratorInterface::ABSOLUTE_URL),
+        'metadata' => [
+            'formation_id' => $formation->getId(),
+            'role' => $role,  
+        ],
     ]);
+
     return new JsonResponse(['id' => $session->id]);
 }
+
+
+
+#[Route('/webhook/stripe', name: 'stripe_webhook', methods: ['POST'])]
+public function stripeWebhook(Request $request, EntityManagerInterface $em): JsonResponse
+{
+    $endpoint_secret = 'whsec_5c7c7a78f13b4dd2c9f562c8d73763d47fa23628b363dda5b66e56ddcd03c094'; 
+
+    $payload = $request->getContent();
+    $sig_header = $request->headers->get('stripe-signature');
+
+    try {
+        $event = Webhook::constructEvent($payload, $sig_header, $endpoint_secret);
+    } catch (\UnexpectedValueException $e) {
+        return new JsonResponse(['error' => 'Invalid payload'], 400);
+    } catch (\Stripe\Exception\SignatureVerificationException $e) {
+        return new JsonResponse(['error' => 'Invalid signature'], 400);
+    }
+
+    if ($event->type === 'checkout.session.completed') {
+        $session = $event->data->object;
+
+        $customer_email = $session->customer_email;
+        $formationId = $session->metadata->formation_id;
+        $role = $session->metadata->role; 
+
+        $user = $em->getRepository(User::class)->findOneBy(['email' => $customer_email]);
+        $formation = $em->getRepository(Formation::class)->find($formationId);
+
+        if ($user && $formation) {
+            $user->addFormation($formation); 
+            $user->setRoles([$role]); 
+            $em->persist($user);
+            $em->flush();
+        }
+    }
+
+    return new JsonResponse(['message' => 'Webhook reçu !']);
+}
+
+
 
 }

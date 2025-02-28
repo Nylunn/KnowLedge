@@ -7,6 +7,7 @@ parameters:
 
 services:
   App\Security\IsVerifiedVoter: ~
+  App\Service\StripeService: ~
   # default configuration for services in *this* file
   _defaults:
     autowire: true # Automatically injects dependencies in your services.
@@ -20,6 +21,7 @@ services:
       - "../src/DependencyInjection/"
       - "../src/Entity/"
       - "../src/Kernel.php"
+      - "../src/service/StripeService.php"
 
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones

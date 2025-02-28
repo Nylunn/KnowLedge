@@ -17,7 +17,7 @@
         <ul class="navbar">
           <li><a href="/">Accueil</a></li>
           {% if app.user %}
-          <li><a href="/products">Boutique</a></li>
+          <li><a href="/formation">Boutique</a></li>
           <li><a class="active" href="/cart">Panier</a></li>
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}
