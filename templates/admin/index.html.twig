@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
+
     <link rel="stylesheet" href={{
       "styles/app.css"
     }}>
@@ -80,6 +82,8 @@
             <th>Formation</th>
             <th>Création</th>
             <th>Mis à jour</th>
+            <th>Crée par</th>
+            <th>Mis à jour par</th>
           </tr>
         </thead>
         <tbody>
@@ -93,6 +97,8 @@
             <td>
               {{ formation.updatedAt ? formation.updatedAt|date('d/m H:i') : 'Jamais' }}
             </td>
+            <td>x</td>
+            <td>x</td>
           </tr>
           {% else %}
           <tr>
@@ -111,6 +117,8 @@
             <th>Prix</th>
             <th>Création</th>
             <th>Mis à jour</th>
+            <th>Crée par</th>
+            <th>Mis à jour par</th>
           </tr>
         </thead>
         <tbody>
@@ -126,6 +134,8 @@
             <td>
               {{ lesson.updatedAt ? lesson.updatedAt|date('d/m H:i') : 'Jamais' }}
             </td>
+            <td>x</td>
+            <td>x</td>
           </tr>
           {% else %}
           <tr>

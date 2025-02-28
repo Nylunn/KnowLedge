@@ -58,6 +58,10 @@ class Formation
 
         return $this;
     }
+
+    
+    //Adding datetime for created_At and update_At
+
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $createdAt = null;
 
