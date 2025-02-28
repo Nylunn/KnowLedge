@@ -16,7 +16,9 @@
           {% if app.user %}
           <li><a href="/cart">Panier</a></li>
           {% if is_granted('ROLE_STUDENT') %}
-          <li><a href="{{ path('app_student') }}">Leçon</a></li>
+     
+         {% if is_granted('ROLE_STUDENT') %}
+          <li><a href="{{ path('app_student')}}">Leçon</a></li>
           {% endif %}
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}
@@ -52,7 +54,8 @@
               <h3>Leçons de cette formation :</h3>
               <ul>
                 {% for lesson in lessons %}
-                <li>{{ lesson.title }}</li>
+                <li>{{ lesson.title }} :   {{ lesson.price }} €  </li>
+              
                 <form
                 method="get"
                 action="{{ path('app_cart_add', { id: lesson.id }) }}"
@@ -63,7 +66,24 @@
               {% else %}
               <p>Aucune leçon disponible pour cette formation.</p>
               {% endif %}
-              <p></p>
+
+
+                {% if cursus is defined and cursus|length > 0 %}
+              <h3>Cursus de cette formation :</h3>
+              <ul>
+                {% for cursus in cursus %}
+                <li>{{ cursus.title }} : {{ cursus.price }} €</li>
+                
+                <form
+                method="get"
+                action="{{ path('app_cart_add', { id: cursus.id }) }}"
+              >
+              <button class="add_to_card">Ajouter le cursus au panier</button>
+                {% endfor %}
+              </ul>
+              {% else %}
+              <p>Aucun cursus disponible pour cette formation.</p>
+              {% endif %}
             </div>
             <div class="select_details">
               <form

@@ -72,6 +72,12 @@
    <button><a href="{{ path('final_chapter') }}" style="width: 50xp; height: 20px;">Vers le diplôme</a></button>
    </div>
    {% endif %}
+   {% if is_granted('ROLE_ADMIN')%}
+
+   <div class="chapter2">
+   <button><a href="{{ path('final_chapter') }}" style="width: 50xp; height: 20px;">Vers le diplôme</a></button>
+   </div>
+   {% endif %}
             </div>
           </div>
         </tr>

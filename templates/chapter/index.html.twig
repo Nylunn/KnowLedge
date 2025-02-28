@@ -45,22 +45,27 @@
         <br />
         <div class="product_details">
           <div class="center_details">
-            <div>
-              <p class="details">{{ formation.title }}</p>
-              <br />
-              <br />
-              {% if lessons | length > 0 %}
-              <h3>Leçons de cette formation :</h3>
-              <ul>
-                {% for lesson in lessons %}
-                <li>{{ lesson.title }}</li>
-                {% endfor %}
-              </ul>
-              {% else %}
-              <p>Aucune leçon disponible pour cette formation.</p>
-              {% endif %}
-              <p></p>
-            </div>
+            {% if lessons is defined and lessons|length > 0 %}
+            <h3>Leçons de cette formation :</h3>
+            <ul>
+              {% for lesson in lessons %}
+              <li>{{ lesson.title }}</li>
+              <p>Lorem Ipsum Dolor Sit Amet....</p>
+              {% endfor %}
+            </ul>
+            {% else %}
+            <p>Aucune leçon disponible pour cette formation.</p>
+            {% endif %} {% if cursus is defined and cursus|length > 0 %}
+            <h3>Cursus de cette formation</h3>
+            <ul>
+              {% for cursus in cursus %}
+              <li>{{ cursus.title }}</li>
+              <p>Lorem Ipsum Dolor Sit Amet....</p>
+              {% endfor %}
+            </ul>
+            {% else %}
+            <p>Aucun cursus disponible pour cette formation.</p>
+            {% endif %}
             <div class="select_details">
               <form method="get">
                 <a href="{{ path('formation_type', { id: formation.id }) }}"

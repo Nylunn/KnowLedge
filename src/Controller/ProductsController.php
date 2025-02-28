@@ -4,6 +4,7 @@ namespace App\Controller;
  
 use App\Entity\Formation;
 use App\Entity\Lesson;
+use App\Repository\CursusRepository;
 use App\Repository\FormationRepository;
 use App\Repository\LessonRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -29,7 +30,7 @@ final class ProductsController extends AbstractController
 
 
 #[Route('/formation/{id}', name: 'formation_show')]
-public function show(int $id, EntityManagerInterface $entityManager,  LessonRepository $lessonRepository, FormationRepository $formationRepository, EntityManagerInterface $Entitymanager): Response
+public function show(int $id, EntityManagerInterface $entityManager,  LessonRepository $lessonRepository,CursusRepository $cursusRepository,FormationRepository $formationRepository, EntityManagerInterface $Entitymanager): Response
 {
   $formation = $formationRepository->find($id);
     
@@ -38,10 +39,12 @@ public function show(int $id, EntityManagerInterface $entityManager,  LessonRepo
     }
     
     $lessons = $lessonRepository->findBy(['formation' => $formation]);
+     $cursus = $cursusRepository->findBy(['formation' => $formation]);
     
     return $this->render('products/show.html.twig', [
         'formation' => $formation,
-        'lessons' => $lessons 
+        'lessons' => $lessons,
+        'cursus' => $cursus 
     ]);
 }
 
