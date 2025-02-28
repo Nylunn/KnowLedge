@@ -53,6 +53,11 @@
               <ul>
                 {% for lesson in lessons %}
                 <li>{{ lesson.title }}</li>
+                <form
+                method="get"
+                action="{{ path('app_cart_add', { id: lesson.id }) }}"
+              >
+              <button class="add_to_card">Ajouter la leçon au panier</button>
                 {% endfor %}
               </ul>
               {% else %}
@@ -65,7 +70,7 @@
                 method="get"
                 action="{{ path('app_cart_add', { id: formation.id }) }}"
               >
-                <button class="add_to_card">Ajouter au Panier</button>
+                <button class="add_to_card">Ajouter la formation entière au panier</button>
               </form>
             </div>
           </div>

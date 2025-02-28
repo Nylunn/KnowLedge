@@ -280,8 +280,8 @@ section {
 .details_card {
   display: flex;
   border: 1px solid #384050;
-  height: 300px;
-  width: 1400px;
+  height: 600px;
+  width: 1200px;
 }
 
 .card_img {
