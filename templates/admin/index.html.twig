@@ -188,6 +188,35 @@
         <p>Aucun paiement trouvé.</p>
         {% endif %}
       </div>
+       <table>
+        <H1>Utilisateur Certifiée</H1>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Certifiée</th>
+            <th>Mis à jour</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+           
+            {% for user in users|filter(user => 'ROLE_CERTIFICATE' in user.roles) %}
+     <td>{{ user.username }}</td>
+        <td>{{ user.roles|join(', ') }}</td>
+           <td>
+              {{ user.updatedAt ? user.updatedAt|date('d/m H:i') : 'Jamais' }}
+            </td>
+
+>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="3">Aucun user trouvé.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
