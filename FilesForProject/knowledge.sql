@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 28 fév. 2025 à 15:26
+-- Généré le : ven. 28 fév. 2025 à 15:43
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`
@@ -233,7 +233,8 @@ INSERT INTO `user` (`id`, `email`, `roles`, `password`, `username`, `is_verified
 (4, 'student@dev.com', '[\"ROLE_STUDENT\", \"ROLE_INFORMATIQUE\", \"ROLE_VERIFIED\"]', '$2y$13$at.npGri9BXV6znDxC4lFefyq/G4gC1gk/BoU0UHR.0fVjb.M1Kim', 'STUDENT', 1, '2025-02-24 14:17:13', '2025-02-27 14:18:00'),
 (5, 'admin@dev.com', '[\"ROLE_ADMIN\", \"ROLE_VERIFIED\", \"ROLE_FINISHEDLESSON\", \"ROLE_CUISINIER\"]', '$2y$13$LfXOwYO.e9f0qOAqt0d52eNJPhLitwFk1sj.K/GEaNI4j0TsP8iOG', 'ADMIN', 1, '2025-02-24 14:17:19', '2025-02-27 14:17:56'),
 (6, 'user@dev.com', '[]', '$2y$13$MFCGP1GsxVJQ6uCOt1HcUuAWfEHbvPwnXVcmrKxkrPuA9a21MUovi', 'User', 0, '2025-02-24 14:17:23', '2025-02-27 14:17:51'),
-(23, 'yoannlecavelier18@gmail.com', '[\"ROLE_USER\", \"ROLE_VERIFIED\"]', '$2y$13$vDGKWEgTUQrIIqaCUU7LT.BOKvsL7EmJ9KdHV5cUS6iIlC7flQXha', 'Yoann', 1, '2025-02-28 10:06:28', NULL);
+(23, 'yoannlecavelier18@gmail.com', '[\"ROLE_USER\", \"ROLE_VERIFIED\"]', '$2y$13$vDGKWEgTUQrIIqaCUU7LT.BOKvsL7EmJ9KdHV5cUS6iIlC7flQXha', 'Yoann', 1, '2025-02-28 10:06:28', NULL),
+(24, 'Certificat@gmail.com', '[\"ROLE_CERTIFICATE\"]', '$2y$13$Wkw.e0omY2KtsSddISkW6.xp1REixJJ1cKLw2wQcFFlGpN0SAFezW', 'CertificateStudent', 0, '2025-02-28 16:41:38', NULL);
 
 --
 -- Contraintes pour les tables déchargées
