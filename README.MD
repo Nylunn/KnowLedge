@@ -26,11 +26,8 @@ Avant de commencer, assurez-vous d’avoir installé les éléments suivants :
 3. **Importez la base de données** :
 
    ```
-
    - Téléchargez le fichier SQL de la base de données.
    - Importez-le dans votre gestionnaire de base de données (PhpMyAdmin)
-
-
    ```
 
 ## ▶️ Lancement de l’Application

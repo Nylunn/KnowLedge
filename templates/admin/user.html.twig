@@ -1,0 +1,47 @@
+<h1>Liste des Utilisateurs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Email</th>
+      <th>Rôle</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.roles|join(', ') }}</td>
+      <td>
+        <a href="{{ path('admin_user_edit', { id: user.id }) }}">Modifier</a>
+        <form
+          action="{{ path('admin_user_delete', { id: user.id }) }}"
+          method="post"
+          style="display: inline"
+        >
+          <input
+            type="hidden"
+            name="_token"
+            value="{{ csrf_token('delete' ~ user.id) }}"
+          />
+          <button
+            type="submit"
+            onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');"
+          >
+            Supprimer
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="5">Aucun utilisateur trouvé.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

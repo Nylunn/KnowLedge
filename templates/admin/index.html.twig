@@ -16,7 +16,7 @@
         <ul class="navbar">
           <li><a href="/">Accueil</a></li>
           {% if app.user %}
-          <li><a href="/products">Boutique</a></li>
+          <li><a href="/formation">Boutique</a></li>
           <li><a href="/cart">Panier</a></li>
           <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
           {% if is_granted('ROLE_ADMIN') %}
@@ -43,6 +43,8 @@
     <div class="administration">
       <div class="user">
         <h1>Liste des utilisateurs</h1>
+        <strong>
+        <a href="{{ path('admin_users') }}">CLIQUER ICI POUR GERER LES UTILISATEURS</a> </strong>
         <table>
           <thead>
             <tr>
@@ -64,6 +66,16 @@
               </td>
               <td>
                 {{ user.updatedAt ? user.updatedAt|date('d/m H:i') : 'Jamais' }}
+              </td>
+              <td>
+                <a href="{{ path('admin_user_edit', { id: user.id }) }}"
+                  >Modifier</a
+                >
+                <br />
+                
+                </form>
+                <br />
+                <li></li>
               </td>
             </tr>
             {% else %}
