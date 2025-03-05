@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+use App\Entity\Cursus;
 use App\Entity\Lesson;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -57,6 +58,56 @@ public function index(SessionInterface $session, EntityManagerInterface $em, Man
 }
 
 
+// add a formation to the cart
+
+    #[Route('/cart/add/{id}', name: 'app_cart_add')]
+public function addFormation($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
+{
+    $formation = $em->getRepository(Formation::class)->find($id);
+    if (!$formation) {
+        throw $this->createNotFoundException("La formation n'existe pas");
+    }
+
+    $cart = $session->get('cart', []);
+
+    if (!isset($cart[$id])) {
+        $cart[$id] = [
+            'quantity' => 1
+        ];
+    } else {
+        $cart[$id]['quantity']++;
+    }
+
+    $session->set('cart', $cart);
+
+    return $this->redirectToRoute('app_cart');
+}
+
+
+// add a cursus to the cart
+
+    #[Route('/cart/add/{id}', name: 'app_cart_add')]
+public function addCursus($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
+{
+    $cursus = $em->getRepository(Cursus::class)->find($id);
+    if (!$cursus) {
+        throw $this->createNotFoundException("Le cursus n'existe pas");
+    }
+
+    $cart = $session->get('cart', []);
+
+    if (!isset($cart[$id])) {
+        $cart[$id] = [
+            'quantity' => 1
+        ];
+    } else {
+        $cart[$id]['quantity']++;
+    }
+
+    $session->set('cart', $cart);
+
+    return $this->redirectToRoute('app_cart');
+}
 
 //add a lesson to the cart
 
@@ -64,19 +115,15 @@ public function index(SessionInterface $session, EntityManagerInterface $em, Man
 public function add($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
 {
     $lesson = $em->getRepository(Lesson::class)->find($id);
-    
     if (!$lesson) {
         throw $this->createNotFoundException("La leçon n'existe pas");
     }
 
     $cart = $session->get('cart', []);
-//get type of lesson
-    $type = $request->query->get('type'); 
 
     if (!isset($cart[$id])) {
         $cart[$id] = [
-            'quantity' => 1,
-            'type' => $type
+            'quantity' => 1
         ];
     } else {
         $cart[$id]['quantity']++;
