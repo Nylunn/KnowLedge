@@ -11,6 +11,58 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.menu-hamburger {
+  display: none;
+  width: 50px;
+  position: absolute;
+  top: 35px;
+  right: 15px;
+}
+
+@media screen and (max-width: 360px) {
+  * {
+    width: 90%;
+  }
+  .navbar {
+    padding: 0;
+  }
+  .navlinks {
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #0074c7aa;
+    backdrop-filter: blur(7px);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -100%;
+    transition: all 0.5s ease;
+  }
+  .navlinks ul {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .navlinks.mobile-menu {
+    margin-left: 0;
+  }
+
+  .navbarlogo {
+    width: 150px;
+  }
+  .menu-hamburger {
+    display: block;
+  }
+
+  .navlinks ul li {
+    margin: 25px 0;
+    font-size: 20px;
+  }
+}
+
 .site_footer {
   margin-left: 30px;
   margin-top: 20px;
