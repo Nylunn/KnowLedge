@@ -11,28 +11,31 @@
     <title>Home</title>
   </head>
   <body>
-    <div class="nav">
+       <div class="nav">
       <nav>
-        <ul class="navbar">
-          <li><a class="active" href="/">Accueil</a></li>
-          <li><a href="/formation">Formations</a></li>
-          {% if app.user %}
-          <li><a href="/cart">Panier</a></li>
-             {% if is_granted('ROLE_STUDENT') %}
-          <li><a href="{{ path('app_student')}}">Leçon</a></li>
-          {% endif %}
-          <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
-          {% if is_granted('ROLE_ADMIN') %}
-          <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
-          {% endif %}
-         {% else %}
-          
-          <li><a href="/register">S'inscrire</a></li>
-          <li><a href="/login">Se connecter</a></li>
-          {% endif %}
-        </ul>
+        <div class="navlinks">
+          <ul class="navbar">
+            <li><a href="/">Accueil</a></li>
+            {% if app.user %}
+            <li><a href="/formations">Boutique</a></li>
+            <li><a href="/cart">Panier</a></li>
+            <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+            {% endif %} {% else %}
+            <li><a class="active" href="/register">S'inscrire</a></li>
+            <li><a href="/login">Se connecter</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <img
+          src="{{ asset('assets/menu.png') }}"
+          alt="menu-hamburger"
+          class="menu-hamburger"
+        />
       </nav>
-      <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo" />
+      <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo"
+      class="navbarlogo"/>
     </div>
     <br />
    
@@ -127,5 +130,12 @@
        
       </section>
   </body>
- 
+   <script>
+    const menuHamburger = document.querySelector(".menu-hamburger");
+    const navLinks = document.querySelector(".navlinks");
+
+    menuHamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("mobile-menu");
+    });
+  </script>
 </html>
