@@ -22,6 +22,7 @@ a {
 }
 
 @media screen and (max-width: 360px) {
+  /*CSS for responsivity / new navbar for mobile view*/
   * {
     width: 90%;
   }
@@ -62,6 +63,7 @@ a {
     margin: 25px 0;
     font-size: 20px;
   }
+  /*CSS for admin page*/
   .administration {
     width: 360px;
     height: auto;
@@ -76,6 +78,43 @@ a {
   .modify_user {
     width: 360px;
     height: auto;
+  }
+
+  section {
+    display: none;
+  }
+  /* Mobile view for details formation page*/
+  .show_product2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .details_card {
+    display: flex;
+    width: 300px;
+    height: 800px;
+  }
+  .card_img {
+    padding: 10px;
+    display: none;
+    height: 10px;
+    width: 10px;
+  }
+
+  .product_details {
+    display: none;
+    height: 200px;
+    width: 10px;
+  }
+
+  .add_to_card {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    border: 1px solid #384050;
+    margin-top: 20px;
+    margin-right: 10px;
+    justify-content: end;
   }
 }
 
@@ -369,13 +408,6 @@ section {
   height: 600px;
   width: 500px;
   justify-content: center;
-}
-
-.select_size {
-  width: 200px;
-  height: 150px;
-  display: flex;
-  margin-left: 50px;
 }
 
 .add_to_card {
