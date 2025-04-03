@@ -1,10 +1,11 @@
 * {
   font-family: "Comic Sans MS";
 }
+
 body {
   display: table;
   width: 99%;
-  height: 100%;
+  height: 99%;
   background-color: #f1f8fc;
 }
 a {
@@ -61,6 +62,26 @@ a {
     margin: 25px 0;
     font-size: 20px;
   }
+  .administration {
+    width: 360px;
+    height: auto;
+    font-size: 10px;
+  }
+  .administration.table {
+    width: 360px;
+  }
+  .user_update {
+    display: none;
+  }
+  .modify_user {
+    width: 360px;
+    height: auto;
+  }
+}
+
+.modify_user {
+  display: flex;
+  text-align: center;
 }
 
 .site_footer {
@@ -390,7 +411,6 @@ section {
 }
 
 .cart_finish {
-  margin-left: 1000px;
   height: 150px;
   width: 100%;
 }

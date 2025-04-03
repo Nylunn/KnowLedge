@@ -16,7 +16,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 final class ProductsController extends AbstractController
 {
-    #[Route('/formation', name: 'app_formation')]
+    #[Route('/formations', name: 'app_formation')]
     public function index(ManagerRegistry $manager,   FormationRepository $formation): Response
  {
     

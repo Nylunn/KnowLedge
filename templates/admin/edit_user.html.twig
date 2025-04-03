@@ -1,8 +1,11 @@
-<h1>Modifier l'Utilisateur</h1>
+<body>
+  <div class="modify_user">
+    <h1>Modifier l'Utilisateur</h1>
 
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button type="submit">Mettre à jour</button>
-{{ form_end(form) }}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 
-<a href="{{ path('admin_users') }}">Retour à la liste</a>
+    <a href="{{ path('admin_users') }}">Retour à la liste</a>
+  </div>
+</body>

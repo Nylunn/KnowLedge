@@ -46,23 +46,21 @@
         <table>
           <thead>
             <tr>
-              <th>ID</th>
               <th>Nom</th>
               <th>Email</th>
               <th>Création</th>
-              <th>Mis à jour</th>
+              <th class="user_update">Mis à jour</th>
             </tr>
           </thead>
           <tbody>
             {% for user in users %}
             <tr>
-              <td>{{ user.id }}</td>
               <td>{{ user.username }}</td>
               <td>{{ user.email }}</td>
               <td>
                 {{ user.createdAt|date('d/m/Y') }}
               </td>
-              <td>
+              <td class="user_update">
                 {{ user.updatedAt ? user.updatedAt|date('d/m H:i') : 'Jamais' }}
               </td>
               <td>
@@ -73,7 +71,6 @@
                 
                 </form>
                 <br />
-                <li></li>
               </td>
             </tr>
             {% else %}
