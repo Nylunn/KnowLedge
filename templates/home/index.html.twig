@@ -16,13 +16,19 @@
         <div class="navlinks">
           <ul class="navbar">
             <li><a href="/">Accueil</a></li>
+
             {% if app.user %}
             <li><a href="/formations">Boutique</a></li>
             <li><a href="/cart">Panier</a></li>
+ 
+            {% if is_granted('ROLE_STUDENT') %}
+            <li><a href="{{ path('app_student') }}">Élèves</a></li>
+            {% endif %}
             <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
             {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
-            {% endif %} {% else %}
+            {% endif %}
+            {% else %}
             <li><a class="active" href="/register">S'inscrire</a></li>
             <li><a href="/login">Se connecter</a></li>
             {% endif %}

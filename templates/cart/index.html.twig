@@ -19,6 +19,10 @@
             {% if app.user %}
             <li><a href="/formations">Boutique</a></li>
             <li><a href="/cart">Panier</a></li>
+
+            {% if is_granted('ROLE_STUDENT') %}
+            <li><a href="{{ path('app_student') }}">Élèves</a></li>
+            {% endif %}
             <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
             {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
@@ -41,9 +45,9 @@
 
     <h1>Mon Panier</h1>
 
-    {% for item in cart %}
-
     <div class="form-container">
+      {% for item in cart %}
+
       <div class="bloc_cart">
         <img
           src="{{ asset('assets/' ~ item.lesson.image ) }}"
@@ -64,14 +68,17 @@
           >
         </div>
       </div>
+
+      {% else %}
     </div>
-    {% else %}
     <p>Votre panier est vide.</p>
     {% endfor %}
     <div class="cart_finish">
       <div class="cart_choice">
         <div class="total_price">
-          <h2>TOTAL : {{ totalPrice|number_format(2, ',', ' ') }} €</h2>
+          <h2 class="price">
+            TOTAL : {{ totalPrice|number_format(2, ',', ' ') }} €
+          </h2>
         </div>
         <button id="checkout-button" class="btn_pay">
           FINALISER MA COMMANDE

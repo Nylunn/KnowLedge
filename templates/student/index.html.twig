@@ -17,6 +17,10 @@
             {% if app.user %}
             <li><a href="/formations">Boutique</a></li>
             <li><a href="/cart">Panier</a></li>
+             
+            {% if is_granted('ROLE_STUDENT') %}
+            <li><a href="{{ path('app_student') }}">Élèves</a></li>
+            {% endif %}
             <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
             {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
@@ -149,6 +153,15 @@
         {% endif %}
         
       </div>
+
+       <div class="devoir">
+        <div class="exercice"><h1>Devoir 1</h1>
+        <p class="exercice_text">Débutant</p>
+      <button class="exercice_button">GO !</button></div>
+      <div class="exercice"><h1>Devoir 2</h1> <p class="exercice_text">Intermédiaire</p><button class="exercice_button">GO !</button></div>
+      <div class="exercice"><h1>Devoir 3</h1> <p class="exercice_text">Expert</p><button class="exercice_button">GO !</button></div>
+      </div>
+      
   </body>
     <script>
     const menuHamburger = document.querySelector(".menu-hamburger");

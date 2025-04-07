@@ -19,6 +19,10 @@
             {% if app.user %}
             <li><a href="/formations">Boutique</a></li>
             <li><a href="/cart">Panier</a></li>
+             
+            {% if is_granted('ROLE_STUDENT') %}
+            <li><a href="{{ path('app_student') }}">Élèves</a></li>
+            {% endif %}
             <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
             {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
@@ -126,7 +130,6 @@
         
         </div>
       
-       
        
       </section>
   </body>

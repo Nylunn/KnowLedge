@@ -26,6 +26,10 @@ a {
   * {
     width: 90%;
   }
+  body {
+    width: 359px;
+    height: 600px;
+  }
   .navbar {
     padding: 0;
   }
@@ -84,40 +88,104 @@ a {
     display: none;
   }
   /* Mobile view for details formation page*/
-  .show_product2 {
-    display: flex;
-    flex-direction: column;
+
+  /* CSS pour mobile (maximum 360px) */
+  .showing_card {
+    margin: 0;
+    padding: 0;
+    width: 360px;
   }
 
   .details_card {
-    display: flex;
-    width: 300px;
-    height: 800px;
-  }
-  .card_img {
-    padding: 10px;
-    display: none;
-    height: 10px;
-    width: 10px;
+    margin: 0;
+    flex-direction: column;
+    width: 360px;
+    height: auto;
+    border: none;
+    border-top: 1px solid #384050;
   }
 
-  .product_details {
-    display: none;
-    height: 200px;
-    width: 10px;
+  .card_img {
+    margin: 0;
+    width: 50px;
+    height: auto;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .card_img img {
+    margin: 0;
+    max-width: 100%;
+    max-height: 200px;
+  }
+
+  .center_details {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+  }
+
+  .center_details > div {
+    padding: 0;
+    margin: 0;
   }
 
   .add_to_card {
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    border: 1px solid #384050;
-    margin-top: 20px;
-    margin-right: 10px;
-    justify-content: end;
+    width: 100%;
+    font-size: 13px;
+  }
+
+  ul {
+    padding-left: 15px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  li {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .details {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .product_details {
+    height: 600px;
+    width: 360px;
+  }
+  /*CART PAGE MOBILE CSS*/
+  .cart_finish {
+    width: 360px;
+  }
+  .cart_choice {
+    width: 360px;
+  }
+  .total_price {
+    width: 200px;
+  }
+  .form-container {
+    margin: 0px;
+    padding: 0px;
+  }
+  .bloc_cart > img {
+    width: 30%;
+    height: 30%;
   }
 }
 
+/*END OF MOBILE VIEW  */
+
+.bloc_cart > img {
+  width: 150px;
+  height: 150px;
+}
 .modify_user {
   display: flex;
   text-align: center;
@@ -465,6 +533,9 @@ section {
   border: 2px solid #00497c;
   border-radius: 20px;
 }
+.price {
+  font-size: 18px;
+}
 
 .total_price {
   text-align: center;
@@ -500,4 +571,44 @@ section {
 }
 .chapter4 {
   font: bold;
+}
+
+.devoir {
+  justify-content: space-evenly;
+
+  display: flex;
+}
+.exercice {
+  text-align: center;
+  font-size: 10px;
+  padding-top: 3px;
+  color: #f1f8fc;
+  background-color: #0074c7;
+  width: 150px;
+  height: 150px;
+  border-radius: 5%;
+  transition: all 0.5s;
+}
+.exercice:hover {
+  background-color: #00497c;
+  width: 180px;
+  height: 180px;
+}
+
+.exercice_text {
+  font-size: 12px;
+}
+.exercice_button {
+  font-size: medium;
+  color: #f1f8fc;
+  background-color: #00497c;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: white;
+  transition: all 0.4s;
+  margin-top: 20px;
+}
+.exercice_button:hover {
+  background-color: #82b864;
 }
