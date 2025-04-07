@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Entity\User;
 
 final class StudentController extends AbstractController
 {
@@ -16,15 +17,17 @@ final class StudentController extends AbstractController
     public function index( ManagerRegistry $manager, LessonRepository $lessonRepository, FormationRepository $formationRepository,): Response
     {
         $formation = $manager->getRepository(Formation::class)->findAll();
-
+        
          if (!$formation) {
         throw $this->createNotFoundException('Cette formation n\'existe pas.');
     }
     
     $lessons = $lessonRepository->findBy(['formation' => $formation]);
+    $user = $this->getUser();
 
         return $this->render('student/index.html.twig', [   'formation' => $formation,
-        'lessons' => $lessons ]);
+        'lessons' => $lessons,
+    'user' => $user ]);
 
 
     }

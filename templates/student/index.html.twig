@@ -2,14 +2,14 @@
 <html lang="fr">
   <head>
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
-    
+
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Élève</title>
   </head>
   <body>
-      <div class="nav">
+    <div class="nav">
       <nav>
         <div class="navlinks">
           <ul class="navbar">
@@ -17,7 +17,7 @@
             {% if app.user %}
             <li><a href="/formations">Boutique</a></li>
             <li><a href="/cart">Panier</a></li>
-             
+
             {% if is_granted('ROLE_STUDENT') %}
             <li><a href="{{ path('app_student') }}">Élèves</a></li>
             {% endif %}
@@ -41,129 +41,49 @@
     </div>
     <br />
 
-       {% if is_granted('ROLE_CERTIFICATE') %}
-       <h1>Certifié : <strong>Knowledge Learning </strong></h1>
-       {% endif %}
-       {% if is_granted('ROLE_INFORMATIQUE') %}
+    {% if is_granted('ROLE_CERTIFICATE') %}
+    <h1>Certifié : <strong>Knowledge Learning </strong></h1>
+    {% endif %}
 
-    <div class="showing_card">
-        
-        <div class="">
-         {% for formation in formation %} {% if formation.id
-        == 2 %}
-        <tr>
-          <img src="{{
-            asset("assets/informatique.png")
-          }}" width="25%" alt="musique" />
-          <br />
-          <td>{{ formation.title }}</td>
-          
-          
-          <br />
-          <div class="chapter">
-            <div class="chapter1">
-                <p>Lorem Ipsum Dolor</p>
-                
-   
-   <button><a href="{{ path('chapter_formation', { id: formation.id  }) }}">Commencer</a></button>
-            </div>
-            <div class="chapter2">
-   <p>Lorem Ipsum Dolor</p>
-   
-      <button><a href="{{ path('chapter_formation', { id: formation.id  }) }}">Commencer</a></button>
-            </div>
- {% if is_granted('ROLE_FINISHEDLESSON')%}
-
-   <div class="chapter2">
-   <button><a href="{{ path('final_chapter') }}" style="width: 50xp; height: 20px;">Vers le diplôme</a></button>
-   </div>
-   {% endif %}
-   {% if is_granted('ROLE_ADMIN')%}
-
-   <div class="chapter2">
-   <button><a href="{{ path('final_chapter') }}" style="width: 50xp; height: 20px;">Vers le diplôme</a></button>
-   </div>
-   {% endif %}
-            </div>
-          </div>
-        </tr>
-        {% endif %}
-        {% endfor %}
-        <br>
-        {% endif %}
-
-               {% if is_granted('ROLE_CUISINIER') %}
-
-    <div class="showing_card">
-        <div class="product_card">
-         {% for formation in formation %} {% if formation.id
-        == 4 %}
-        <tr>
-          <img src="{{
-            asset("assets/cuisinier.png")
-          }}" width="100%" alt="musique" />
-          <br />
-          <td>{{ formation.title }}</td>
-          
-          <br />
-        </tr>
-        {% endif %}
-        {% endfor %}
-        <br>
-        {% endif %}
-
-               {% if is_granted('ROLE_JARDINIER') %}
-
-    <div class="showing_card">
-        <div class="product_card">
-         {% for formation in formation %} {% if formation.id
-        == 3 %}
-        <tr>
-          <img src="{{
-            asset("assets/jardinage.png")
-          }}" width="100%" alt="musique" />
-          <br />
-          <td>{{ formation.title }}</td>
-          
-          <br />
-        </tr>
-        {% endif %}
-        {% endfor %}
-        <br>
-        {% endif %}
-
-               {% if is_granted('ROLE_MUSIQUE') %}
-
-    <div class="showing_card">
-        <div class="product_card">
-         {% for formation in formation %} {% if formation.id
-        == 1 %}
-        <tr>
-          <img src="{{
-            asset("assets/musique.png")
-          }}" width="100%" alt="musique" />
-          <br />
-          <td>{{ formation.title }}</td>
-          
-          <br />
-        </tr>
-        {% endif %}
-        {% endfor %}
-        <br>
-        {% endif %}
-        
-      </div>
-
-       <div class="devoir">
-        <div class="exercice"><h1>Devoir 1</h1>
+    <div class="student_page">
+      {% if user %}
+      <h1 class="hello_student">
+        Bonjour {{ user.username }}, bienvenue sur la page élève !
+      </h1>
+      <br />
+      <p>
+        Ici tu retrouveras tout t'es cours ! <br />
+        clique sur "GO !" Afin de commencer un chapitre !
+      </p>
+      {% if is_granted('ROLE_CUISINIER') %}
+      <td>FORMATION : CUISINIER</td>
+      {% endif %}{% if is_granted('ROLE_INFORMATIQUE') %}
+      <td>FORMATION : INFORMATICIEN</td>
+      {% endif %} {% if is_granted('ROLE_JARDINIER') %}
+      <td>FORMATION : JARDINIER</td>
+      {% endif %} {% if is_granted('ROLE_MUSIQUE') %}
+      <td>FORMATION : MUSICIEN</td>
+      {% endif %} {% endif %}
+    </div>
+    <div class="devoir">
+      <div class="exercice">
+        <h1>Devoir 1</h1>
         <p class="exercice_text">Débutant</p>
-      <button class="exercice_button">GO !</button></div>
-      <div class="exercice"><h1>Devoir 2</h1> <p class="exercice_text">Intermédiaire</p><button class="exercice_button">GO !</button></div>
-      <div class="exercice"><h1>Devoir 3</h1> <p class="exercice_text">Expert</p><button class="exercice_button">GO !</button></div>
+        <button class="exercice_button">GO !</button>
       </div>
-      
+      <div class="exercice">
+        <h1>Devoir 2</h1>
+        <p class="exercice_text">Intermédiaire</p>
+        <button class="exercice_button">GO !</button>
+      </div>
+      <div class="exercice">
+        <h1>Devoir 3</h1>
+        <p class="exercice_text">Expert</p>
+        <button class="exercice_button">GO !</button>
+      </div>
+    </div>
   </body>
-    <script>
+  <script>
     const menuHamburger = document.querySelector(".menu-hamburger");
     const navLinks = document.querySelector(".navlinks");
 

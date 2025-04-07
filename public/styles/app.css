@@ -455,6 +455,7 @@ section {
 .showing_card {
   display: flex;
   justify-content: center;
+  height: 500px;
 }
 
 .details_card {
@@ -611,4 +612,13 @@ section {
 }
 .exercice_button:hover {
   background-color: #82b864;
+}
+
+.student_page {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.hello_student {
+  font-size: 15px;
 }
