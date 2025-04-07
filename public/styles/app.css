@@ -84,12 +84,22 @@ a {
     height: auto;
   }
 
-  section {
-    display: none;
-  }
   /* Mobile view for details formation page*/
 
-  /* CSS pour mobile (maximum 360px) */
+  section {
+    display: grid;
+    height: 100%;
+    width: 100%;
+  }
+  .show_product2 {
+    width: 100%;
+    gap: 10px;
+    flex-direction: column;
+    border-radius: 10px;
+    border-color: #384050;
+    padding-top: 10px;
+  }
+
   .showing_card {
     margin: 0;
     padding: 0;
@@ -178,6 +188,23 @@ a {
     width: 30%;
     height: 30%;
   }
+  /* MOBILE VIEW FOR STUDENT PAGE */
+  .devoir {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    padding-bottom: 20px;
+  }
+  .exercice {
+    margin-top: 20px;
+  }
+
+  .finished_div {
+    display: flex;
+    width: 360px;
+    justify-content: center;
+  }
 }
 
 /*END OF MOBILE VIEW  */
@@ -217,8 +244,10 @@ a {
 /*formation section */
 
 section {
+  justify-content: space-between;
   display: inline-block;
-  margin: 20px;
+
+  width: 100%;
 }
 /*Product card for product page*/
 .product_card {
@@ -236,36 +265,14 @@ section {
 }
 
 .show_product2 {
+  justify-content: space-between;
+  width: 100%;
   display: flex;
-  gap: 10px;
   border-radius: 10px;
   border-color: #384050;
   padding-top: 10px;
 }
 
-.show_product3 {
-  padding-top: 10px;
-  display: flex;
-  gap: 10px;
-  border-radius: 10px;
-  border-color: #384050;
-}
-
-.show_product4 {
-  padding-top: 10px;
-  display: flex;
-  gap: 10px;
-  border-radius: 10px;
-  border-color: #384050;
-}
-
-.show_product {
-  margin-left: 50px;
-  width: 100px;
-  height: 30px;
-  border-radius: 10px;
-  border-color: #384050;
-}
 .options {
   text-decoration: none;
   height: 75%;
@@ -578,6 +585,7 @@ section {
   justify-content: space-evenly;
 
   display: flex;
+  padding-bottom: 20px;
 }
 .exercice {
   text-align: center;
@@ -621,4 +629,37 @@ section {
 
 .hello_student {
   font-size: 15px;
+}
+
+.finished {
+  text-align: center;
+  font-size: 10px;
+  padding-top: 3px;
+  color: #f1f8fc;
+  background-color: #82b864;
+  width: 150px;
+  height: 150px;
+  border-radius: 5%;
+  transition: all 0.5s;
+}
+
+.finished:hover {
+  background-color: #00497c;
+  width: 180px;
+  height: 180px;
+}
+
+.finished_button {
+  font-size: medium;
+  color: #f1f8fc;
+  background-color: #cd2c2e;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: white;
+  transition: all 0.4s;
+}
+.finished_div {
+  display: flex;
+  justify-content: center;
 }
