@@ -51,12 +51,11 @@
       <div class="bloc_cart">
         <img
           src="{{ asset('assets/' ~ item.lesson.image ) }}"
-          width="10%"
           alt="{{ item.lesson.title }}"
-          style="border: 1px solid black"
+          style="border: 1px solid black; width: 100px; height: 100px"
         />
 
-        <h2>{{ item.lesson.title }}</h2>
+        <h2 class="form-title">{{ item.lesson.title }}</h2>
         <p>Type : {{ item.lesson.type }}</p>
         <p>Prix : {{ item.lesson.price }} €</p>
 
