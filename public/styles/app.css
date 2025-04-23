@@ -184,10 +184,6 @@ a {
     margin: 0px;
     padding: 0px;
   }
-  .bloc_cart > img {
-    width: 30%;
-    height: 30%;
-  }
   /* MOBILE VIEW FOR STUDENT PAGE */
   .devoir {
     align-items: center;
@@ -213,8 +209,6 @@ a {
     flex-direction: column;
     text-align: center;
   }
-  .form-container > img {
-  }
   .bloc_cart {
     width: 360px;
     display: flex;
@@ -222,8 +216,12 @@ a {
     text-align: center;
   }
   .cart_img {
-    margin-left: 90px;
+    margin-left: 110px;
     border-radius: 20%;
+  }
+
+  .cart_finish {
+    width: 360px;
   }
 }
 
