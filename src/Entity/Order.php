@@ -11,7 +11,41 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: '`order`')]
 class Order
 {
-    #[ORM\Id]
+   
+
+    
+
+  #[ORM\Column(type: 'datetime_immutable')]
+    private ?\DateTimeImmutable $purchaseAt = null;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTime $updatedAt = null;
+
+
+    public function __construct()
+    {
+        $this->purchaseAt = new \DateTimeImmutable();
+        
+    }
+
+        public function getPurchaseAt(): ?\DateTimeImmutable
+    {
+        return $this->purchaseAt;
+    }
+
+      public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+
+      #[ORM\PreUpdate]
+    public function setUpdatedAt(): void
+    {
+        $this->updatedAt = new \DateTime(); 
+    }
+
+
+     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
@@ -21,50 +55,27 @@ class Order
         return $this->id;
     }
 
-     #[ORM\Column]
-    private ?int $article = null;
+    private ?string $article = null;
 
-
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private ?\DateTimeImmutable $purchaseDate = null;
-
-
-    /**
-     * @var Collection<int, Lesson>
-     */
-    #[ORM\OneToOne(targetEntity: User::class, mappedBy: 'Order')]
-    private Collection $user;
-
-    public function __construct()
-    {
-        $this->purchaseDate = new \DateTimeImmutable();
-        $this->user = new ArrayCollection();
-    }
-
-
-    /**
-     * @return Collection<int, Lesson>
-     */
-
-    public function getArticle(): Collection
+    public function getArticle(): ?string
     {
         return $this->article;
     }
 
 
-      public function getPurcharser(): Collection
+      public function getPurcharser(?User $username): Collection
     {
-        return $this->user;
+        return $this->$username;
     }
 
  
      public function getPurchaseDate(): ?\DateTimeImmutable
     {
-        return $this->purchaseDate;
+        return $this->purchaseAt;
     }
 
-
+  #[ORM\Column]
+    private ?string $Purchaser = null;
 
      #[ORM\Column]
     private ?string $title = null;
@@ -74,9 +85,22 @@ class Order
         return $this->title;
     }
     
-     #[ORM\Column]
-    private ?string $Purchaser = null;
+     #[ORM\ManyToOne(inversedBy: 'order')]
+     private ?User $username = null;
 
+   
+
+      public function getPurchaser(): ?User
+    {
+        return $this->username;
+    }
+
+    public function setPurchaser(?User $user): static
+    {
+        $this->username = $user;
+
+        return $this;
+    }
 
 
 }
