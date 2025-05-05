@@ -16,10 +16,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 final class ChapterController extends AbstractController
 {
     #[Route('/chapter', name: 'app_chapter')]
-    public function index(EntityManager $manager): Response
+    public function index(EntityManagerInterface $manager): Response
     {
-         $formation = $manager->getRepository(Formation::class)->findAll();
-        return $this->render('chapter/index.html.twig', [   'formation' => $formation,
+ $formations = $manager->getRepository(Formation::class)->findAll();
+
+    return $this->render('chapter/index.html.twig', [
+        'formations' => $formations,
     ]);
     }
 

@@ -42,14 +42,9 @@
     <br />
 
     <div class="showing_card">
-      {% if formation.id %}
+      {% if formations %}
       <div class="details_card">
-        <div class="card_img">
-          <img
-            src="{{ asset('assets/' ~ formation.image) }}"
-            alt="formation_musique"
-          />
-        </div>
+        <div class="card_img"></div>
         <br />
         <div class="product_details">
           <div class="center_details">
@@ -76,9 +71,7 @@
             {% endif %}
             <div class="select_details">
               <form method="get">
-                <a href="{{ path('formation_type', { id: formation.id }) }}"
-                  >Finir le chapitre</a
-                >
+                <a href="#">Finir le chapitre</a>
               </form>
             </div>
           </div>
