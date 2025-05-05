@@ -3,28 +3,70 @@
 namespace App\Controller;
 
 use App\Entity\Formation;
+use App\Entity\User;
+use App\Repository\ChapterRepository;
 use App\Repository\FormationRepository;
 use App\Repository\LessonRepository;
+use App\Repository\ProgressionRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+class ChapterAccessService
+{
+    private ProgressionRepository $progressionRepository;
+
+    public function __construct(ProgressionRepository $progressionRepository)
+    {
+        $this->progressionRepository = $progressionRepository;
+    }
+
+    public function getAvailableChapters(User $user, array $allChapters): array
+    {
+        $availableChapters = [];
+
+        // Vérifie si les deux premiers chapitres sont terminés
+        $firstTwoCompleted = $this->progressionRepository->userHasCompletedFirstChapters($user, 2);
+
+        foreach ($allChapters as $chapter) {
+            if ($chapter->getOrder() <= 2) {
+                $availableChapters[] = $chapter;
+            } elseif ($firstTwoCompleted) {
+                if (!$chapter->isFinal()) {
+                    $availableChapters[] = $chapter;
+                } elseif (in_array("ROLE_CERTIFIABLE", $user->getRoles())) {
+                    $availableChapters[] = $chapter;
+                }
+            }
+        }
+
+        return $availableChapters;
+    }
+}
+
 final class ChapterController extends AbstractController
 {
     #[Route('/chapter', name: 'app_chapter')]
-    public function index(EntityManagerInterface $manager): Response
-    {
- $formations = $manager->getRepository(Formation::class)->findAll();
+    public function index(ChapterRepository $chapterRepo,
+    ChapterAccessService $chapterAccessService,
+    Security $security
+): Response {
+    $user = $security->getUser();
+    $allChapters = $chapterRepo->findBy([], ['order' => 'ASC']);
+    $availableChapters = $chapterAccessService->getAvailableChapters($user, $allChapters);
 
     return $this->render('chapter/index.html.twig', [
-        'formations' => $formations,
+        'chapters' => $availableChapters,
     ]);
     }
 
+
+    
  #[Route('/chapter/{id}', name: 'chapter_formation')]
     public function chapterById(int $id, ManagerRegistry $manager, LessonRepository $lessonRepository, FormationRepository $formationRepository,): Response
 {
@@ -75,5 +117,7 @@ public function addRole(EntityManagerInterface $entityManager): RedirectResponse
 
     return $this->redirectToRoute('app_student'); 
 }
+
+
 
 }
