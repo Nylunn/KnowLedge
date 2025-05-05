@@ -34,8 +34,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: "user", targetEntity: Progression::class)]
-    private Collection $progressions;
     
     #[ORM\Column]
     private ?string $username = null;
