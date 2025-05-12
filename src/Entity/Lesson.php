@@ -123,4 +123,12 @@ public function setType(?string $type): self
 }
 
 
+#[ORM\ManyToMany(targetEntity: 'User')]
+private ?User $user = null;
+
+public function getUser(): ?User
+{
+    return $this->user;
+}
+
 }

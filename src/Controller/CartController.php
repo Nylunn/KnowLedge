@@ -60,7 +60,7 @@ public function index(SessionInterface $session, EntityManagerInterface $em, Man
 
 // add a formation to the cart
 
-    #[Route('/cart/add/{id}', name: 'app_cart_add')]
+    #[Route('/cart/add/formation/{id}', name: 'app_cart_add_formation')]
 public function addFormation($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
 {
     $formation = $em->getRepository(Formation::class)->find($id);
@@ -86,7 +86,7 @@ public function addFormation($id, Request $request, SessionInterface $session, E
 
 // add a cursus to the cart
 
-    #[Route('/cart/add/{id}', name: 'app_cart_add')]
+    #[Route('/cart/add/cursus/{id}', name: 'app_cart_add_cursus')]
 public function addCursus($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
 {
     $cursus = $em->getRepository(Cursus::class)->find($id);
@@ -111,8 +111,8 @@ public function addCursus($id, Request $request, SessionInterface $session, Enti
 
 //add a lesson to the cart
 
-    #[Route('/cart/add/{id}', name: 'app_cart_add')]
-public function add($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
+    #[Route('/cart/add/lesson/{id}', name: 'app_cart_add_lesson')]
+public function addLesson($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
 {
     $lesson = $em->getRepository(Lesson::class)->find($id);
     if (!$lesson) {
@@ -134,7 +134,7 @@ public function add($id, Request $request, SessionInterface $session, EntityMana
     return $this->redirectToRoute('app_cart');
 }
 
-//Delete a lesson
+//Delete an object
 
 #[Route('/cart/remove/{id}', name: 'app_cart_remove')]
 public function remove($id, SessionInterface $session)

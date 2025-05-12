@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -179,5 +180,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+
+    #[ORM\ManyToMany(targetEntity: 'Lesson')]
+    private ?Lesson $lesson = null;
+
+    public function getLesson(): ?Lesson
+    {
+        return $this->lesson;
     }
 }
