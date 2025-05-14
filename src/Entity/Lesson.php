@@ -23,6 +23,7 @@ class Lesson
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->users = new ArrayCollection();
 
     }
 
@@ -95,6 +96,12 @@ class Lesson
      #[ORM\ManyToOne(inversedBy: 'lessons')]
      private ?Formation $formation = null;
 
+     /**
+      * @var Collection<int, User>
+      */
+     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Lesson')]
+     private Collection $users;
+
     //Column for the price of the lesson
 
     public function getPrice(): ?string
@@ -122,13 +129,34 @@ public function setType(?string $type): self
     return $this;
 }
 
-
-#[ORM\ManyToMany(targetEntity: 'User')]
-private ?User $user = null;
-
-public function getUser(): ?User
+/**
+ * @return Collection<int, User>
+ */
+public function getUsers(): Collection
 {
-    return $this->user;
+    return $this->users;
 }
+
+public function addUser(User $user): static
+{
+    if (!$this->users->contains($user)) {
+        $this->users->add($user);
+        $user->addLesson($this);
+    }
+
+    return $this;
+}
+
+public function removeUser(User $user): static
+{
+    if ($this->users->removeElement($user)) {
+        $user->removeLesson($this);
+    }
+
+    return $this;
+}
+
+
+
 
 }

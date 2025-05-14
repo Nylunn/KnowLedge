@@ -51,10 +51,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTime $updatedAt = null;
 
+    /**
+     * @var Collection<int, Lesson>
+     */
+    #[ORM\ManyToMany(targetEntity: Lesson::class, inversedBy: 'users')]
+    private Collection $Lesson;
+
 
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->Lesson = new ArrayCollection();
 
     }
 
@@ -182,11 +189,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    #[ORM\ManyToMany(targetEntity: 'Lesson')]
-    private ?Lesson $lesson = null;
-
-    public function getLesson(): ?Lesson
+    /**
+     * @return Collection<int, Lesson>
+     */
+    public function getLesson(): Collection
     {
-        return $this->lesson;
+        return $this->Lesson;
     }
+
+    public function addLesson(Lesson $lesson): static
+    {
+        if (!$this->Lesson->contains($lesson)) {
+            $this->Lesson->add($lesson);
+        }
+
+        return $this;
+    }
+
+    public function removeLesson(Lesson $lesson): static
+    {
+        $this->Lesson->removeElement($lesson);
+
+        return $this;
+    }
+
+
+
 }
