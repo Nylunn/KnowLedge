@@ -65,7 +65,7 @@
               
                 <form
                 method="get"
-                action="{{ path('app_cart_add', { id: lesson.id }) }}"
+                action="{{ path('app_cart_add_lesson', { id: lesson.id }) }}"
               >
               <button class="add_to_card">Ajouter la leçon au panier</button>
                 {% endfor %}
@@ -83,7 +83,7 @@
                 
                 <form
                 method="get"
-                action="{{ path('app_cart_add', { id: cursus.id }) }}"
+                action="{{ path('app_cart_add_cursus', { id: cursus.id }) }}"
               >
               <button class="add_to_card">Ajouter le cursus au panier</button>
                 {% endfor %}
@@ -95,7 +95,7 @@
             <div class="select_details">
               <form
                 method="get"
-                action="{{ path('app_cart_add', { id: formation.id }) }}"
+                action="{{ path('app_cart_add_formation', { id: formation.id }) }}"
               >
                 <button class="add_to_card">Ajouter la formation entière au panier</button>
               </form>

@@ -26,36 +26,31 @@ final class CartController extends AbstractController
   //Storage a lesson in cart with the session
 
   #[Route('/cart', name: 'app_cart')]
-public function index(SessionInterface $session, EntityManagerInterface $em, ManagerRegistry $manager)
-{
-    $lesson = $manager->getRepository(Lesson::class)->findAll();
-    $cart = $session->get('cart', []);
-    $cartWithData = [];
-    $totalPrice = 0;
-
-    foreach ($cart as $id => $details) {
-        $lesson = $em->getRepository(Lesson::class)->find($id);
-        
-        if ($lesson) {
-            // Vérification si la clé 'type' existe avant d'y accéder
-            $type = isset($details['type']) ? $details['type'] : 'default_type';  // Valeur par défaut si 'type' n'existe pas
-
-            $cartWithData[] = [
-                'lesson' => $lesson,
-                'type' => $type,  // Utilisation de $type
-                'total' => $lesson->getPrice(),
-            ];
-
-            $totalPrice += $lesson->getPrice();
-        }
-    }
-
-    return $this->render('cart/index.html.twig', [
-        'cart' => $cartWithData,
-        'totalPrice' => $totalPrice,
-        'lesson' => $lesson
-    ]);
-}
+  public function index(SessionInterface $session, EntityManagerInterface $em)
+  {
+      $cart = $session->get('cart', []);
+      $cartWithData = [];
+      $totalPrice = 0;
+  
+      foreach ($cart as $id => $details) {
+          $lesson = $em->getRepository(Lesson::class)->find($id);
+  
+          if ($lesson) {
+              $cartWithData[] = [
+                  'lesson' => $lesson,
+                  'quantity' => $details['quantity'],
+                  'total' => $lesson->getPrice() * $details['quantity'],
+              ];
+              $totalPrice += $lesson->getPrice() * $details['quantity'];
+          }
+      }
+  
+      return $this->render('cart/index.html.twig', [
+          'cart' => $cartWithData,
+          'total' => $totalPrice
+      ]);
+  }
+  
 
 
 // add a formation to the cart
@@ -133,6 +128,31 @@ public function addLesson($id, Request $request, SessionInterface $session, Enti
 
     return $this->redirectToRoute('app_cart');
 }
+
+// Redirecting for the index product page.
+#[Route('/cart/add/{id}', name: 'app_cart_add')]
+public function add($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
+{
+    $formation = $em->getRepository(Formation::class)->find($id);
+    if (!$formation) {
+        throw $this->createNotFoundException("La formation n'existe pas");
+    }
+
+    $cart = $session->get('cart', []);
+
+    if (!isset($cart[$id])) {
+        $cart[$id] = [
+            'quantity' => 1
+        ];
+    } else {
+        $cart[$id]['quantity']++;
+    }
+
+    $session->set('cart', $cart);
+
+    return $this->redirectToRoute('app_cart');
+}
+
 
 //Delete an object
 

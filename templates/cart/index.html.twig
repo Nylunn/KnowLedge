@@ -46,37 +46,25 @@
     <h1>Mon Panier</h1>
 
     <div class="form-container">
+      {% if cart is not empty %}
       {% for item in cart %}
-
-      <div class="bloc_cart">
-        <img
-          src="{{ asset('assets/' ~ item.lesson.image ) }}"
-          alt="{{ item.lesson.title }}"
-          class="cart_img"
-        />
-
-        <h2 class="form-title">{{ item.lesson.title }}</h2>
-        <p>Type : {{ item.lesson.type }}</p>
-        <p>Prix : {{ item.lesson.price }} €</p>
-
-        <div class="btn_cart">
-          <a
-            class="btn_delete_cart"
-            href="{{ path('app_cart_remove', { id: item.lesson.id }) }}"
-            >Retirer du panier</a
-          >
-        </div>
-      </div>
-
-      {% else %}
-    </div>
-    <p>Votre panier est vide.</p>
-    {% endfor %}
+          <div class="bloc_cart">
+              <img src="{{ asset('assets/' ~ item.lesson.image) }}" alt="{{ item.lesson.title }}" class="cart_img" />
+              <h2>{{ item.lesson.title }}</h2>
+              <p>Prix unitaire : {{ item.lesson.price }} €</p>
+          </div>
+      {% endfor %}
+      <hr>
+  {% else %}
+      <p>Votre panier est vide.</p>
+  {% endif %}
+  
+    
     <div class="cart_finish">
       <div class="cart_choice">
         <div class="total_price">
           <h2 class="price">
-            TOTAL : {{ totalPrice|number_format(2, ',', ' ') }} €
+            TOTAL : {{ total|number_format(2, ',', ' ') }} €
           </h2>
         </div>
         <button id="checkout-button" class="btn_pay">
