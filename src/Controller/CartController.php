@@ -137,6 +137,15 @@ public function add($id, Request $request, SessionInterface $session, EntityMana
     if (!$formation) {
         throw $this->createNotFoundException("La formation n'existe pas");
     }
+    $lesson = $em->getRepository(Lesson::class)->find($id);
+    if (!$lesson) {
+        throw $this->createNotFoundException("La leçon n'existe pas");
+    }
+    $cursus = $em->getRepository(Cursus::class)->find($id);
+    if (!$formation) {
+        throw $this->createNotFoundException("Le cursus n'existe pas");
+    }
+
 
     $cart = $session->get('cart', []);
 
