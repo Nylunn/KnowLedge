@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Entity\Cursus;
 use App\Entity\Lesson;
 use App\Entity\User;
+use App\Repository\CursusRepository;
+use App\Repository\FormationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Webhook;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -56,12 +58,11 @@ final class CartController extends AbstractController
 // add a formation to the cart
 
     #[Route('/cart/add/formation/{id}', name: 'app_cart_add_formation')]
-public function addFormation($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
+public function addFormation($id, Request $request, SessionInterface $session, EntityManagerInterface $em,  FormationRepository $repository)
 {
-    $formation = $em->getRepository(Formation::class)->find($id);
+    $formation = $formation->FormationRepository(Formation::class)->find($id);
     if (!$formation) {
         throw $this->createNotFoundException("La formation n'existe pas");
-    }
 
     $cart = $session->get('cart', []);
 
@@ -82,7 +83,7 @@ public function addFormation($id, Request $request, SessionInterface $session, E
 // add a cursus to the cart
 
     #[Route('/cart/add/cursus/{id}', name: 'app_cart_add_cursus')]
-public function addCursus($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
+public function addCursus($id, Request $request, SessionInterface $session, EntityManagerInterface $em, CursusRepository $cursus)
 {
     $cursus = $em->getRepository(Cursus::class)->find($id);
     if (!$cursus) {
@@ -131,9 +132,9 @@ public function addLesson($id, Request $request, SessionInterface $session, Enti
 
 // Redirecting for the index product page.
 #[Route('/cart/add/{id}', name: 'app_cart_add')]
-public function add($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
+public function add($id, Request $request, SessionInterface $session, EntityManagerInterface $em, FormationRepository $repository)
 {
-    $formation = $em->getRepository(Formation::class)->find($id);
+    $formation = $repository->FormationRepository(Formation::class)->find($id);
     if (!$formation) {
         throw $this->createNotFoundException("La formation n'existe pas");
     }

@@ -52,7 +52,15 @@
               <img src="{{ asset('assets/' ~ item.lesson.image) }}" alt="{{ item.lesson.title }}" class="cart_img" />
               <h2>{{ item.lesson.title }}</h2>
               <p>Prix unitaire : {{ item.lesson.price }} €</p>
+              <div class="btn_cart">
+                <a
+                  class="btn_delete_cart"
+                  href="{{ path('app_cart_remove', { id: item.lesson.id }) }}"
+                  >Retirer du panier</a
+                >
+              </div>
           </div>
+          
       {% endfor %}
       <hr>
   {% else %}
