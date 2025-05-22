@@ -5,10 +5,10 @@
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Détails de la formation  </title>
+    <title>Détails de la formation</title>
   </head>
   <body>
-       <div class="nav">
+    <div class="nav">
       <nav>
         <div class="navlinks">
           <ul class="navbar">
@@ -16,7 +16,7 @@
             {% if app.user %}
             <li><a href="/formations">Boutique</a></li>
             <li><a href="/cart">Panier</a></li>
-             
+
             {% if is_granted('ROLE_STUDENT') %}
             <li><a href="{{ path('app_student') }}">Élèves</a></li>
             {% endif %}
@@ -61,31 +61,38 @@
               <h3>Leçons de cette formation :</h3>
               <ul>
                 {% for lesson in lessons %}
-                <li>{{ lesson.title }} :   {{ lesson.price }} €  </li>
-              
-                <form
-                method="get"
-                action="{{ path('app_cart_add_lesson', { id: lesson.id }) }}"
-              >
-              <button class="add_to_card">Ajouter la leçon au panier</button>
+                <li>
+                  {{ lesson.title }} : {{ lesson.price }} €
+                  <form
+                    method="POST"
+                    action="{{
+                      path('app_cart_add_lesson', { id: lesson.id })
+                    }}"
+                  >
+                    <button class="add_to_card">
+                      Ajouter la leçon au panier
+                    </button>
+                  </form>
+                </li>
                 {% endfor %}
               </ul>
               {% else %}
               <p>Aucune leçon disponible pour cette formation.</p>
-              {% endif %}
-
-
-                {% if cursus is defined and cursus|length > 0 %}
+              {% endif %} {% if cursus is defined and cursus|length > 0 %}
               <h3>Cursus de cette formation :</h3>
               <ul>
-                {% for cursus in cursus %}
-                <li>{{ cursus.title }} : {{ cursus.price }} €</li>
-                
-                <form
-                method="get"
-                action="{{ path('app_cart_add_cursus', { id: cursus.id }) }}"
-              >
-              <button class="add_to_card">Ajouter le cursus au panier</button>
+                {% for item in cursus %}
+                <li>
+                  {{ item.title }} : {{ item.price }} €
+                  <form
+                    method="POST"
+                    action="{{ path('app_cart_add_cursus', { id: item.id }) }}"
+                  >
+                    <button class="add_to_card">
+                      Ajouter le cursus au panier
+                    </button>
+                  </form>
+                </li>
                 {% endfor %}
               </ul>
               {% else %}
@@ -94,10 +101,14 @@
             </div>
             <div class="select_details">
               <form
-                method="get"
-                action="{{ path('app_cart_add_formation', { id: formation.id }) }}"
+                method="POST"
+                action="{{
+                  path('app_cart_add_formation', { id: formation.id })
+                }}"
               >
-                <button class="add_to_card">Ajouter la formation entière au panier</button>
+                <button class="add_to_card">
+                  Ajouter la formation entière au panier
+                </button>
               </form>
             </div>
           </div>
@@ -110,7 +121,7 @@
 
     <br />
   </body>
-    <script>
+  <script>
     const menuHamburger = document.querySelector(".menu-hamburger");
     const navLinks = document.querySelector(".navlinks");
 
