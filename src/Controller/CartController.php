@@ -12,11 +12,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+
 use App\Entity\Cursus;
 use App\Entity\Lesson;
 use App\Entity\User;
 use App\Repository\CursusRepository;
 use App\Repository\FormationRepository;
+use App\Repository\LessonRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Webhook;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -58,11 +60,10 @@ final class CartController extends AbstractController
 // add a formation to the cart
 
     #[Route('/cart/add/formation/{id}', name: 'app_cart_add_formation')]
-public function addFormation($id, Request $request, SessionInterface $session, EntityManagerInterface $em,  FormationRepository $repository)
+public function addFormation($id, Request $request, SessionInterface $session, EntityManagerInterface $em,  FormationRepository $formationRepository)
 {
-    $formation = $formation->FormationRepository(Formation::class)->find($id);
-    if (!$formation) {
-        throw $this->createNotFoundException("La formation n'existe pas");
+    $formation = $formationRepository->find($id); 
+ 
 
     $cart = $session->get('cart', []);
 
@@ -78,17 +79,13 @@ public function addFormation($id, Request $request, SessionInterface $session, E
 
     return $this->redirectToRoute('app_cart');
 }
-
 
 // add a cursus to the cart
 
-    #[Route('/cart/add/cursus/{id}', name: 'app_cart_add_cursus')]
-public function addCursus($id, Request $request, SessionInterface $session, EntityManagerInterface $em, CursusRepository $cursus)
-{
-    $cursus = $em->getRepository(Cursus::class)->find($id);
-    if (!$cursus) {
-        throw $this->createNotFoundException("Le cursus n'existe pas");
-    }
+#[Route('/cart/add/cursus/{id}', name: 'app_cart_add_cursus')]
+    public function addCursus($id, Request $request, SessionInterface $session, EntityManagerInterface $em,  CursusRepository $cursusRepository)
+    {
+        $cursus = $cursusRepository->find($id);     
 
     $cart = $session->get('cart', []);
 
@@ -104,13 +101,15 @@ public function addCursus($id, Request $request, SessionInterface $session, Enti
 
     return $this->redirectToRoute('app_cart');
 }
+    
 
 //add a lesson to the cart
 
     #[Route('/cart/add/lesson/{id}', name: 'app_cart_add_lesson')]
-public function addLesson($id, Request $request, SessionInterface $session, EntityManagerInterface $em)
+public function addLesson($id, Request $request, SessionInterface $session, EntityManagerInterface $em, LessonRepository $lessonRepository)
 {
-    $lesson = $em->getRepository(Lesson::class)->find($id);
+    $lesson = $lessonRepository->find($id); 
+    
     if (!$lesson) {
         throw $this->createNotFoundException("La leçon n'existe pas");
     }
@@ -132,20 +131,12 @@ public function addLesson($id, Request $request, SessionInterface $session, Enti
 
 // Redirecting for the index product page.
 #[Route('/cart/add/{id}', name: 'app_cart_add')]
-public function add($id, Request $request, SessionInterface $session, EntityManagerInterface $em, FormationRepository $repository)
+public function add($id, Request $request, SessionInterface $session, EntityManagerInterface $em, FormationRepository $formationRepository, CursusRepository $cursusRepository, LessonRepository $lessonRepository)
 {
-    $formation = $repository->FormationRepository(Formation::class)->find($id);
-    if (!$formation) {
-        throw $this->createNotFoundException("La formation n'existe pas");
-    }
-    $lesson = $em->getRepository(Lesson::class)->find($id);
-    if (!$lesson) {
-        throw $this->createNotFoundException("La leçon n'existe pas");
-    }
-    $cursus = $em->getRepository(Cursus::class)->find($id);
-    if (!$formation) {
-        throw $this->createNotFoundException("Le cursus n'existe pas");
-    }
+    $lesson = $lessonRepository->find($id); 
+    $cursus = $cursusRepository->find($id); 
+    $formation = $formationRepository->find($id); 
+ 
 
 
     $cart = $session->get('cart', []);
