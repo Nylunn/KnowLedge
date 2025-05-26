@@ -439,6 +439,13 @@ section {
   gap: 30px;
 }
 
+.top-products {
+  height: 300px;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+
 /*Register page*/
 .title-register {
   color: grey;

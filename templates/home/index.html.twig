@@ -47,9 +47,24 @@
    
       </div>
     </div>
+<div class="top-products">
+<h1>Formation la plus vendue !</h1>
+{% for formation in formation %} {% if formation.id == 2 %}
+  <tr>
+    <img src="{{
+      asset("assets/informatique.png")
+    }}" width="10%" alt="informatique" />
+    <br />
+    <td>{{ formation.title }}</td>
 
+    <br />
+    {% endif %}
+  </tr>
+  {% endfor %} 
+
+</div>
     <h1 style="font-size: 15px; font-weight: 200;">Pour accéder à nos services, pensez à créer un compte et vérifier votre mail. <br> Dans le cas contraire, l'accès à nos services vous sera refusé.</h1>
-    <a href="/login" style="font-weight: bold;">J'ai un compte</a> <br> <a href="/register" style="font-weight: bold;">Je m'inscrit</a>
+    <a href="/login" style="font-weight: bold;">J'ai un compte</a> <br> <a href="/register" style="font-weight: bold;">Je m'inscris</a>
 
   </body>
     <script>
