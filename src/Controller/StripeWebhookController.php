@@ -34,6 +34,8 @@ class StripeWebhookController extends AbstractController
                 $email = $session->customer_email; 
                 $formationId = $session->metadata->formation_id ?? null; 
 
+                $customerEmail = $session->customer_details->email;
+
                 $user = $userRepository->findOneBy(['email' => $email]);
 
                 if ($user && $formationId) {
