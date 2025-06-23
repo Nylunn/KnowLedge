@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}" />
+    
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Détails du produit</title>
+  </head>
+  <body>
+       <div class="nav">
+      <nav>
+        <div class="navlinks">
+          <ul class="navbar">
+            <li><a href="/">Accueil</a></li>
+            {% if app.user %}
+            <li><a href="/formations">Boutique</a></li>
+            <li><a href="/cart">Panier</a></li>
+             
+            {% if is_granted('ROLE_STUDENT') %}
+            <li><a href="{{ path('app_student') }}">Élèves</a></li>
+            {% endif %}
+            <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+            {% endif %} {% else %}
+            <li><a class="active" href="/register">S'inscrire</a></li>
+            <li><a href="/login">Se connecter</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <img
+          src="{{ asset('assets/menu.png') }}"
+          alt="menu-hamburger"
+          class="menu-hamburger"
+        />
+      </nav>
+      <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo"
+      class="navbarlogo"/>
+    </div>
+    <br />
+
+       {% if is_granted('ROLE_CERTIFICATE') %}
+       <h1>Certifié : <strong>Knowledge Learning </strong></h1>
+       {% endif %}
+
+
+    <div class="showing_card">
+        
+        <div class="">
+         {% if formation.id  %}
+        <tr>
+          <img src="{{ asset('assets/' ~ formation.image ) }}" width="25%" alt="{{formation.title}}" />
+          <br />
+          <td>{{ formation.title }}</td>
+          
+          
+          <br />
+          <div class="chapter">
+            <div class="chapter1">
+                <p>Lorem Ipsum Dolor</p>
+                
+   <button><a href="{{ path('chapter_formation', { id: formation.id }) }}">Commencer</a></button>
+            </div>
+            <div class="chapter2">
+   <p>Lorem Ipsum Dolor</p>
+   
+   <button><a href="{{ path('chapter_formation', { id: formation.id }) }}">Commencer</a></button></button>
+            </div>
+            <div class="chapter3">
+   <p>Lorem Ipsum Dolor</p>
+   <button><a href="{{ path('chapter_formation', { id: formation.id }) }}">Commencer</a></button></button>
+            </div>
+            <div class="chapter4">
+              {% if is_granted('ROLE_FINISHEDLESSON')%}
+   <p>Vers le diplôme</p>
+   <button><a href="{{ path('final_chapter') }}">Vers le diplôme</a></button>
+   {% endif %}
+            </div>
+          </div>
+        </tr>
+    </div>
+    {% endif %}
+
+  </body>
+    <script>
+    const menuHamburger = document.querySelector(".menu-hamburger");
+    const navLinks = document.querySelector(".navlinks");
+
+    menuHamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("mobile-menu");
+    });
+  </script>
+</html>

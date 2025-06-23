@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
+    <link rel="stylesheet" href={{
+      "styles/app.css"
+    }}>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panier</title>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <div class="nav">
+      <nav>
+        <div class="navlinks">
+          <ul class="navbar">
+            <li><a href="/">Accueil</a></li>
+            {% if app.user %}
+            <li><a href="/formations">Boutique</a></li>
+            <li><a href="/cart">Panier</a></li>
+
+            {% if is_granted('ROLE_STUDENT') %}
+            <li><a href="{{ path('app_student') }}">Élèves</a></li>
+            {% endif %}
+            <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+            {% endif %} {% else %}
+            <li><a class="active" href="/register">S'inscrire</a></li>
+            <li><a href="/login">Se connecter</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <img
+          src="{{ asset('assets/menu.png') }}"
+          alt="menu-hamburger"
+          class="menu-hamburger"
+        />
+      </nav>
+      <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo"
+      class="navbarlogo"/>
+    </div>
+    <br />
+
+    <h1>Mon Panier</h1>
+
+    <div class="form-container">
+      {% if cart is not empty %}
+      {% for item in cart %}
+          <div class="bloc_cart">
+              <img src="{{ asset('assets/' ~ item.lesson.image) }}" alt="{{ item.lesson.title }}" class="cart_img" />
+              <h2>{{ item.lesson.title }}</h2>
+              <p>Prix unitaire : {{ item.lesson.price }} €</p>
+              <div class="btn_cart">
+                <a
+                  class="btn_delete_cart"
+                  href="{{ path('app_cart_remove', { id: item.lesson.id }) }}"
+                  >Retirer du panier</a
+                >
+              </div>
+          </div>
+          
+      {% endfor %}
+      <hr>
+  {% else %}
+      <p>Votre panier est vide.</p>
+  {% endif %}
+  
+    
+    <div class="cart_finish">
+      <div class="cart_choice">
+        <div class="total_price">
+          <h2 class="price">
+            TOTAL : {{ total|number_format(2, ',', ' ') }} €
+          </h2>
+        </div>
+        <button id="checkout-button" class="btn_pay">
+          FINALISER MA COMMANDE
+        </button>
+        {% block javascripts %}
+        <script type="text/javascript">
+          var stripe = Stripe(
+            "pk_test_51Q2uEVCybVMxBZRKyHMHVOJ78qmmrsj7Xwabaxk3GhMKi0id1SS1s4N41QjSL5i7W3eieDHyMvwcKNFHcOLPhaLE00AqRHhkXg"
+          );
+          var checkoutButton = document.getElementById("checkout-button");
+
+          checkoutButton.addEventListener("click", function () {
+            fetch("/create-checkout-session", {
+              method: "POST",
+            })
+              .then(function (response) {
+                return response.json();
+              })
+              .then(function (session) {
+                console.log(session.id);
+                return stripe.redirectToCheckout({ sessionId: session.id });
+              })
+              .then(function (result) {
+                if (result.error) {
+                  console.error("Error:", error);
+                }
+              });
+          });
+        </script>
+        {% endblock %}
+      </div>
+    </div>
+  </body>
+  <script>
+    const menuHamburger = document.querySelector(".menu-hamburger");
+    const navLinks = document.querySelector(".navlinks");
+
+    menuHamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("mobile-menu");
+    });
+  </script>
+</html>

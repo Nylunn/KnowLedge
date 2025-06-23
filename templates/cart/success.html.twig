@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href={{
+      "styles/app.css"
+    }}>
+
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produit</title>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <div class="nav">
+      <nav>
+        <div class="navlinks">
+          <ul class="navbar">
+            <li><a href="/">Accueil</a></li>
+            {% if app.user %}
+            <li><a href="/formations">Boutique</a></li>
+            <li><a href="/cart">Panier</a></li>
+
+            {% if is_granted('ROLE_STUDENT') %}
+            <li><a href="{{ path('app_student') }}">Élèves</a></li>
+            {% endif %}
+            <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+            {% endif %} {% else %}
+            <li><a class="active" href="/register">S'inscrire</a></li>
+            <li><a href="/login">Se connecter</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <img
+          src="{{ asset('assets/menu.png') }}"
+          alt="menu-hamburger"
+          class="menu-hamburger"
+        />
+      </nav>
+      <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo"
+      class="navbarlogo"/>
+    </div>
+    <br />
+    <h1>Achat réalisé avec succès</h1>
+    <a href="/">Retourner à l'acceuil</a>
+    <footer class="site_footer">
+      <a href="/info"><p>Informations de la société</p></a>
+    </footer>
+  </body>
+  <script>
+    const menuHamburger = document.querySelector(".menu-hamburger");
+    const navLinks = document.querySelector(".navlinks");
+
+    menuHamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("mobile-menu");
+    });
+  </script>
+</html>

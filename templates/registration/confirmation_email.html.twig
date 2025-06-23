@@ -1,0 +1,10 @@
+<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
+<h1>Salut, Pour continuer sur nos services veuillez confirmer l'email!</h1>
+
+<p>
+  Cliquer sur le lien suivant: <br /><br />
+  <a href="{{ signedUrl | raw }}">Confirmer l'email</a>. Le lien expire dans
+  {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>
+
+<p>Merci</p>

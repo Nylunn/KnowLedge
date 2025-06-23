@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href={{
+      "styles/app.css"
+    }}>
+
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>inscription</title>
+  </head>
+  <body>
+    <div class="nav">
+      <nav>
+        <div class="navlinks">
+          <ul class="navbar">
+            <li><a href="/">Accueil</a></li>
+            {% if app.user %}
+            <li><a href="/formations">Boutique</a></li>
+            <li><a href="/cart">Panier</a></li>
+
+            {% if is_granted('ROLE_STUDENT') %}
+            <li><a href="{{ path('app_student') }}">Élèves</a></li>
+            {% endif %}
+            <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('app_admin') }}">Tableau de bord</a></li>
+            {% endif %} {% else %}
+            <li><a class="active" href="/register">S'inscrire</a></li>
+            <li><a href="/login">Se connecter</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <img
+          src="{{ asset('assets/menu.png') }}"
+          alt="menu-hamburger"
+          class="menu-hamburger"
+        />
+      </nav>
+      <img src={{ asset("assets/Logo.jpeg") }} width="10%" alt="Logo"
+      class="navbarlogo"/>
+    </div>
+    <br />
+    <div class="form">
+      <div class="form-register">
+        <p class="title-register">S'inscrire</p>
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+
+        <div class="register_input">
+          {{
+            form_row(registrationForm.username, {
+              label: "Nom d'utilisateur"
+            })
+          }}
+        </div>
+        <div class="register_input">
+          {{ form_row(registrationForm.email) }}
+        </div>
+
+        <div class="register_input">
+          {{ form_row(registrationForm.password.first) }}
+        </div>
+        <div class="register_input">
+          {{ form_row(registrationForm.password.second) }}
+        </div>
+        <button type="submit" class="btn-register">Register</button>
+
+        <p class="title-register"> </p>
+        <p style="color: grey">Déjà inscrit ?</p>
+        <button class="btn-register">
+          <a href="/login" style="color: #fff">Se connecter</a>
+        </button>
+        {{ form_end(registrationForm) }}
+      </div>
+    </div>
+  </body>
+  <script>
+    const menuHamburger = document.querySelector(".menu-hamburger");
+    const navLinks = document.querySelector(".navlinks");
+
+    menuHamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("mobile-menu");
+    });
+  </script>
+</html>

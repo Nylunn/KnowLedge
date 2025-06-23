@@ -1,0 +1,689 @@
+* {
+  font-family: "Comic Sans MS";
+}
+
+body {
+  display: table;
+  width: 99%;
+  height: 99%;
+  background-color: #f1f8fc;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.menu-hamburger {
+  display: none;
+  width: 50px;
+  position: absolute;
+  top: 35px;
+  right: 15px;
+}
+
+@media screen and (max-width: 360px) {
+  /*CSS for responsivity / new navbar for mobile view*/
+  * {
+    width: 90%;
+  }
+  body {
+    width: 359px;
+    height: 600px;
+  }
+  .navbar {
+    padding: 0;
+  }
+  .navlinks {
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #0074c7aa;
+    backdrop-filter: blur(7px);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -100%;
+    transition: all 0.5s ease;
+  }
+  .navlinks ul {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .navlinks.mobile-menu {
+    margin-left: 0;
+  }
+
+  .navbarlogo {
+    width: 150px;
+  }
+  .menu-hamburger {
+    display: block;
+  }
+
+  .navlinks ul li {
+    margin: 25px 0;
+    font-size: 20px;
+  }
+  /*CSS for admin page*/
+  .administration {
+    width: 360px;
+    height: auto;
+    font-size: 10px;
+  }
+  .administration.table {
+    width: 360px;
+  }
+  .user_update {
+    display: none;
+  }
+  .modify_user {
+    width: 360px;
+    height: auto;
+  }
+
+  /* Mobile view for details formation page*/
+
+  section {
+    display: grid;
+    height: 100%;
+    width: 100%;
+  }
+  .show_product2 {
+    width: 100%;
+    gap: 10px;
+    flex-direction: column;
+    border-radius: 10px;
+    border-color: #384050;
+    padding-top: 10px;
+  }
+
+  .showing_card {
+    margin: 0;
+    padding: 0;
+    width: 360px;
+  }
+
+  .details_card {
+    margin: 0;
+    flex-direction: column;
+    width: 360px;
+    height: auto;
+    border: none;
+    border-top: 1px solid #384050;
+  }
+
+  .card_img {
+    margin: 0;
+    width: 50px;
+    height: auto;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .card_img img {
+    margin: 0;
+    max-width: 100%;
+    max-height: 200px;
+  }
+
+  .center_details {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+  }
+
+  .center_details > div {
+    padding: 0;
+    margin: 0;
+  }
+
+  .add_to_card {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  ul {
+    padding-left: 15px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  li {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .details {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .product_details {
+    height: 600px;
+    width: 360px;
+  }
+  /*CART PAGE MOBILE CSS*/
+  .cart_finish {
+    width: 360px;
+  }
+  .cart_choice {
+    width: 360px;
+  }
+  .total_price {
+    width: 200px;
+  }
+  .form-container {
+    margin: 0px;
+    padding: 0px;
+  }
+  /* MOBILE VIEW FOR STUDENT PAGE */
+  .devoir {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    padding-bottom: 20px;
+  }
+  .exercice {
+    margin-top: 20px;
+  }
+
+  .finished_div {
+    display: flex;
+    width: 360px;
+    justify-content: center;
+  }
+
+  /*Mobile view for cart page */
+
+  .form-container {
+    width: 360px;
+    flex-direction: column;
+    text-align: center;
+  }
+  .bloc_cart {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .cart_img {
+    margin-left: 110px;
+    border-radius: 20%;
+  }
+
+  .cart_finish {
+    width: 360px;
+  }
+}
+
+/*END OF MOBILE VIEW  */
+
+.bloc_cart > img {
+  width: 150px;
+  height: 150px;
+}
+.modify_user {
+  display: flex;
+  text-align: center;
+}
+
+.site_footer {
+  margin-left: 30px;
+  margin-top: 20px;
+  border: 1px solid black;
+  display: flex;
+  padding-left: 40px;
+  width: 90%;
+}
+/*NAVBAR*/
+
+.nav {
+  border-bottom: 1px solid #0074c7;
+}
+.navbar {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.navbar li {
+  padding: 10px 20px;
+}
+/*formation section */
+
+section {
+  justify-content: space-between;
+  display: inline-block;
+
+  width: 100%;
+}
+/*Product card for product page*/
+.product_card {
+  border: 1px solid #0074c7;
+  height: 350px;
+  width: 300px;
+  padding: 20px;
+}
+
+.product_card2 {
+  border: 1px solid #0074c7;
+  height: 350px;
+  width: 300px;
+  padding: 20px;
+}
+
+.show_product2 {
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+  border-radius: 10px;
+  border-color: #384050;
+  padding-top: 10px;
+}
+
+.options {
+  text-decoration: none;
+  height: 75%;
+  width: 100%;
+  font-size: 16px;
+}
+/*Admin  section CSS | Navbar/Page*/
+.bloc {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.logo_section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 200px;
+  height: 220px;
+}
+
+.bloc2 {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #384050;
+  position: absolute;
+  left: 50%;
+  top: 14%;
+  transform: translateX(-50%);
+}
+
+.form-container {
+  display: flex;
+  background-color: #f1f8fc;
+  border: 2px solid 384050;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.form-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.form-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  flex-grow: 1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+.btn-ajouter {
+  padding: 10px 50px;
+  background-color: #f1f8fc;
+  border: 1px solid #384050;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+}
+
+.form-response {
+  display: grid;
+  height: 30px;
+  width: 80px;
+  background-color: #f1f8fc;
+  text-align: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid #384050;
+}
+
+.form-response2 {
+  display: grid;
+  height: 30px;
+  width: 80px;
+  background-color: #f1f8fc;
+  text-align: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid #384050;
+}
+.btn {
+  padding: 20px;
+}
+/*Formulaire Login*/
+.title-form {
+  color: grey;
+  border-bottom: 1px solid #0074c7;
+}
+.btn-login {
+  margin: 10px;
+  border: 0px;
+  width: 150px;
+  height: 30px;
+  background-color: #0074c7;
+  color: #fff;
+  border-radius: 5px;
+}
+.form-recovery {
+  color: grey;
+  border-bottom: 1px solid #0074c7;
+}
+.form {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 50px;
+  width: 250px;
+}
+.form-login {
+  display: flex;
+  border: 1px solid #384050;
+  text-align: start;
+  height: 350px;
+  width: 220px;
+  padding: 10px;
+}
+/*Home page*/
+.show_product {
+  margin: 0;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.top-products {
+  height: 300px;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+/*Register page*/
+.title-register {
+  color: grey;
+  border-bottom: 1px solid #0074c7;
+}
+
+.form-register {
+  padding: 10px;
+  display: grid;
+  border: 1px solid #384050;
+  text-align: start;
+  height: 650px;
+  width: 250px;
+}
+
+.register_input {
+  padding: 10px;
+  color: #00497c;
+}
+.btn-register {
+  margin: 10px;
+  border: 0px;
+  width: 150px;
+  height: 30px;
+  background-color: #0074c7;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/*Showing formation page*/
+
+.showing_card {
+  display: flex;
+  justify-content: center;
+  height: 500px;
+}
+
+.details_card {
+  display: flex;
+  border: 1px solid #384050;
+  height: 600px;
+  width: 1200px;
+}
+
+.card_img {
+  padding: 10px;
+  display: flex;
+  height: 250px;
+  width: 250px;
+}
+
+.product_details {
+  display: flex;
+  height: 600px;
+  width: 500px;
+  justify-content: center;
+}
+
+.add_to_card {
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #384050;
+  margin-top: 20px;
+  margin-right: 200px;
+  justify-content: end;
+}
+
+/*Page panier*/
+
+.cart_img {
+  border: 1px solid black;
+  width: 75px;
+  height: 75px;
+}
+
+.btn_cart {
+  padding-top: 20px;
+}
+
+.btn_delete_cart {
+  text-align: center;
+  background-color: #f1f8fc;
+  border: 1px solid #384050;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 10px 10px;
+  margin: 10px;
+}
+.bloc_cart {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cart_finish {
+  margin-top: 30px;
+  height: 150px;
+  width: 400px;
+}
+.btn_pay {
+  text-align: center;
+  background-color: #cd2c2e;
+  font-size: large;
+  opacity: 70%;
+  border: 2px solid #00497c;
+  height: 60px;
+  width: 300px;
+  border-radius: 20px;
+}
+.btn_continue {
+  background-color: #82b864;
+  height: 60px;
+  width: 300px;
+  opacity: 70%;
+  font-size: large;
+  border: 2px solid #00497c;
+  border-radius: 20px;
+}
+.price {
+  font-size: 18px;
+}
+
+.total_price {
+  text-align: center;
+  height: 60px;
+  width: 300px;
+  border: 2px solid #384050;
+}
+.cart_choice {
+  display: flex;
+  gap: 10px;
+}
+.choice {
+  display: block;
+  padding-left: 310px;
+}
+
+/*Student page*/
+.chapter {
+  padding-top: 50px;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  justify-content: space-between;
+}
+.chapter1 {
+  font-weight: 400;
+}
+.chapter2 {
+  font-weight: 400;
+}
+.chapter3 {
+  font-weight: 400;
+}
+.chapter4 {
+  font: bold;
+}
+
+.devoir {
+  justify-content: space-evenly;
+
+  display: flex;
+  padding-bottom: 20px;
+}
+.exercice {
+  text-align: center;
+  font-size: 10px;
+  padding-top: 3px;
+  color: #f1f8fc;
+  background-color: #0074c7;
+  width: 150px;
+  height: 150px;
+  border-radius: 5%;
+  transition: all 0.5s;
+}
+.exercice:hover {
+  background-color: #00497c;
+  width: 180px;
+  height: 180px;
+}
+
+.exercice_text {
+  font-size: 12px;
+}
+.exercice_button {
+  font-size: medium;
+  color: #f1f8fc;
+  background-color: #00497c;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: white;
+  transition: all 0.4s;
+  margin-top: 20px;
+}
+.exercice_button:hover {
+  background-color: #82b864;
+}
+
+.student_page {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.hello_student {
+  font-size: 15px;
+}
+
+.finished {
+  text-align: center;
+  font-size: 10px;
+  padding-top: 3px;
+  color: #f1f8fc;
+  background-color: #82b864;
+  width: 150px;
+  height: 150px;
+  border-radius: 5%;
+  transition: all 0.5s;
+}
+
+.finished:hover {
+  background-color: #00497c;
+  width: 180px;
+  height: 180px;
+}
+
+.finished_button {
+  font-size: medium;
+  color: #f1f8fc;
+  background-color: #cd2c2e;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: white;
+  transition: all 0.4s;
+}
+.finished_div {
+  display: flex;
+  justify-content: center;
+}
